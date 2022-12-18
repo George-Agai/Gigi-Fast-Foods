@@ -2,7 +2,6 @@ import './App.css';
 import React from 'react';
 //import ReactDOM from 'react-dom';
 import Home from './home/Home';
-import CompleteOrder from './home/CompleteOrder';
 import OtpVerification from './home/OtpVerification';
 import LogIn from './home/LogIn';
 import OrderComplete from './home/OrderComplete';
@@ -12,8 +11,7 @@ import EmployeePageIncome from './home/EmployeePageIncome'
 import EmployeePageExpenses from './home/EmployeePageExpenses'
 import OrderDetails from './home/OrderDetails'
 import { BrowserRouter,Route,Routes } from 'react-router-dom';
-import { CartProvider } from 'react-use-cart';
-import Cart from './home/Cart';
+
 
 
 function App() {
@@ -25,7 +23,6 @@ function App() {
     <Route path='/' element={<Home />}/>
     <Route path='/Home' element={<Home />}/> 
     <Route path='/Manage' element={<Manage />}/>
-    <Route path='/CompleteOrder' element={<CompleteOrder />}/>
     <Route path='/LogIn' element={<LogIn />}/>
     <Route path='/OtpVerification' element={<OtpVerification />}/>
     <Route path='/EmployeePageOrders' element={<EmployeePageOrders />}/>

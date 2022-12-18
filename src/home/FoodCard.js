@@ -5,19 +5,19 @@ const FoodCard = (props) => {
     const { addItem } = useCart();
   return (
     <div className='food-sold-container'>
-        <div>
+        
             <img 
                 src={props.img} 
                 alt='food'
                 className='foods-sold'
             />
-        </div>
+        
         <div className='food-name-food-price-order-button'>
-            <div >
-                <p>{props.food}</p>
-                <p>{props.price}</p>
-            </div>
             <div>
+                <p style={{color: 'rgb(54, 52, 52)', fontSize: '15px', marginTop: '10px'}}>{props.food}</p>
+                <p  style={{color: 'rgb(85, 79, 79)', fontSize: '13px'}}>{props.price}</p>
+            </div>
+            <div id='order-buttons-div'>
                 <button className='order-buttons' onClick={()=> addItem(props.item)}>Order</button>
             </div>
         </div>

@@ -5,13 +5,13 @@ import { useState, useEffect } from 'react';
 import { CompletedOrdersView } from './CompletedOrdersView';
 
 //Getting the values of local storage
-const getDatafromLS=()=>{
+const getDatafromLS = () => {
     const data = localStorage.getItem('completedOrders');
-    if(data){
+    if (data) {
         return JSON.parse(data);
     }
-    else{
-        return[]
+    else {
+        return []
     }
 }
 
@@ -26,10 +26,10 @@ const DropDownInput = React.forwardRef(({
     const [inputValue, setInputValue] = useState('');
     const [onText, setOnText] = useState('');
     const [incomeAmount, setIncomeAmount] = useState('');
-
-    //main array of completedOrders objects state
-    const[completedOrders, setCompletedOrders] = useState(getDatafromLS());
     
+    //main array of completedOrders objects state
+    const [completedOrders, setCompletedOrders] = useState(getDatafromLS());
+
     //Saving data to local storage
     useEffect(() => {
         if (selectedKey) {
@@ -40,7 +40,7 @@ const DropDownInput = React.forwardRef(({
     }, [selectedKey, options, setOpen, completedOrders]);
 
     const onInputChange = (e) => {
-        setInputValue(e.target.value);  
+        setInputValue(e.target.value);
         setOnText(true);
     }
 
@@ -58,55 +58,60 @@ const DropDownInput = React.forwardRef(({
         setOpen((prevValue) => !prevValue);
     }
 
-    const HandleAddCompletedOrder=(e)=>{
+    const HandleAddCompletedOrder = (e) => {
         e.preventDefault();
 
         //creating an object
-        let completedOrder={
+        const completedOrder = {
             inputValue,
             incomeAmount
         }
-        setCompletedOrders([...completedOrders, completedOrder]);
+        
+        console.log(completedOrder)
+        
+        //setCompletedOrders([...completedOrders, completedOrder]);
         setInputValue('');
         setIncomeAmount('');
     }
+    
+    
 
-    const onAmountChange=(e)=>{
+    const onAmountChange = (e) => {
         setIncomeAmount(e.target.value);
-    } 
+    }
 
     return (
         <div className='dropdown-container' ref={ref}>
             <div id='input-amount-container'>
-            <div className='input-container' onClick={onInputClick}>
-                <form id='form'  onSubmit={ HandleAddCompletedOrder }>
-                <input
-                    type="text"
-                    value={inputValue}
-                    placeholder={placeholder}
-                    onChange={onInputChange}
-                    id='income-input'
-                />
-                <input
-                    type="text"
-                    placeholder='Amount'
-                    id='income-amount'
-                    onClick={ AmountClick }
-                    onChange ={ onAmountChange }
-                    value={ incomeAmount }
-                    
-                />
-                <button
-                    id='income-add-button'
-                    type='submit'
-                    value='Submit'
-                >+</button>
-                </form>
-            </div>
-        
+                <div className='input-container' onClick={onInputClick}>
+                    <form id='form' onSubmit={HandleAddCompletedOrder}>
+                        <input
+                            type="text"
+                            value={inputValue}
+                            placeholder={placeholder}
+                            onChange={onInputChange}
+                            id='income-input'
+                        />
+                        <input
+                            type="text"
+                            placeholder='Amount'
+                            id='income-amount'
+                            onClick={AmountClick}
+                            onChange={onAmountChange}
+                            value={incomeAmount}
+
+                        />
+                        <button
+                            className='income-add-button'
+                            type='submit'
+                            value='Submit'
+                        >+</button>
+                    </form>
+                </div>
+
             </div>
 
-            {onText && <div className='dropdown' >
+            {onText ? <div className='dropdown' >
                 {options.filter(item => {
                     const searchItem = inputValue.toLocaleLowerCase();
                     const v = item.value.toLocaleLowerCase();
@@ -116,8 +121,8 @@ const DropDownInput = React.forwardRef(({
                 }).map(opt => {
                     return (
                         <div key={opt.key}
-                             onClick={() => onItemSelected(opt)}
-                             className='option'>
+                            onClick={() => onItemSelected(opt)}
+                            className='option'>
 
                             {opt.value}
                         </div>
@@ -125,10 +130,10 @@ const DropDownInput = React.forwardRef(({
                     );
 
                 })}
-            </div>}
-                <div  id="inputValue">
-                    <CompletedOrdersView completedOrders={ completedOrders }/>
-                </div>
+            </div>: null}
+            <div id="inputValue">
+                <CompletedOrdersView completedOrders={completedOrders} />
+            </div>
 
         </div>
     );
