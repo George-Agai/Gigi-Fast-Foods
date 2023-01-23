@@ -1,17 +1,16 @@
 const express = require('express')
-const completeOrderTemplate = require('../models/OrdersModel')
-
+const Template = require('../models/OrdersModel')
 const router = express.Router()
 
 router.post('/Home', (request, response) => {
     // Get the attribute values from the request body
-    const { contact, orders, cartTotal } = request.body;
-
-    const completedOrder = new completeOrderTemplate(
+    const { contact, orders, cartTotal, status } = request.body;
+    const completedOrder = new Template.ordersMade(
         {
             contact,
             orders,
-            cartTotal
+            cartTotal,
+            status
         }
     )
     completedOrder.save()
@@ -23,14 +22,20 @@ router.post('/Home', (request, response) => {
         })
 });
 
-router.get('/Home', (request, response) => {
-    completeOrderTemplate.find({}, (err, data)=>{
-        if(err){
-            response.send(err);
-        }else{
-            response.json(data);
-        }
-    });
-});
+router.post('/Income', (req, res)=>{
+    const {inputValue, incomeAmount, transactionType} = req.body;
+    const offlineOrder = new Template.incomeTemplate({
+        inputValue,
+        incomeAmount,
+        transactionType
+    })
+    offlineOrder.save()
+    .then(data => {
+        res.json(data)
+    })
+    .catch(error => {
+        res.json(error)
+    })
+})
 
 module.exports = router
