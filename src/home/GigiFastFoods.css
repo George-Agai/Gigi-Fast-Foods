@@ -7,44 +7,54 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: -2px;
 }
 
 .home-header {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80px;
+    height: 65px;
     width: 100%;
-    background-color: rgb(203, 221, 86);
+    background-color: #8a2be2;
+    
 }
-
+.svgheader{
+    margin-top: -8px;
+}
 #fast-foods {
-    color: rgba(139, 115, 115, 1);
-    font-size: 32px;
+    color: rgba(213, 237, 68, 1);
+    font-size: 30px;
     animation-name: gigiFastFoods;
     animation-duration: 0.5s;
     animation-delay: 1s;
     animation-timing-function: ease;
 }
-@keyframes gigiFastFoods{
-    0%{
+
+@keyframes gigiFastFoods {
+    0% {
         transform: rotate(0deg) translateX(0px)
     }
-    25%{
+
+    25% {
         transform: rotate(-2deg) translateX(-3px)
     }
-    50%{
+
+    50% {
         transform: rotate(2deg) translateX(3px);
     }
-    75%{
+
+    75% {
         transform: rotate(0deg) translateX(0px);
         font-size: 29px;
     }
-    100%{
+
+    100% {
         transform: rotate(0deg) translateX(0px);
     }
 }
-.navigation-buttons-div-container{
+
+.navigation-buttons-div-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,8 +62,10 @@
     margin-bottom: -10px;
     position: sticky;
     top: -5px;
+    border-bottom-right-radius: 60px;
 }
-.navigation-buttons-div{
+
+.navigation-buttons-div {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -62,9 +74,10 @@
     background-color: white;
     border-radius: 50%;
     margin-left: -17px;
-    border: 1px solid rgb(241, 241, 241);
+    border: 0.5px solid rgb(241, 241, 241);
 }
-.softdrink-button{
+
+.softdrink-button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -78,13 +91,14 @@
     color: rgb(141, 85, 85);
     border: 1px solid rgb(206, 200, 200);
     margin-right: 6px;
-    /* box-shadow: 0 1px 3px 0 rgb(173, 173, 173); */
 }
-.softdrink{
+
+.softdrink {
     width: 33px;
     height: 33px;
     background-color: white;
 }
+
 .chips-smokie-main-container {
     width: 100%;
 }
@@ -117,13 +131,6 @@
     text-align: center;
 }
 
-.home-main-body-container h2 {
-    color: rgba(139, 115, 115, 1);
-    font-size: 43px;
-    margin-top: 10px;
-    margin-bottom: 0px;
-}
-
 .chips-smokie-p-price-p-order-div {
     display: flex;
     justify-content: center;
@@ -151,45 +158,39 @@
 .main-meal-order-button-div {
     width: 140px;
 }
-
-#main-meal-order-button {
-    background-color: rgba(213, 237, 68, 1);
-    border: 1px solid rgb(195, 214, 84);
-    color: rgba(144, 131, 131, 1);
-    margin-top: 0px;
-    width: 117px;
-    height: 42px;
-    border-radius: 40px;
-    box-shadow: 0 2px 4px 0 rgb(182, 172, 172);
-}
-
 .order-buttons {
     background-color: rgba(213, 237, 68, 1);
-    border: 1px solid rgb(195, 214, 84);
+    border: 1.1px solid rgb(195, 214, 84);
     color: rgba(144, 131, 131, 1);
     font-family: 'Jost', sans-serif;
     border-radius: 40px;
-    box-shadow: 0 1px 4px 0 rgb(196, 188, 188);
-    width: 117px;
-    height: 43px;
+    width: 110px;
+    height: 46px;
+    border-radius: 40px;
 }
-.order-buttons:hover{
+
+.order-buttons:hover {
     animation: animate 0.3s;
 }
-@keyframes animate{
-    0%{
+
+@keyframes animate {
+    0% {
         transform: rotate(0deg) translateX(0px)
     }
-    25%{
+
+    25% {
         transform: rotate(-8deg) translateX(-5px)
     }
-    50%{
+
+    50% {
         transform: rotate(0deg) translateX(0px)
     }
-    75%{
+
+    75% {
         transform: rotate(8deg) translateX(5px)
     }
-    100%{
+
+    100% {
         transform: rotate(0deg) translateX(0px)
     }
 }
@@ -206,13 +207,13 @@
 }
 
 .main-meals-sold {
-    width: 326px;
-    height: 218px;
-    border-radius: 20px;
+    width: 325px;
+    height: 190px;
+    border-radius: 15px;
 }
 
 #ugali-fish-main-container {
-    margin-top: -30px;
+    margin-top: -20px;
     margin-bottom: 30px;
 }
 
@@ -221,8 +222,8 @@
 }
 
 .foods-sold {
-    height: 210px;
-    width: 310px;
+    height: 190px;
+    width: 325px;
     border-radius: 20px;
 }
 
@@ -237,8 +238,8 @@
     justify-content: center;
     text-align: center;
     background-color: rgba(212, 231, 95, 1);
-    width: 366px;
-    height: 85px;
+    width: 365px;
+    height: 75px;
     border: 1px solid rgb(195, 212, 79);
     border-radius: 40px;
     margin-left: 0.5%;
@@ -247,38 +248,39 @@
     position: fixed;
     left: 50%;
     bottom: 1%;
+    color: rgb(173, 143, 143);
     transform: translateX(-50%);
 }
-
-.cart-orders-button h4 {
-    color: rgb(173, 143, 143);
-}
-
 #order-quantity-div {
-    margin-top: 7px;
     width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #order-right-arrow-div {
     width: 50%;
-    height: 70%;
-    margin-top: 8px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #order-button-arrow {
-    margin-top: 10px;
     font-size: 42px;
-    float: right;
-    margin-right: 40px;
+    margin-right: -10px;
     color: rgb(201, 153, 153);
 }
-.empty-cart-container{
+
+.empty-cart-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
 }
-.empty-cart-anaimation{
+
+.empty-cart-anaimation {
     animation-name: emptyCartAnimation;
     animation-duration: 1.3s;
     animation-timing-function: ease;
@@ -290,14 +292,14 @@
     font-weight: 600;
     font-size: 22px;
 }
+
 @keyframes emptyCartAnimation {
-    from{
+    from {
         margin-bottom: -72px;
         font-size: 8px;
     }
-    to{
+    to {
         transform: rotate(360deg) translateX(0px);
-        
     }
 }
 
@@ -306,13 +308,17 @@
 }
 
 .dropdown-container {
+    display: flex;
+    flex-direction: column;
     width: 190px;
     position: relative;
-    margin-left: 10px;
     margin-top: 5px;
+    width: 100%;
 }
 
 .input-container {
+    display: flex;
+    
     width: 100%;
     margin-right: 20px;
 }
@@ -425,7 +431,7 @@
 
 .complete-order-button {
     animation-name: completeOrderAnimate;
-    animation-duration: 0.4s;
+    animation-duration: 0.3s;
     animation-delay: 1.2s;
     animation-iteration-count: 2;
     animation-timing-function: ease-in;
@@ -436,26 +442,30 @@
     background-color: rgba(212, 231, 95, 1);
     border: 1px solid rgb(200, 216, 91);
     border-radius: 50px;
-    box-shadow: 0 2px 6px 0 rgb(194, 191, 191);
     font-size: 15px;
     color: rgb(85, 177, 93);
     font-weight: 600;
     letter-spacing: 0.5px;
 }
+
 @keyframes completeOrderAnimate {
-    0%{
+    0% {
         transform: rotate(0deg) translateX(0px)
     }
-    25%{
+
+    25% {
         transform: rotate(0deg) translateX(-4px)
     }
-    50%{
+
+    50% {
         transform: rotate(0deg) translateX(0px)
     }
-    75%{
+
+    75% {
         transform: rotate(0deg) translateX(4px)
     }
-    100%{
+
+    100% {
         transform: rotate(0deg) translateX(0px)
     }
 }
@@ -467,7 +477,7 @@
     font-weight: 600;
 }
 
-.back-arrow-buttons{
+.back-arrow-buttons {
     width: 110px;
     height: 50px;
     color: rgb(155, 128, 128);
@@ -477,13 +487,15 @@
     margin-left: -9px;
     margin-top: 5px;
 }
-.OrderComplete{
+
+.OrderComplete {
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 100vh;
 }
-.OrderComplete p{
+
+.OrderComplete p {
     animation-name: orderCompleteAnimation;
     animation-duration: 0.6s;
     animation-timing-function: ease;
@@ -492,15 +504,18 @@
     font-size: 34px;
     font-weight: 700;
 }
+
 @keyframes orderCompleteAnimation {
-    from{
+    from {
         font-size: 8px;
     }
-    to{
+
+    to {
         font-size: 34px;
     }
 }
-.back-to-main-page{
+
+.back-to-main-page {
     animation-name: backHomeAnimate;
     animation-duration: 0.4s;
     animation-delay: 2s;
@@ -519,28 +534,35 @@
     box-shadow: 0 1px 6px 0 rgb(161, 159, 159);
     margin-top: 80px;
 }
+
 @keyframes backHomeAnimate {
-    0%{
+    0% {
         transform: rotate(0deg) translateX(0px)
     }
-    25%{
+
+    25% {
         transform: rotate(0deg) translateX(-4px)
     }
-    50%{
+
+    50% {
         transform: rotate(0deg) translateX(0px)
     }
-    75%{
+
+    75% {
         transform: rotate(0deg) translateX(4px)
     }
-    100%{
+
+    100% {
         transform: rotate(0deg) translateX(0px)
     }
 }
-.tick{
+
+.tick {
     width: 280px;
     height: 280px;
     margin-top: -26px;
 }
+
 .Complete-order-back-arrow-div {
     display: flex;
     flex-direction: column;
@@ -558,38 +580,30 @@
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    border-radius: 20px;
+    border-radius: 30px;
     background-color: rgb(247, 245, 245);
-    box-shadow: 0 2px 5px 0 rgb(122, 118, 118);
-
+    box-shadow: inset 1px 2px 8px rgba(224, 221, 221, 0.5);
 }
 
 .available-drinks-button-container {
     display: flex;
     justify-content: center;
     text-align: center;
-    margin-top: 20px;
-    margin-bottom: 13px;
+    margin-top: 25px;
+    margin-bottom: 20px;
 }
 
 .available-drinks-button {
     width: 80px;
-    height: 53px;
+    height: 50px;
     margin-right: 12px;
     border-radius: 30px;
     background-color: rgb(247, 245, 245);
     font-weight: 600;
     font-size: 12px;
     color: rgb(63, 61, 38);
-    box-shadow: 0 1px 3px 0 rgb(182, 176, 176);
+    
 }
-
-#available-drinks-main-container-hr {
-    width: 90%;
-    margin-bottom: 20px;
-    color: rgb(221, 217, 217);
-}
-
 #available-drinks-button-soda {
     margin-left: 15px;
 }
@@ -604,8 +618,7 @@
     margin-right: 2%;
     border-radius: 29px;
     background-color: rgb(240, 236, 236);
-    box-shadow: 0 0 10px rgb(212, 207, 207);
-
+    box-shadow: 0 0 4px rgb(221, 217, 217);
 }
 
 .drink-name-drink-price-drink-description-order-button {
@@ -658,15 +671,20 @@
     color: rgb(145, 139, 139);
     margin-top: -40px;
     font-size: 12px;
-    border: 1px solid black;
 }
-#manage{
+
+#manage {
     background-color: rgb(56, 54, 54);
     border: none;
-    color: rgb(31, 30, 30);
+    color: rgb(145, 139, 139);
     height: 30px;
+    margin-left: -6px;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'Jost', sans-serif;
 }
-.social-media-icons-container{
+
+.social-media-icons-container {
     display: flex;
     justify-content: space-around;
     margin-top: 10px;
@@ -674,11 +692,12 @@
     color: rgb(145, 139, 139);
     width: 150px;
 }
-.social-media-icons-div{
+
+.social-media-icons-div {
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
 }
 
 /* GOOGLE MAPS */
@@ -720,8 +739,10 @@
     text-align: center;
     flex-direction: column;
     height: 80vh;
-    border-radius: 37px;
+    border-top-right-radius: 13px;
+    border-top-left-radius: 13px;
     background-color: rgba(255, 254, 254, 1);
+    align-items: center;
 }
 
 #employee-page-back-button {
@@ -735,10 +756,28 @@
     margin-top: 15px;
     background-color: rgba(246, 246, 246, 1);
     border: 1px solid rgb(228, 221, 221);
-    width: 92%;
-    height: 75px;
-    margin-left: 4%;
+    width: 80%;
+    height: 50px;
+    border-radius: 10px;
+    justify-content: space-around;
+    align-items: center;
+}
+.details-button{
+    background-color: rgba(213, 237, 68, 1);
+    width: 117px;
+    height: 35px;
     border-radius: 20px;
+    border: none;
+    color: brown;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+}
+
+.orders-container-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
 .orders-container-ordernumber-amount {
@@ -803,6 +842,12 @@
     display: flex;
     flex-direction: column;
 }
+.admin-page-online-orders{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
 
 .admin-page-back-button-and-amount-container {
     display: flex;
@@ -846,26 +891,200 @@
 }
 
 .order-types-and-expenses-main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     background-color: rgba(255, 254, 254, 1);
-    border-radius: 35px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
 }
-.page-white-space {
-    width: 100%;
-    overflow: visible;
-    background-color: rgba(255, 254, 254, 1);
-    height: 50px;
+.order-types-and-expenses-main-container p{
+    color: #8dab29;
+    font-size: 16px;
+    font-weight: 600;
 }
+
+
 .order-types-and-expenses-button-container button {
     margin-right: 10px;
     margin-left: 0px;
     width: 110px;
-    height: 43px;
+    height: 44px;
     border-radius: 40px;
     background-color: rgba(255, 254, 254, 1);
-    border: 1px solid rgb(211, 211, 204);
+    border: 1.1px solid rgb(211, 211, 204);
     font-weight: 500;
     color: rgb(121, 116, 116);
-    box-shadow: 0 1px 2px 0 rgb(119, 116, 116);
     font-size: 12px;
     margin-top: 20px;
+}
+
+.order-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#date-dropdown {
+    position: absolute;
+    background-color: white;
+    width: 200px;
+    height: 100px;
+    border: 0.5px solid gray;
+    margin-left: 10px;
+    margin-top: -15px;
+    overflow: hidden;
+    overflow-y: scroll;
+    border-radius: 10px;
+}
+#month-dropdown{
+    position: absolute;
+    background-color: white;
+    width: 130px;
+    height: 100px;
+    border: 0.5px solid gray;
+    margin-top: -15px;
+    overflow: hidden;
+    overflow-y: scroll;
+    border-radius: 10px;
+}
+#date-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#date-list li {
+    padding: 10px;
+    border-bottom: 1px solid gray;
+}
+.kitten{
+    margin-top: 70px;
+    width: 150px;
+    height: 150px;
+    animation-name: gigiFastFoods;
+    animation-duration: 0.5s;
+    animation-delay: 0s;
+}
+.penguin{
+    width: 180px;
+    height: 180px;
+    margin-top: 120px;
+    animation-name: gigiFastFoods;
+    animation-duration: 0.6s;
+    animation-delay: 0.5s;
+}
+.cooking{
+    width: 130px;
+    height: 130px;
+}
+.cooking-div{
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    background-color: white;
+    width: 76%;
+    height: 170px;
+    border-radius: 15px;
+    margin-top: 10px;
+    box-shadow: inset 3px 3px 10px rgba(162, 149, 147, 0.5);
+}
+.main-meals-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 10px;
+    margin-top: -10px;
+}
+.main-meals-div img{
+    width: 28px;
+    height: 28px;
+    margin-top: -7px;
+}
+.main-meals-div p{
+    color:#8dab29;
+    font-size: 18px;
+    font-weight: 600;
+}
+.main-meals-div-container{
+    display: flex;
+    justify-content: center;
+    height: 210px;
+    background-color: #8a2be2;
+}
+.dropdown-container-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.dropdown{
+    width: 200px;
+    border: 0.5px solid grey;
+    overflow-y: scroll;
+    height: 200px;
+    border-radius: 10px;
+    margin-top: 3px;
+}
+.expand-button-div{
+    display: flex;
+    margin-top: 20px;
+    align-items: center;
+    justify-content: center;
+}
+.expand-button-div button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    color: #8a2be2;
+    font-size: 14px;
+    height: 30px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    background-color: white;
+}
+.meal-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 45px;
+}
+.meal-div p{
+    color: grey;
+}
+.meal{
+    width: 50px;
+    height: 55px;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+.panda{
+    height: 90px;
+    width: 90px;
+}
+.panda-container{
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -20px;
+}
+.panda-container p{
+    color: grey;
+}
+.date-dropdown-div{
+    width: 100%;
+    display: flex;
+}
+.dateopendiv{
+    width: 60%;
+}
+.monthopendiv{
+    width: 40%;
+}
+.diver{
+    width: 60px;
+    height: 60px;
 }

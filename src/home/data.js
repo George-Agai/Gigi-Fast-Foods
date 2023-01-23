@@ -29,16 +29,17 @@ const data = {
   ],
   ugaliFishDescription: [
     {
-      id: 2,
-      img: fish,
-      food: 'Fish + Ugali',
-      price: 200
-    },
-    {
+      
       id: 19,
       img: ugalinyama,
       food: 'Ugali + nyama',
       price: 150
+    },
+    {
+      id: 2,
+      img: fish,
+      food: 'Fish + Ugali',
+      price: 200
     }
   ],
   foodSoldData: [
