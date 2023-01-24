@@ -52,7 +52,7 @@ const onItemSelected = (option) => {
 const onInputClick = () => {
     setOpen((prevValue) => !prevValue);
 }
-const ws = new WebSocket('ws://localhost:8080')
+const ws = new WebSocket('wss://gigi-fast-foods.vercel.app')
 ws.onopen = function(){
     console.log('ws connected')
 }
@@ -104,7 +104,7 @@ const HandleAddCompletedOrder = async(e) => {
             transactionType
         }
     }
-    await axios.post('http://localhost:4000/app/Income', completedOrder)
+    await axios.post('https://gigi-fast-foods.vercel.app/app/Income', completedOrder)
     console.log(completedOrder)
 }
 const websocketSend=(messageObject)=>{
