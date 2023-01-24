@@ -43,7 +43,7 @@ const OrdersPage = () => {
     const customerCompletedOrder = [...reducedOrder]
 
     const contact = 9112
-    const ws = new WebSocket('ws://localhost:8080');
+    const ws = new WebSocket('wss://gigi-fast-foods.vercel.app');
     ws.onclose = function() {
         console.log('WebSocket connection closed');
     };
