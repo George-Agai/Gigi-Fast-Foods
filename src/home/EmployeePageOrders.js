@@ -26,7 +26,7 @@ const options = {
 const EmployeePageOrders = () => {
     const navigate = useNavigate();
     const [LoginPage, setLoginPage] = useState('true');
-    const [Login, setLogin] = useState('true');
+    const [Login, setLogin] = useState('false');
     const [adminLogin, setAdminLogin] = useState('');
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
@@ -97,7 +97,7 @@ const EmployeePageOrders = () => {
    
     useEffect(() => {
         const setConnectionToWebserver = () => {
-            const ws = new WebSocket('ws://localhost:8080');
+            const ws = new WebSocket('wss://gigi-fast-foods.vercel.app');
             setWs(ws);
             
             ws.onmessage = ({ data }) => {
