@@ -64,7 +64,7 @@ const OrdersPage = () => {
     const HandleCompleteOrder = async (e) => {
         e.preventDefault()
        
-        await axios.post('http://localhost:4000/app/Home', order)
+        await axios.post('https://gigi-fast-foods.vercel.app/app/Home', order)
         const done = sendOrder()
         if(done){
         console.log("Message sent to web socket")
