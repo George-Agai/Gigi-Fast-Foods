@@ -47,6 +47,9 @@ const OrdersPage = () => {
     ws.onclose = function() {
         console.log('WebSocket connection closed');
     };
+    ws.onopen = () => {
+        console.log('WebSocket connection OPENNNNNNN.');
+    };
     const order = {
         contact: contact,
         orders: [...customerCompletedOrder],
