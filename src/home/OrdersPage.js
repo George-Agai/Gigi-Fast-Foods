@@ -44,11 +44,11 @@ const OrdersPage = () => {
 
     const contact = 89023
     const ws = new WebSocket('wss://gigifoods.herokuapp.com:8080');
-    ws.onclose = function() {
-        console.log('WebSocket connection closed');
-    };
     ws.onopen = () => {
         console.log('WebSocket connection OPENNNNNNN.');
+    };
+    ws.onclose = function() {
+        console.log('WebSocket connection closed');
     };
     const order = {
         contact: contact,
