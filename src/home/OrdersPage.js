@@ -43,7 +43,7 @@ const OrdersPage = () => {
     const customerCompletedOrder = [...reducedOrder]
 
     const contact = 89023
-    const ws = new WebSocket('ws://https://gigifoods.herokuapp.com:8080');
+    const ws = new WebSocket('wss://https://gigifoods.herokuapp.com:8080');
     ws.onclose = function() {
         console.log('WebSocket connection closed');
     };

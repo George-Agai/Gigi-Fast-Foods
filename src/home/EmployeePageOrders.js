@@ -97,7 +97,7 @@ const EmployeePageOrders = () => {
    
     useEffect(() => {
         const setConnectionToWebserver = () => {
-            const ws = new WebSocket('ws://https://gigifoods.herokuapp.com:8080');
+            const ws = new WebSocket('wss://https://gigifoods.herokuapp.com:8080');
             setWs(ws);
             
             ws.onmessage = ({ data }) => {
