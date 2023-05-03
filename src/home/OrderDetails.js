@@ -5,7 +5,7 @@ const OrderDetails = () => {
   const location = useLocation()
   const { orders, contact, cartTotal, _id } = location.state;
   const [rejectOrConfirmDiv, setRejectOrConfirmDiv] = useState(true)
-  const ws = new WebSocket('ws://localhost:8080')
+  const ws = new WebSocket('ws://https://gigifoods.herokuapp.com:8080')
   ws.onclose = function(){
     console.log("order details ws closed")
   }
