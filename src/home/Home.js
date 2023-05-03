@@ -104,7 +104,7 @@ const Home = () => {
                 <CartProvider>
                     <div className='Home' style={{ display: homeIsActive ? 'flex' : 'none' }}>
                         <div className='home-header'>
-                            <h2 id='fast-foods'>Gigi Fast Foodss</h2>
+                            <h2 id='fast-foods'>Gigi Fast Foods</h2>
 
                         </div>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" className='svgheader'><path fill="#8a2be2" fill-opacity="1" d="M0,96L80,101.3C160,107,320,117,480,112C640,107,800,85,960,74.7C1120,64,1280,64,1360,64L1440,64L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path></svg>
