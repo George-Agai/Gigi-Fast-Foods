@@ -3,28 +3,23 @@ import React, { useState, useContext, useEffect } from 'react'
 import { useCart } from 'react-use-cart'
 import shoppingCart from './images/shopping-cart.png'
 import verified from './images/tick.gif'
-import { useNavigate } from "react-router-dom";
 import { MyContext } from './Home';
 import { BsArrowLeftShort } from 'react-icons/bs'
 
 const OrdersPage = () => {
-
-    const navigate = useNavigate()
-
     const context = useContext(MyContext);
     const {
         homeIsActive, setHomeIsActive,
         ordersButtonActive, setOrdersButtonActive,
         backArrow, setBackArrow
     } = context;
-
+    console.log(homeIsActive)
+    console.log(ordersButtonActive)
+    console.log(backArrow)
     const [orderCompletePage, setOrderCompletePage] = useState(false)
     const [checkoutPage, setCheckoutPage] = useState(true)
-    const [completedOrderArray, setCompletedOrderArray] = useState([])
-    // const [carttotal, setCartTotal] = useState(cartTotal)
     const [backHomeButton, setBackHomeButton] = useState(false)
-
-
+    // const [pendingOrderObject, setPendingOrderObject] = useState({})
     const {
         isEmpty,
         items,
@@ -47,33 +42,37 @@ const OrdersPage = () => {
     //Array of complete customer order to be processed for delivery
     const customerCompletedOrder = [...reducedOrder]
 
-    const contact = 792271915
-    const HandleCompleteOrder = (e) => {
+    const contact = 89023
+    const ws = new WebSocket('ws://localhost:8080');
+    ws.onclose = function() {
+        console.log('WebSocket connection closed');
+    };
+    const order = {
+        contact: contact,
+        orders: [...customerCompletedOrder],
+        cartTotal: cartTotal,
+        status: "Pending"
+    }
+    const orderMessage = {
+        messageName: 'new_order',
+        order
+    }
+    const sendOrder = () => {
+        ws.send(JSON.stringify(orderMessage))
+        return true;
+    };
+    const HandleCompleteOrder = async (e) => {
         e.preventDefault()
+       
+        await axios.post('http://localhost:4000/app/Home', order)
+        const done = sendOrder()
+        if(done){
+        console.log("Message sent to web socket")
+        ws.close()
+        }
+        setOrderCompletePage(true)
+        setCheckoutPage(false)
         setBackArrow(false)
-
-        const order = {
-            contact: contact,
-            orders: [...customerCompletedOrder],
-            cartTotal: cartTotal
-        }
-
-        axios.post('http://localhost:4000/app/Home', order)
-            .then(response =>
-                setCompletedOrderArray([...response.data]))
-
-        console.log(completedOrderArray)
-
-        if (setCompletedOrderArray.length === 0) {
-            console.log("Empty")
-
-        }
-        else {
-            console.log("Loaded lets go")
-            setOrderCompletePage(true)
-            setCheckoutPage(false)
-        }
-
     }
 
     const handleBackHomeButtonClick = (e) => {
@@ -99,8 +98,8 @@ const OrdersPage = () => {
                     <table id='order-table'>
                         <thead>
                             <tr id='order-table-row'>
-                                <td><b style={{fontSize: "14px"}}>Order</b></td>
-                                <td><b style={{fontSize: "14px"}}>Amount</b></td>
+                                <td><b style={{ fontSize: "14px" }}>Order</b></td>
+                                <td><b style={{ fontSize: "14px" }}>Amount</b></td>
                             </tr>
                         </thead>
                         {items.map((item, index) => {

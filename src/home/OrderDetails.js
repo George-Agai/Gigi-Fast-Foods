@@ -1,31 +1,64 @@
-import React from 'react'
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react'
+import { useLocation } from "react-router-dom";
 
 const OrderDetails = () => {
-  const navigate = useNavigate();
-  return (
-    <div className='OrderDetails'>
-      <div>
-        <button className='back-arrows' onClick={() => navigate('/EmployeePageOrders')}>Back</button>
+  const location = useLocation()
+  const { orders, contact, cartTotal, _id } = location.state;
+  const [rejectOrConfirmDiv, setRejectOrConfirmDiv] = useState(true)
+  const ws = new WebSocket('ws://localhost:8080')
+  ws.onclose = function(){
+    console.log("order details ws closed")
+  }
+  const confirmButtonClicked = (e)=>{
+    e.preventDefault()
+    setRejectOrConfirmDiv(false)
+  }
+  const orderUpdate = {
+    messageName: 'findAndUpdateOrder',
+    _id
+  }
+  const deliveredButtonClicked =()=>{
+    ws.send(JSON.stringify(orderUpdate))
+    console.log('order to be updated sent')
+  }
+return (
+    <div className='order-details'>
+      <p>{contact}</p>
+      <div style={{ border: '1px solid black' }}>
+        <table>
+          <thead>
+            <tr>
+              <th>Order</th>
+              <th>Quantity</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            {orders.map((order) => (
+              <tr key={order._id}>
+                <td>{order.food}</td>
+                <td>{order.quantity}</td>
+                <td>{order.itemTotal}</td>
+              </tr>
+            ))}
+            <tr></tr>
+            <tr>
+              <td></td>
+              <td>Total</td>
+              <td>{cartTotal}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+      {rejectOrConfirmDiv ? 
       <div>
-        <p>Order 1</p>
-        <p>0792271915</p>
-        <p>Minimart,Utawala</p>
-      </div>
+        <button>Reject</button>
+        <button onClick={confirmButtonClicked}>Confirm</button>
+      </div> :
       <div>
-        <div>
-          <h3>Customer location div</h3>
-        </div>
-        <div>
-          <h3>Customer order div</h3>
-        </div>
-        <div className='order-details-buttons-div'>
-          <button>Reject</button>
-          <button>Confirm</button>
-        </div>
-      </div>
+        <button onClick={deliveredButtonClicked}>Delivered</button>
+      </div> }
     </div>
-  )
-}
+)};
+
 export default OrderDetails;

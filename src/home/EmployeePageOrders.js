@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom"
 import AdminPage from './AdminPage'
 import { BiArrowBack } from 'react-icons/bi'
 import DropdownInput from './DropDownInput';
+import PendingOrderTemplate from './PendingOrderTemplate'
+import penguin from './images/penguin.png'
 
-
-// Dropdown input options array
 const options = {
     income: [
         { key: 1, value: 'Chips + smokie' },
@@ -26,7 +26,7 @@ const options = {
 const EmployeePageOrders = () => {
     const navigate = useNavigate();
     const [LoginPage, setLoginPage] = useState('true');
-    const [Login, setLogin] = useState('');
+    const [Login, setLogin] = useState(false);
     const [adminLogin, setAdminLogin] = useState('');
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
@@ -37,7 +37,9 @@ const EmployeePageOrders = () => {
     const [orderButtonActive, setorderButtonActive] = useState('true')
     const [incomeButtonActive, setincomeButtonActive] = useState('')
     const [expensesButtonActive, setexpensesButtonActive] = useState('')
-    const [data, setData] = useState(null)
+    const [ws, setWs] = useState(null)
+    const [newOrder, setNewOrder] = useState(null)
+    const [OrderFlag, setOrderFlag] = useState()
 
     const onBackButtonClicked = (e) => {
         navigate('/Home')
@@ -76,35 +78,68 @@ const EmployeePageOrders = () => {
         }
         else alert("Wrong password");
     }
-    const HandleIncomeButtonClick = (e) =>{
+    const HandleIncomeButtonClick = (e) => {
         setincomeButtonActive(true)
         setorderButtonActive(false)
         setexpensesButtonActive(false)
     }
-    const HandleExpensesButtonClick = (e) =>{
+    const HandleExpensesButtonClick = (e) => {
         setexpensesButtonActive(true)
         setincomeButtonActive(false)
         setorderButtonActive(false)
     }
-    const HandleOrdersButtonClick = (e) =>{
+    const HandleOrdersButtonClick = (e) => {
         setorderButtonActive(true)
         setexpensesButtonActive(false)
         setincomeButtonActive(false)
     }
+
+   
     useEffect(() => {
-        async function fetchData(){
-            const response = await fetch('/app/Home');
-            const json = await response.json();
-            setData(json);
+        const setConnectionToWebserver = () => {
+            const ws = new WebSocket('ws://localhost:8080');
+            setWs(ws);
+            
+            ws.onmessage = ({ data }) => {
+                const { pendingOrders, messageName } = JSON.parse(data)
+                if (messageName === 'pending_order') {
+                    if(pendingOrders.length >=1){
+                        setNewOrder(pendingOrders)
+                        setOrderFlag(true)
+                    }else{
+                        setOrderFlag(false)
+                    } 
+                    ws.close()
+                } else if (messageName === 'error') {
+                    console.log('No pending order')
+                }
+            };
+            ws.onclose = () => {
+                console.log('WebSocket connection closed.');
+            };
+            return ws;
         }
-        fetchData();
-        
+        const setConn = setConnectionToWebserver()
+        if (setConn) {
+            console.log("Connection set")
+        }
+        else setConnectionToWebserver()
+
     }, []);
-    console.log(data)
+
+    useEffect(() => {
+        if (ws) {
+            ws.addEventListener('open', () => {
+                ws.send(JSON.stringify({ messageName: 'get_pending_order' }));
+            });
+        } else {
+            console.log("Web socket didn't connect")
+        }
+    }, [ws]);
+    const incomeMessage = "Income"
+    const expensesMessage = "Expenses"
     return (
         <div>
-            {/* LOGIN PAGE */}
-
             {LoginPage &&
                 <div className='manage-main-container'>
                     <p id='manage-main-container-heading'>GIGI FAST FOODS</p>
@@ -127,70 +162,48 @@ const EmployeePageOrders = () => {
                             <button type='submit' value='Submit'>Login</button>
                         </form>
                     </div>
-                    {data && <div>{data.contact}
-                        </div>}
                 </div>}
 
             {Login &&
-                <div className='Employee-Page-Orders'>
-
-                    <button className='back-arrow-buttons' id='employee-page-back-button' onClick={onBackButtonClicked}><BiArrowBack /></button>
+                <div className='Employee-Page-Orders'><button className='back-arrow-buttons' id='employee-page-back-button' onClick={onBackButtonClicked}><BiArrowBack /></button>
                     <div className='orders-income-expense-div'>
-                        <button onClick={HandleOrdersButtonClick} style={{backgroundColor: orderButtonActive ? 'rgba(120, 122, 106, 1)' : 'rgb(247, 245, 245)', color: orderButtonActive ? 'rgb(231, 226, 226)' : 'rgba(95, 86, 86, 1)' }}>Orders</button>
-                        <button onClick={HandleIncomeButtonClick} style={{backgroundColor: incomeButtonActive ? 'rgba(120, 122, 106, 1)' : 'rgb(247, 245, 245)', color: incomeButtonActive ? 'rgb(231, 226, 226)' : 'rgba(95, 86, 86, 1)' }}>Income +</button>
-                        <button onClick={HandleExpensesButtonClick} style={{backgroundColor: expensesButtonActive ? 'rgba(120, 122, 106, 1)' : 'rgb(247, 245, 245)', color: expensesButtonActive ? 'rgb(231, 226, 226)' : 'rgba(95, 86, 86, 1)' }}>Expenses -</button>
+                        <button onClick={HandleOrdersButtonClick} style={{ backgroundColor: orderButtonActive ? '#8a2be2' : 'rgb(247, 245, 245)', color: orderButtonActive ? 'rgb(231, 226, 226)' : 'rgba(95, 86, 86, 1)' }}>Orders</button>
+                        <button onClick={HandleIncomeButtonClick} style={{ backgroundColor: incomeButtonActive ? '#8a2be2' : 'rgb(247, 245, 245)', color: incomeButtonActive ? 'rgb(231, 226, 226)' : 'rgba(95, 86, 86, 1)' }}>Income +</button>
+                        <button onClick={HandleExpensesButtonClick} style={{ backgroundColor: expensesButtonActive ? '#8a2be2' : 'rgb(247, 245, 245)', color: expensesButtonActive ? 'rgb(231, 226, 226)' : 'rgba(95, 86, 86, 1)' }}>Expenses -</button>
                     </div>
 
-                    {/* ORDERS PAGE */}
-                    {orderButtonActive ? 
-                     <div className='orders-main-container' >
-                        <div className='orders-container'>
-                            <div className='orders-container-ordernumber-amount'>
-                                <p className='orders-container-ordernumber'>Order 1<b className='orders-container-amount'>&ensp;&ensp;&ensp;&ensp;&ensp;360</b></p>
+                    {orderButtonActive && OrderFlag ? <div className='orders-main-container'>
+                                <PendingOrderTemplate newOrder={newOrder} />
                             </div>
-                            <div className='orders-container-details-button-container'>
-                                <button className='orders-container-details-button' onClick={() => navigate('/OrderDetails')}>Details</button>
-                            </div>
-                        </div>
-                        <div className='orders-container'>
-                            <div className='orders-container-ordernumber-amount'>
-                                <p className='orders-container-ordernumber'>Order 2<b className='orders-container-amount'>&ensp;&ensp;&ensp;&ensp;&ensp;450</b></p>
-                            </div>
-                            <div className='orders-container-details-button-container'>
-                                <button className='orders-container-details-button'>Details</button>
-                            </div>
+                         : orderButtonActive && !OrderFlag ? <div className='orders-main-container'><img src={penguin} alt='penguin' className='penguin'/><p style={{fontSize: '18px', fontWeight: '700'}}>No orders</p></div> : null}
 
-                        </div>
-                    </div> : null}
-
-                    {/* INCOME */}
                     {incomeButtonActive ?
-                     <div className='orders-main-container'>
-                        <div className='Employee-Page-Income'>
-                            <DropdownInput
-                                options={options.income}
-                                onChange={(item) => setSelectedOption(item)}
-                                selectedKey={selectedOption}
-                                menuClassName='dropdown-input'
-                                placeholder={'Chips + smokie'}
-                            />
-                            {selectedOption}
-                        </div>
-                    </div> : null}
+                        <div className='orders-main-container'>
+                            <div className='Employee-Page-Income'>
+                                <DropdownInput
+                                    options={options.income}
+                                    onChange={(item) => setSelectedOption(item)}
+                                    selectedKey={selectedOption}
+                                    menuClassName='dropdown-input'
+                                    placeholder={'Chips + smokie'}
+                                    incomeMessage={incomeMessage}
+                                />
+                            </div>
+                        </div> : null}
 
-                    {/* EXPENSES */}
                     {expensesButtonActive ?
-                    <div className='orders-main-container'>
-                        <div className='Employee-Page-Income'>
-                            <DropdownInput
-                                options={options.expenses}
-                                onChange={(item) => setSelectedExpenseOption(item)}
-                                selectedKey={selectedExpenseOption}
-                                menuClassName='dropdown-input'
-                                placeholder={'Cooking oil'}
-                            />
-                        </div>
-                    </div> : null}
+                        <div className='orders-main-container'>
+                            <div className='Employee-Page-Income'>
+                                <DropdownInput
+                                    options={options.expenses}
+                                    onChange={(item) => setSelectedExpenseOption(item)}
+                                    selectedKey={selectedExpenseOption}
+                                    menuClassName='dropdown-input'
+                                    placeholder={'Cooking oil'}
+                                    expensesMessage={expensesMessage}
+                                />
+                            </div>
+                        </div> : null}
                 </div>}
 
             {adminLogin &&
