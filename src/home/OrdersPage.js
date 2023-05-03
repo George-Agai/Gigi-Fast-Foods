@@ -43,36 +43,18 @@ const OrdersPage = () => {
     const customerCompletedOrder = [...reducedOrder]
 
     const contact = 89023
-    const ws = new WebSocket('wss://gigifoods.herokuapp.com:8080');
-    ws.onopen = () => {
-        console.log('WebSocket connection OPENNNNNNN.');
-    };
-    ws.onclose = function() {
-        console.log('WebSocket connection closed');
-    };
     const order = {
         contact: contact,
         orders: [...customerCompletedOrder],
         cartTotal: cartTotal,
         status: "Pending"
     }
-    const orderMessage = {
-        messageName: 'new_order',
-        order
-    }
-    const sendOrder = () => {
-        ws.send(JSON.stringify(orderMessage))
-        return true;
-    };
+  
     const HandleCompleteOrder = async (e) => {
         e.preventDefault()
        
         await axios.post('https://gigifoods.herokuapp.com/app/Home', order)
-        const done = sendOrder()
-        if(done){
-        console.log("Message sent to web socket")
-        ws.close()
-        }
+     
         setOrderCompletePage(true)
         setCheckoutPage(false)
         setBackArrow(false)
