@@ -5,7 +5,7 @@ const OrderDetails = () => {
   const location = useLocation()
   const { orders, contact, cartTotal, _id } = location.state;
   const [rejectOrConfirmDiv, setRejectOrConfirmDiv] = useState(true)
-  const ws = new WebSocket('wss://gigi-fast-foods.vercel.app')
+  const ws = new WebSocket('ws://localhost:8080')
   ws.onclose = function(){
     console.log("order details ws closed")
   }

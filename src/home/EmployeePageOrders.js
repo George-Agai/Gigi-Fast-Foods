@@ -97,7 +97,7 @@ const EmployeePageOrders = () => {
    
     useEffect(() => {
         const setConnectionToWebserver = () => {
-            const ws = new WebSocket('wss://gigi-fast-foods.vercel.app');
+            const ws = new WebSocket('ws://localhost:8080');
             setWs(ws);
             
             ws.onmessage = ({ data }) => {

@@ -42,8 +42,8 @@ const OrdersPage = () => {
     //Array of complete customer order to be processed for delivery
     const customerCompletedOrder = [...reducedOrder]
 
-    const contact = 9112
-    const ws = new WebSocket('wss://gigi-fast-foods.vercel.app');
+    const contact = 89023
+    const ws = new WebSocket('ws://localhost:8080');
     ws.onclose = function() {
         console.log('WebSocket connection closed');
     };
@@ -64,7 +64,7 @@ const OrdersPage = () => {
     const HandleCompleteOrder = async (e) => {
         e.preventDefault()
        
-        await axios.post('https://gigi-fast-foods.vercel.app/app/Home', order)
+        await axios.post('http://localhost:4000/app/Home', order)
         const done = sendOrder()
         if(done){
         console.log("Message sent to web socket")
