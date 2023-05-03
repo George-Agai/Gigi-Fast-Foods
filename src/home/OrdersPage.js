@@ -50,9 +50,7 @@ const OrdersPage = () => {
         status: "Pending"
     }
   
-    const HandleCompleteOrder = async (e) => {
-        e.preventDefault()
-       
+    const HandleCompleteOrder = async () => {
         await axios.post('https://gigifoods.herokuapp.com/app/Home', order)
      
         setOrderCompletePage(true)
