@@ -104,7 +104,7 @@ const HandleAddCompletedOrder = async(e) => {
             transactionType
         }
     }
-    await axios.post('http://localhost:4000/app/Income', completedOrder)
+    await axios.post('https://gigifoods.herokuapp.com/app/Income', completedOrder)
     console.log(completedOrder)
 }
 const websocketSend=(messageObject)=>{
