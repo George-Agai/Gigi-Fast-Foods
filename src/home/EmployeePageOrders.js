@@ -104,7 +104,9 @@ const EmployeePageOrders = () => {
             const ws = new WebSocket('wss://gigifoods.herokuapp.com:8080');
             //const ws = new WebSocket(`wss://${window.location.hostname}:${WS_PORT}`);
             setWs(ws);
-            
+            ws.onopen = () => {
+                console.log('WebSocket connection open.');
+            };
             ws.onmessage = ({ data }) => {
                 const { pendingOrders, messageName } = JSON.parse(data)
                 if (messageName === 'pending_order') {

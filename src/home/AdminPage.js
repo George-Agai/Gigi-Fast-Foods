@@ -63,6 +63,7 @@ const AdminPage = () => {
     const setUpWsConnection = (date) => {
         const ws = new WebSocket('wss://gigifoods.herokuapp.com:8080');
         ws.onopen = () => {
+            console.log("Admin websocket connected")
             if (ws.readyState === WebSocket.OPEN) {
                 let datee = new Date(date)
                 let dateString = datee.toLocaleDateString("en-US", {
@@ -217,6 +218,7 @@ const AdminPage = () => {
     const setUpWsConnectionOnMonthlyClicked = (mon) => {
         const ws = new WebSocket('wss://gigifoods.herokuapp.com:8080');
         ws.onopen = () => {
+            console.log("Admin websocket connected")
             if (ws.readyState === WebSocket.OPEN) {
                 ws.send(JSON.stringify({ messageName: 'getSpecifiedMonthOrders', mon }))
             }
@@ -366,6 +368,9 @@ const AdminPage = () => {
         const setConnectionToWebserver = () => {
             const ws = new WebSocket('wss://gigifoods.herokuapp.com:8080');
             setWs(ws);
+            ws.onopen = () => {
+                console.log('Admin WebSocket connection open.');
+            };
             ws.onmessage = ({ data }) => {
                 const { messageName, onlineOrders, offlineOrders, expenses } = JSON.parse(data)
                 if (messageName === "todays_transactions") {
