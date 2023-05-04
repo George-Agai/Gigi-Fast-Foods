@@ -99,9 +99,10 @@ const EmployeePageOrders = () => {
         const setConnectionToWebserver = () => {
 
             // eslint-disable-next-line no-restricted-globals
-            const HOST = location.origin.replace(/^https/, 'wss')
-            const ws = new WebSocket(HOST);
-            //const ws = new WebSocket('wss://gigifoods.herokuapp.com');
+            // const HOST = location.origin.replace(/^https/, 'wss')
+            // const ws = new WebSocket(HOST);
+            const ws = new WebSocket('wss://gigifoods.herokuapp.com');
+            //const ws = new WebSocket(`wss://${window.location.hostname}:${WS_PORT}`);
             setWs(ws);
             
             ws.onmessage = ({ data }) => {
