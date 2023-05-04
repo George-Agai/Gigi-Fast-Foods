@@ -97,7 +97,11 @@ const EmployeePageOrders = () => {
    
     useEffect(() => {
         const setConnectionToWebserver = () => {
-            const ws = new WebSocket('wss://gigifoods.herokuapp.com');
+
+            // eslint-disable-next-line no-restricted-globals
+            const HOST = location.origin.replace(/^https/, 'wss')
+            const ws = new WebSocket(HOST);
+            //const ws = new WebSocket('wss://gigifoods.herokuapp.com');
             setWs(ws);
             
             ws.onmessage = ({ data }) => {
