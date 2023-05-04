@@ -99,7 +99,7 @@ const EmployeePageOrders = () => {
         const setConnectionToWebserver = () => {
 
             // eslint-disable-next-line no-restricted-globals
-            const HOST = location.origin.replace(/^https/, 'ws')
+            const HOST = location.origin.replace(/^https/, 'wss')
             const ws = new WebSocket(HOST);
             //const ws = new WebSocket('wss://gigifoods.herokuapp.com');
             setWs(ws);
