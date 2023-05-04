@@ -61,7 +61,7 @@ const AdminPage = () => {
         setIsDropdownOpenMonthlyStatements(!isDropdownOpenMonthlyStatements)
     }
     const setUpWsConnection = (date) => {
-        const ws = new WebSocket('wss://gigifoods.herokuapp.com:8080');
+        const ws = new WebSocket('wss://gigifoods.herokuapp.com');
         ws.onopen = () => {
             console.log("Admin websocket connected")
             if (ws.readyState === WebSocket.OPEN) {
@@ -216,7 +216,7 @@ const AdminPage = () => {
     }
     const profit = cartTotal + totalIncome - totalExpenses
     const setUpWsConnectionOnMonthlyClicked = (mon) => {
-        const ws = new WebSocket('wss://gigifoods.herokuapp.com:8080');
+        const ws = new WebSocket('wss://gigifoods.herokuapp.com');
         ws.onopen = () => {
             console.log("Admin websocket connected")
             if (ws.readyState === WebSocket.OPEN) {
@@ -366,7 +366,7 @@ const AdminPage = () => {
     console.log('Todays Profit', todaysTotalProfit)
     useEffect(() => {
         const setConnectionToWebserver = () => {
-            const ws = new WebSocket('wss://gigifoods.herokuapp.com:8080');
+            const ws = new WebSocket('wss://gigifoods.herokuapp.com');
             setWs(ws);
             ws.onopen = () => {
                 console.log('Admin WebSocket connection open.');
