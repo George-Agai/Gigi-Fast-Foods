@@ -23,6 +23,7 @@ const OrderDetails = () => {
   const deliveredButtonClicked =()=>{
     ws.send(JSON.stringify(orderUpdate))
     console.log('order to be updated sent')
+    ws.close()
   }
 return (
     <div className='order-details'>

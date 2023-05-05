@@ -362,8 +362,7 @@ const AdminPage = () => {
 
     }
     console.log('Todays expenses', todaysTotalExpenses)
-    const todaysTotalProfit = todaysTotalIncome + todaysOfflineIncome - todaysTotalExpenses
-    console.log('Todays Profit', todaysTotalProfit)
+   
     useEffect(() => {
         const setConnectionToWebserver = () => {
             const ws = new WebSocket('wss://gigifoods.herokuapp.com');
@@ -457,6 +456,8 @@ const AdminPage = () => {
         else setConnectionToWebserver()
 
     }, []);
+    const todaysTotalProfit = todaysTotalIncome + todaysOfflineIncome - todaysTotalExpenses
+    console.log('Todays Profit babyy', todaysTotalProfit)
     const today = new Date();
     const previousDates = [today];
     for (let i = 1; i <= 30; i++) {
