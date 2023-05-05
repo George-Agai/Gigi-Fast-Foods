@@ -100,14 +100,14 @@ const EmployeePageOrders = () => {
 
 
 const testConnect= async ()=>{
-    const websocket = await new WebSocket('wss://gigifoods.herokuapp.com');
+    const websocket = await new WebSocket('wss://gigifoods.herokuapp.com:8080/');
     websocket.onopen = () => {
         console.log('Test socken open.');
     };
     websocket.onclose = () => {
         console.log('Test socket closed.');
     };
-    console.log("Shit doesn't work again")
+    console.log("Shit doesn't work again nigga")
 }
 
 
