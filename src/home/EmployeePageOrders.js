@@ -106,6 +106,7 @@ const connectNigga =()=>{
     const websocket = new WebSocket('wss://gigifoods.herokuapp.com:8080/');
     if(websocket){
         console.log("Forced your ass to connect")
+        console.log(websocket)
     }else{
         connectNigga()
         console.log("Lets go again, connect")
@@ -115,12 +116,12 @@ const connectNigga =()=>{
 }
 
 
-const testConnect= (websocket)=>{
+const testConnect= (web)=>{
     //const websocket = await new WebSocket('wss://gigifoods.herokuapp.com:8080/');
-    websocket.onopen = () => {
+    web.onopen = () => {
         console.log('Test socken open.');
     };
-    websocket.onclose = () => {
+    web.onclose = () => {
         console.log('Test socket closed.');
     };
     console.log("Shit doesn't work again nigga damn")
