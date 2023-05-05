@@ -52,7 +52,7 @@ const onItemSelected = (option) => {
 const onInputClick = () => {
     setOpen((prevValue) => !prevValue);
 }
-const ws = new WebSocket('wss://gigifoods.herokuapp.com:8080')
+const ws = new WebSocket('wss://gigifoods.herokuapp.com')
 ws.onopen = function(){
     console.log('ws connected')
 }
