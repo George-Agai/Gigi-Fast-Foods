@@ -53,7 +53,7 @@ const EmployeePageOrders = () => {
     //Employee login form onsubmit 
     const HandleEmployeeLogin = (e) => {
         e.preventDefault();
-        connectNigga();
+        // connectNigga();
         const user = "Jane";
         const passwordd = "Jane2022";
 
@@ -149,7 +149,7 @@ const EmployeePageOrders = () => {
             //const ws = new WebSocket(`wss://${window.location.hostname}:${WS_PORT}`);
             setWs(ws);
             ws.onopen = () => {
-                console.log('WebSocket connection open.');
+                console.log('WebSocket connection open nigaaaaaaa.');
             };
             ws.onmessage = ({ data }) => {
                 const { pendingOrders, messageName } = JSON.parse(data)
