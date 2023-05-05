@@ -94,59 +94,10 @@ const EmployeePageOrders = () => {
         setincomeButtonActive(false)
     }
 
-   
-
-
-
-
-
-
-
-// const connectNigga =()=>{
-//     const websocket = new WebSocket('wss://gigifoods.herokuapp.com');
-//     if(websocket){
-//         console.log("Forced your ass to connect")
-//         console.log(websocket)
-//     }else{
-//         connectNigga()
-//         console.log("Lets go again, connect")
-//     }
-//     testConnect(websocket)
-//     return websocket;
-// }
-
-
-// const testConnect= (web)=>{
-//     //const websocket = await new WebSocket('wss://gigifoods.herokuapp.com:8080/');
-//     web.onopen = () => {
-//         console.log('Test socken open.');
-//     };
-//     web.onclose = () => {
-//         console.log('Test socket closed.');
-//     };
-//     console.log("Shit doesn't work again damnnnnnnnnnn")
-// }
-
-
-
-
-
-
-
-
-
-
-
-
 
     useEffect(() => {
         const setConnectionToWebserver = () => {
-
-            // eslint-disable-next-line no-restricted-globals
-            // const HOST = location.origin.replace(/^https/, 'wss')
-            // const ws = new WebSocket(HOST);
             const ws = new WebSocket('wss://gigifoods.herokuapp.com');
-            //const ws = new WebSocket(`wss://${window.location.hostname}:${WS_PORT}`);
             setWs(ws);
             ws.onopen = () => {
                 console.log('WebSocket connection open nigaaaaaaa.');
