@@ -102,30 +102,30 @@ const EmployeePageOrders = () => {
 
 
 
-const connectNigga =()=>{
-    const websocket = new WebSocket('wss://gigifoods.herokuapp.com');
-    if(websocket){
-        console.log("Forced your ass to connect")
-        console.log(websocket)
-    }else{
-        connectNigga()
-        console.log("Lets go again, connect")
-    }
-    testConnect(websocket)
-    return websocket;
-}
+// const connectNigga =()=>{
+//     const websocket = new WebSocket('wss://gigifoods.herokuapp.com');
+//     if(websocket){
+//         console.log("Forced your ass to connect")
+//         console.log(websocket)
+//     }else{
+//         connectNigga()
+//         console.log("Lets go again, connect")
+//     }
+//     testConnect(websocket)
+//     return websocket;
+// }
 
 
-const testConnect= (web)=>{
-    //const websocket = await new WebSocket('wss://gigifoods.herokuapp.com:8080/');
-    web.onopen = () => {
-        console.log('Test socken open.');
-    };
-    web.onclose = () => {
-        console.log('Test socket closed.');
-    };
-    console.log("Shit doesn't work again damnnnnnnnnnn")
-}
+// const testConnect= (web)=>{
+//     //const websocket = await new WebSocket('wss://gigifoods.herokuapp.com:8080/');
+//     web.onopen = () => {
+//         console.log('Test socken open.');
+//     };
+//     web.onclose = () => {
+//         console.log('Test socket closed.');
+//     };
+//     console.log("Shit doesn't work again damnnnnnnnnnn")
+// }
 
 
 
