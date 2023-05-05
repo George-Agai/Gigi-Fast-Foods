@@ -53,7 +53,7 @@ const EmployeePageOrders = () => {
     //Employee login form onsubmit 
     const HandleEmployeeLogin = (e) => {
         e.preventDefault();
-
+        testConnect();
         const user = "Jane";
         const passwordd = "Jane2022";
 
@@ -95,6 +95,32 @@ const EmployeePageOrders = () => {
     }
 
    
+
+
+
+
+const testConnect= async ()=>{
+    const websocket = await new WebSocket('wss://gigifoods.herokuapp.com:8080');
+    websocket.onopen = () => {
+        console.log('Test socken open.');
+    };
+    websocket.onclose = () => {
+        console.log('Test socket closed.');
+    };
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
     useEffect(() => {
         const setConnectionToWebserver = () => {
 
