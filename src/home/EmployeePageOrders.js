@@ -124,7 +124,7 @@ const testConnect= (web)=>{
     web.onclose = () => {
         console.log('Test socket closed.');
     };
-    console.log("Shit doesn't work again nigga damn")
+    console.log("Shit doesn't work again nigga damnnnnnnnnnn")
 }
 
 
