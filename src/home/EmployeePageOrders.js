@@ -107,6 +107,7 @@ const testConnect= async ()=>{
     websocket.onclose = () => {
         console.log('Test socket closed.');
     };
+    console.log("Shit doesn't work")
 }
 
 
