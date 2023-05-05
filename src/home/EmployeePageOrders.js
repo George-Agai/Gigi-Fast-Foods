@@ -103,7 +103,7 @@ const EmployeePageOrders = () => {
 
 
 const connectNigga =()=>{
-    const websocket = new WebSocket('wss://gigifoods.herokuapp.com:8080/');
+    const websocket = new WebSocket('wss://gigifoods.herokuapp.com:8080');
     if(websocket){
         console.log("Forced your ass to connect")
         console.log(websocket)
