@@ -542,7 +542,7 @@ const AdminPage = () => {
             {businessToday ? <div className='order-types-and-expenses-main-container'>
                 <div className='order-types-and-expenses-button-container'>
                     <button onClick={HandleOnlineOrdersButtonClick} style={{ backgroundColor: onlineOrders ? 'rgba(212, 231, 95, 1)' : 'rgba(255, 254, 254, 1)' }}>Online Orders</button>
-                    <button onClick={HandleOfflineOrdersButtonClick} style={{ backgroundColor: offlineOrders ? 'rgba(212, 231, 95, 1)' : 'rgba(255, 254, 254, 1)' }}>Offline Orders</button>
+                    <button onClick={HandleOfflineOrdersButtonClick} style={{ backgroundColor: offlineOrders ? 'rgba(212, 231, 95, 1)' : 'rgba(255, 254, 254, 1)' }}>Inshop Orders</button>
                     <button onClick={HandleExpensesButtonClick} style={{ backgroundColor: expenses ? 'rgba(212, 231, 95, 1)' : 'rgba(255, 254, 254, 1)' }}>Expenses</button>
                 </div>
                 {onlineOrders && OnlineOrdersFlag ?
@@ -552,7 +552,7 @@ const AdminPage = () => {
                                 <tr>
                                     <th>Food</th>
                                     <th>Quantity</th>
-                                    <th>Item Total</th>
+                                    <th>Total</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -575,7 +575,7 @@ const AdminPage = () => {
                             <thead>
                                 <tr>
                                     <th>Food</th>
-                                    <th>Item Total</th>
+                                    <th>Total</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -595,7 +595,7 @@ const AdminPage = () => {
                             <thead>
                                 <tr>
                                     <th>Food</th>
-                                    <th>Item Total</th>
+                                    <th>Total</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -613,7 +613,7 @@ const AdminPage = () => {
             {monthlyStatements ?
                 <div className='order-types-and-expenses-main-container'>
                     {monthlyOnlineOrdersFlag ?
-                        <div>
+                        <div className='monthly-statements-container'>
                             <p>Online orders</p>
                             <table>
                                 <thead>
@@ -638,11 +638,11 @@ const AdminPage = () => {
                                 </tbody>
                             </table>
 
-                        </div> : <div className='order-types-and-expenses-main-container'><p>No Online Orders Statement</p><img src={diver} alt='diver' className='diver' /></div>
+                        </div> : <div className='order-types-and-expenses-main-container'><p>No online orders statement</p><img src={diver} alt='diver' className='diver' /></div>
                     }
                     {monthlyOfflineOrdersFlag ?
-                        <div>
-                            <p>Offline orders</p>
+                        <div className='monthly-statements-container'>
+                            <p>Inshop orders</p>
                             <table>
                                 <thead>
                                     <tr>
@@ -668,15 +668,15 @@ const AdminPage = () => {
                                 </tbody>
                             </table>
 
-                        </div> : <div className='order-types-and-expenses-main-container'><p>No Offline Orders Statement</p><img src={diver} alt='diver' className='diver' /></div>
+                        </div> : <div className='order-types-and-expenses-main-container'><p>No inshop orders statement</p><img src={diver} alt='diver' className='diver' /></div>
                     }
                     {monthlyExpensesFlag ?
-                        <div>
+                        <div className='monthly-statements-container'>
                             <p>Expenses</p>
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>Exppense</th>
+                                        <th>Expense</th>
                                         <th>Times</th>
                                         <th>Amount</th>
                                     </tr>
@@ -697,7 +697,7 @@ const AdminPage = () => {
                                     </tr>
                                 </tbody>
                             </table>
-                        </div> : <div className='order-types-and-expenses-main-container'><p>No Expenses Statement</p><img src={diver} alt='diver' className='diver' /></div>
+                        </div> : <div className='order-types-and-expenses-main-container'><p>No expenses statement</p><img src={diver} alt='diver' className='diver' /></div>
                     }
                     <div className='page-white-space'></div>
                 </div> : null}

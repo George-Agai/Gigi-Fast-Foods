@@ -5,6 +5,7 @@ import WithClickOutside from './WithClickOutside';
 import { useState, useEffect } from 'react';
 import kitten from './images/kitten.png'
 import {BsArrowRight} from 'react-icons/bs'
+import save from './images/floppy-disk.png'
 
 const DropDownInput = React.forwardRef(({
     options,
@@ -52,10 +53,26 @@ const onItemSelected = (option) => {
 const onInputClick = () => {
     setOpen((prevValue) => !prevValue);
 }
-const ws = new WebSocket('wss://gigifoods.herokuapp.com')
+
+let ws;
+const setUpWebsocketConnection =()=>{
+
+    // do{
+    //     ws = new WebSocket('wss://gigifoods.herokuapp.com')
+    // }while(ws !== null)
+    return new Promise((resolve, reject) => {
+ws = new WebSocket('wss://gigifoods.herokuapp.com')
+
 ws.onopen = function(){
+    resolve(ws);
     console.log('ws connected')
 }
+ws.onclose = function(){
+    console.log('ws closed')
+}
+ws.onerror = (error) => {
+    reject(error); // Reject the promise with the error
+  };
 ws.onmessage =({data})=>{
     const {messageName, offlineOrders, expenses} = JSON.parse(data)
     if(messageName === "offline_orders"){
@@ -81,6 +98,12 @@ ws.onmessage =({data})=>{
     }
     ws.close()
 }
+});
+
+
+}
+
+
 let completedOrder = null
 let transactionType = null
 let messageName  = null
@@ -105,13 +128,14 @@ const HandleAddCompletedOrder = async(e) => {
         }
     }
     await axios.post('https://gigifoods.herokuapp.com/app/Income', completedOrder)
-    console.log(completedOrder)
+    setInputValue("")
+    setIncomeAmount("")
 }
 const websocketSend=(messageObject)=>{
     ws.send(JSON.stringify(messageObject));
     return true;
 }
-const handleExpandButtonClicked =(e)=>{
+const handleExpandButtonClicked =async(e)=>{
     e.preventDefault()
     let date = new Date()
         let dateString = date.toLocaleDateString("en-US", {
@@ -126,7 +150,17 @@ const handleExpandButtonClicked =(e)=>{
             messageName,
             dateString
         }
-        websocketSend(messageObject)
+        try{
+            const ws = await setUpWebsocketConnection()
+            console.log(ws)
+            websocketSend(messageObject)
+        }
+        catch (error) {
+            console.error('Error connecting to WebSocket:', error);
+            // Handle the error appropriately
+        }
+        
+        
     }
     else{
         messageName = 'getExpenses'
@@ -134,7 +168,15 @@ const handleExpandButtonClicked =(e)=>{
             messageName,
             dateString
         }
-        websocketSend(messageObject)
+        try{
+            const ws = await setUpWebsocketConnection()
+            console.log(ws)
+            websocketSend(messageObject)
+        }
+        catch (error) {
+            console.error('Error connecting to WebSocket:', error);
+            // Handle the error appropriately
+        }
     }
 }
     return (
@@ -164,7 +206,7 @@ const handleExpandButtonClicked =(e)=>{
                             className='income-add-button'
                             type='submit'
                             value='Submit'
-                        >+</button>
+                        ><img src={save} alt='save' className='icons'/></button>
                     </form>
                 </div>
 
@@ -192,9 +234,9 @@ const handleExpandButtonClicked =(e)=>{
            
         </div>
         <div className='expand-button-div'>
-            <button onClick={handleExpandButtonClicked}><p>View all <BsArrowRight style={{fontSize: '16px'}}/></p></button>
+            <button onClick={handleExpandButtonClicked}><p>View all</p> <BsArrowRight style={{fontSize: '15px', marginLeft: '3px'}}/></button>
         </div>
-        {Income && IncomeFlag ? <div>
+        {Income && IncomeFlag ? <div className='admin-page-online-orders'>
             <table>
                 <tbody>
                     {Income.map(income =>(
@@ -206,7 +248,7 @@ const handleExpandButtonClicked =(e)=>{
                 </tbody>
             </table>
         </div> : Income && !IncomeFlag ? <div><img src={kitten} alt='kitten' className='kitten'/></div> : null}
-        {Expenses && ExpensesFlag ? <div>
+        {Expenses && ExpensesFlag ? <div className='admin-page-online-orders'>
             <table>
                 <tbody>
                     {Expenses.map(expense =>(
