@@ -52,6 +52,11 @@ const AdminPage = () => {
         e.preventDefault()
         setbusinessToday(true)
         setmonthlyStatements(false)
+        if(isDropdownOpen){
+            setIsDropdownOpen(false)
+        }else if(isDropdownOpenMonthlyStatements){
+            setIsDropdownOpenMonthlyStatements(false)
+        }
     }
 
     const handleDropdownClick = () => {
@@ -477,6 +482,11 @@ const AdminPage = () => {
         setmonthlyStatements(true)
         setbusinessToday(false)
         setUpWsConnectionOnMonthlyClicked(currentDate)
+        if(isDropdownOpen){
+            setIsDropdownOpen(false)
+        }else if(isDropdownOpenMonthlyStatements){
+            setIsDropdownOpenMonthlyStatements(false)
+        }
     }
     useEffect(() => {
         if (ws) {
@@ -541,8 +551,8 @@ const AdminPage = () => {
             </div>
             {businessToday ? <div className='order-types-and-expenses-main-container'>
                 <div className='order-types-and-expenses-button-container'>
-                    <button onClick={HandleOnlineOrdersButtonClick} style={{ backgroundColor: onlineOrders ? 'rgba(212, 231, 95, 1)' : 'rgba(255, 254, 254, 1)' }}>Online Orders</button>
-                    <button onClick={HandleOfflineOrdersButtonClick} style={{ backgroundColor: offlineOrders ? 'rgba(212, 231, 95, 1)' : 'rgba(255, 254, 254, 1)' }}>Inshop Orders</button>
+                    <button onClick={HandleOnlineOrdersButtonClick} style={{ backgroundColor: onlineOrders ? 'rgba(212, 231, 95, 1)' : 'rgba(255, 254, 254, 1)' }}>Online orders</button>
+                    <button onClick={HandleOfflineOrdersButtonClick} style={{ backgroundColor: offlineOrders ? 'rgba(212, 231, 95, 1)' : 'rgba(255, 254, 254, 1)' }}>In-shop orders</button>
                     <button onClick={HandleExpensesButtonClick} style={{ backgroundColor: expenses ? 'rgba(212, 231, 95, 1)' : 'rgba(255, 254, 254, 1)' }}>Expenses</button>
                 </div>
                 {onlineOrders && OnlineOrdersFlag ?
@@ -642,7 +652,7 @@ const AdminPage = () => {
                     }
                     {monthlyOfflineOrdersFlag ?
                         <div className='monthly-statements-container'>
-                            <p>Inshop orders</p>
+                            <p>In-shop orders</p>
                             <table>
                                 <thead>
                                     <tr>

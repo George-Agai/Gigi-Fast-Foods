@@ -241,13 +241,12 @@
     justify-content: center;
     text-align: center;
     background-color: rgba(212, 231, 95, 1);
-    width: 365px;
-    height: 75px;
+    width: 360px;
+    height: 60px;
     border: 1px solid rgb(195, 212, 79);
-    border-radius: 40px;
+    border-radius: 50px;
     margin-left: 0.5%;
     margin-right: 0.5%;
-    box-shadow: 0 3px 5px 0 rgb(161, 158, 158);
     position: fixed;
     left: 50%;
     bottom: 1%;
@@ -271,7 +270,7 @@
 }
 
 #order-button-arrow {
-    font-size: 42px;
+    font-size: 30px;
     margin-right: -10px;
     color: rgb(201, 153, 153);
 }

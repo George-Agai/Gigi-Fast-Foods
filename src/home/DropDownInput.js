@@ -57,50 +57,45 @@ const onInputClick = () => {
 let ws;
 const setUpWebsocketConnection =()=>{
 
-    // do{
-    //     ws = new WebSocket('wss://gigifoods.herokuapp.com')
-    // }while(ws !== null)
-    return new Promise((resolve, reject) => {
-ws = new WebSocket('wss://gigifoods.herokuapp.com')
+return new Promise((resolve, reject) => {
+    ws = new WebSocket('wss://gigifoods.herokuapp.com')
 
-ws.onopen = function(){
-    resolve(ws);
-    console.log('ws connected')
-}
-ws.onclose = function(){
-    console.log('ws closed')
-}
-ws.onerror = (error) => {
-    reject(error); // Reject the promise with the error
-  };
-ws.onmessage =({data})=>{
-    const {messageName, offlineOrders, expenses} = JSON.parse(data)
-    if(messageName === "offline_orders"){
-        if(offlineOrders.length >= 1){
-            setIncome(offlineOrders)
-            setIncomeFlag(true)
-        }
-        else{
-            setIncome(offlineOrders)
-            setIncomeFlag(false)
-        }
+    ws.onopen = function(){
+        resolve(ws);
+        console.log('ws connected')
     }
-    else if(messageName === "expenses"){
-        if(expenses.length >= 1){
-            setExpenses(expenses)
-            setExpensesFlag(true)
-        }
-        else{
-            setExpenses(expenses)
-            setExpensesFlag(false)
-            console.log(offlineOrders)
-        }
+    ws.onclose = function(){
+        console.log('ws closed')
     }
-    ws.close()
-}
+    ws.onerror = (error) => {
+        reject(error); // Reject the promise with the error
+    };
+    ws.onmessage =({data})=>{
+        const {messageName, offlineOrders, expenses} = JSON.parse(data)
+        if(messageName === "offline_orders"){
+            if(offlineOrders.length >= 1){
+                setIncome(offlineOrders)
+                setIncomeFlag(true)
+            }
+            else{
+                setIncome(offlineOrders)
+                setIncomeFlag(false)
+            }
+        }
+        else if(messageName === "expenses"){
+            if(expenses.length >= 1){
+                setExpenses(expenses)
+                setExpensesFlag(true)
+            }
+            else{
+                setExpenses(expenses)
+                setExpensesFlag(false)
+                console.log(offlineOrders)
+            }
+        }
+        ws.close()
+    }
 });
-
-
 }
 
 
