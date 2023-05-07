@@ -117,7 +117,7 @@ const Home = () => {
     useEffect(() => {
         const handleScroll = () => {
             const fastFoodsDiv = document.getElementById('fastFoodsContainer');
-            const mainMealsDiv = document.getElementById('mainMealsContainer');
+            const mainMealsDiv = document.getElementById('ugali-fish-main-container');
             const drinksDiv = document.getElementById('drinksContainer');
 
             const fastFoodsRect = fastFoodsDiv.getBoundingClientRect();
@@ -207,7 +207,7 @@ const Home = () => {
                                 <img src={meal} alt='meal' className='meal' />
                                 <p>_____</p> */}
                             </div>
-                            <div className='section-heading' id='mainMealsContainer'>Main meals</div>
+                            <div className='section-heading'>Main meals</div>
                             <div className='chips-smokie-main-container' id='ugali-fish-main-container'>
                                 {data.ugaliFishDescription.map((item, index) => {
                                     return (
