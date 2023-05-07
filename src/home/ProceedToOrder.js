@@ -13,11 +13,11 @@ const ProceedToOrder = () => {
     <div>
         <button className='cart-orders-button' >
         <div id='order-quantity-div'>
-          <h4>Orders <br />( {totalItems} )</h4>
+          <h4>Orders ( {totalItems} )</h4>
         </div>
-        <div id='order-right-arrow-div'>
+        {/* <div id='order-right-arrow-div'>
           <BsArrowRight id='order-button-arrow' />
-        </div>
+        </div> */}
       </button>
       <GoogleMapComponent/>
     </div>
