@@ -157,7 +157,7 @@ const Home = () => {
                                 <div className='cooking-div'>
                                     <img src={cooking} alt='cooking' className='cooking' />
                                     <div className='main-meals-div'>
-                                        <p>Delicious meals delivered in minutes!</p>
+                                        <p><span style={{fontWeight: '600'}}>Delicious</span> meals delivered in minutes!</p>
                                         <img src={freedelivery} alt='freedelivery' />
                                     </div>
                                 </div>
