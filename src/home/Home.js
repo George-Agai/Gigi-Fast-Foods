@@ -19,7 +19,7 @@ import cooking from './images/cooking.png'
 import freedelivery from './images/free-delivery.png'
 import meal from './images/meal.png'
 import panda from './images/panda.png'
-import circle from './images/circle.png'
+import bowl from './images/hot-soup-in-a-bowl.png'
 
 //create a context object
 export const MyContext = createContext();
@@ -31,6 +31,9 @@ const Home = () => {
     const [FruitJuicesActive, setFruitJuicesActive] = useState('');
     const [WaterActive, setWaterActive] = useState('');
     const [YoghurtActive, setYoghurtActive] = useState('');
+    const [fastFoodButton, setFastFoodButton] =useState(true);
+    const [mainMealsButton, setMainMealsButton] =useState();
+    const [drinksButton, setDrinksButton] =useState();
 
     const HandleSodaClick = (e) => {
         setSodaActive(true);
@@ -80,18 +83,27 @@ const Home = () => {
         setOrdersButtonActive(false)
     }
     const handleScrollToMainMeals = (e) => {
+        setFastFoodButton(false)
+        setMainMealsButton(true)
+        setDrinksButton(false)
         const element = document.getElementById('main-meals');
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
         }
     }
     const handleScrollToDrinks = (e) => {
+        setDrinksButton(true)
+        setFastFoodButton(false)
+        setMainMealsButton(false)
         const element = document.getElementById('drinks');
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
         }
     }
     const handleScrollToFastFoods = (e) => {
+        setFastFoodButton(true)
+        setMainMealsButton(false)
+        setDrinksButton(false)
         const element = document.getElementById('fast-foods');
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
@@ -106,16 +118,17 @@ const Home = () => {
                     <div className='Home' style={{ display: homeIsActive ? 'flex' : 'none' }}>
                         <div className='home-header'>
                             <h2 id='fast-foods'>Gigi Fast Foods</h2>
-
+                            <img src={bowl} alt='bowl' className='bowl'/>
                         </div>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" className='svgheader'><path fill="#8a2be2" fill-opacity="1" d="M0,96L80,101.3C160,107,320,117,480,112C640,107,800,85,960,74.7C1120,64,1280,64,1360,64L1440,64L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path></svg>
                         <div className='navigation-buttons-div-container' >
-                            <button className='softdrink-button' style={{ width: '130px', marginLeft: '5px' }} onClick={handleScrollToFastFoods}><div className='navigation-buttons-div' style={{ marginLeft: '-14px' }}><img src={burger} alt='fastfood' className='softdrink' /></div>&ensp;<p>Fast Food</p></button>
-                            <button className='softdrink-button' onClick={handleScrollToMainMeals}><div className='navigation-buttons-div'><img src={mainmeal} alt='mainmeal' className='softdrink' /></div>&ensp;<p>Meals</p></button>
-                            <button className='softdrink-button' onClick={handleScrollToDrinks}><div className='navigation-buttons-div'><img src={softdrink} alt='softdrink' className='softdrink' /></div>&ensp;<p>Drinks</p></button>
+                            <button className='softdrink-button' style={{ width: '130px', marginLeft: '5px', border: fastFoodButton ? '1.5px solid #8a2be2' : '1px solid  rgb(206, 200, 200)' , color: fastFoodButton ? '#8a2be2' : 'rgba(95, 86, 86, 1)', marginTop: fastFoodButton ? '25px' : '20px'}} onClick={handleScrollToFastFoods}><div className='navigation-buttons-div' style={{ marginLeft: '-14px' }}><img src={burger} alt='fastfood' className='softdrink' /></div>&ensp;<p>Fast Food</p></button>
+                            <button className='softdrink-button' style={{ border: mainMealsButton ? '1.5px solid #8a2be2' : '1px solid  rgb(206, 200, 200)', color: mainMealsButton ? '#8a2be2' : 'rgba(95, 86, 86, 1)', marginTop: mainMealsButton ? '25px' : '20px'}} onClick={handleScrollToMainMeals}><div className='navigation-buttons-div'><img src={mainmeal} alt='mainmeal' className='softdrink' /></div>&ensp;<p>Meals</p></button>
+                            <button className='softdrink-button' style={{ border: drinksButton ? '1.5px solid #8a2be2' : '1px solid  rgb(206, 200, 200)', color: drinksButton ? '#8a2be2' : 'rgba(95, 86, 86, 1)', marginTop: drinksButton ? '25px' : '20px'}} onClick={handleScrollToDrinks}><div className='navigation-buttons-div'><img src={softdrink} alt='softdrink' className='softdrink' /></div>&ensp;<p>Drinks</p></button>
                         </div>
-
+                        
                         <div className='chips-smokie-main-container'>
+                        <div className='section-heading' style={{marginTop: '20px', marginBottom: '-40px'}}>Fast food</div>
                             {data.chipsSmokieDescription.map((item, index) => {
                                 return (
 
@@ -160,6 +173,7 @@ const Home = () => {
                                 <img src={meal} alt='meal' className='meal' />
                                 <p>_____</p> */}
                             </div>
+                            <div className='section-heading'>Main meals</div>
                             <div className='chips-smokie-main-container' id='ugali-fish-main-container'>
                                 {data.ugaliFishDescription.map((item, index) => {
                                     return (
@@ -176,6 +190,7 @@ const Home = () => {
                                 <img src={panda} alt='panda' className='panda' />
                                 
                             </div>
+                            <div className='section-heading'>Drinks</div>
                             <div className='available-drinks-main-container'>
                                 <div className='available-drinks-button-container'>
                                     <button className='available-drinks-button' id='available-drinks-button-soda' onClick={HandleSodaClick} style={{ backgroundColor: SodaActive ? 'rgb(247, 245, 245)' : 'rgb(247, 245, 245)', border: SodaActive ? '1.5px solid #8a2be2' : '1px solid  rgba(197, 191, 191, 1)', color: SodaActive ? '#8a2be2' : 'rgba(95, 86, 86, 1)' , height: SodaActive ? '58px' : '50px' }}>Soda</button>
