@@ -1038,7 +1038,7 @@
     border-radius: 15px;
     margin-top: 10px;
     border: 1px solid rgb(233, 230, 230);
-    box-shadow: inset 3px 3px 10px rgba(236, 234, 234, 0.5);
+    /* box-shadow: inset 3px 3px 10px rgba(236, 234, 234, 0.5); */
     position: absolute;
     z-index: 1;
     left: 50%;
