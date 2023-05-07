@@ -83,8 +83,8 @@ const OrdersPage = () => {
                     <table id='order-table'>
                         <thead>
                             <tr id='order-table-row'>
-                                <td><b style={{ fontSize: "14px" }}>Order</b></td>
-                                <td><b style={{ fontSize: "14px" }}>Amount</b></td>
+                                <td><b style={{ fontSize: "13px" }}>Order</b></td>
+                                <td><b style={{ fontSize: "13px" }}>Amount</b></td>
                             </tr>
                         </thead>
                         {items.map((item, index) => {
@@ -100,7 +100,7 @@ const OrdersPage = () => {
                         })}
                     </table>
                     <div>
-                        <h3 id='total-and-amount'>Total&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;{cartTotal}</h3>
+                        <h3 id='total-and-amount'>Total&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<b>{cartTotal}</b></h3>
                     </div>
                     <div>
                         <form onSubmit={HandleCompleteOrder}>

@@ -27,7 +27,7 @@ const EmployeePageOrders = () => {
     const navigate = useNavigate();
     const [LoginPage, setLoginPage] = useState('true');
     const [Login, setLogin] = useState(false);
-    const [adminLogin, setAdminLogin] = useState('');
+    const [adminLogin, setAdminLogin] = useState('true');
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const [adminName, setAdminName] = useState('');

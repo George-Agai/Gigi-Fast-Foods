@@ -551,9 +551,9 @@ const AdminPage = () => {
             </div>
             {businessToday ? <div className='order-types-and-expenses-main-container'>
                 <div className='order-types-and-expenses-button-container'>
-                    <button onClick={HandleOnlineOrdersButtonClick} style={{ backgroundColor: onlineOrders ? 'rgba(212, 231, 95, 1)' : 'rgba(255, 254, 254, 1)' }}>Online orders</button>
-                    <button onClick={HandleOfflineOrdersButtonClick} style={{ backgroundColor: offlineOrders ? 'rgba(212, 231, 95, 1)' : 'rgba(255, 254, 254, 1)' }}>In-shop orders</button>
-                    <button onClick={HandleExpensesButtonClick} style={{ backgroundColor: expenses ? 'rgba(212, 231, 95, 1)' : 'rgba(255, 254, 254, 1)' }}>Expenses</button>
+                    <button onClick={HandleOnlineOrdersButtonClick} style={{ border: onlineOrders ? '1.5px solid #8a2be2' : '1px solid  rgba(197, 191, 191, 1)', color: onlineOrders ? '#8a2be2' : 'rgba(95, 86, 86, 1)', height: onlineOrders ? '50px' : '44px' }}>Online orders</button>
+                    <button onClick={HandleOfflineOrdersButtonClick} style={{ border: offlineOrders ? '1.5px solid #8a2be2' : '1px solid  rgba(197, 191, 191, 1)', color: offlineOrders ? '#8a2be2' : 'rgba(95, 86, 86, 1)', height: offlineOrders ? '50px' : '44px'  }}>In-shop orders</button>
+                    <button onClick={HandleExpensesButtonClick} style={{ border: expenses ? '1.5px solid #8a2be2' : '1px solid  rgba(197, 191, 191, 1)', color: expenses ? '#8a2be2' : 'rgba(95, 86, 86, 1)', height: expenses ? '50px' : '44px' }}>Expenses</button>
                 </div>
                 {onlineOrders && OnlineOrdersFlag ?
                     <div className='admin-page-online-orders'>
