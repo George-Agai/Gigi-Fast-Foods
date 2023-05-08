@@ -520,8 +520,8 @@ const AdminPage = () => {
                     </div> : null}
                 </div>
                 <div className='business-today-and-statements-container'>
-                    <button onClick={HandleBusinessTodayButtonClick} style={{ backgroundColor: businessToday ? 'rgba(120, 122, 106, 1)' : 'rgb(247, 245, 245)', color: businessToday ? 'rgb(231, 226, 226)' : 'rgba(95, 86, 86, 1)', display: "flex" }}>Business Today<div id="today-button" onClick={handleDropdownClick} style={{ marginLeft: "5px", display: "flex", justifyContent: "center", alignItems: "center", width: "20px", height: "25px" }}><IoMdArrowDropdown style={{ width: "20px", height: "20px" }} /></div></button>
-                    <button onClick={HandleMonthlyStatementsButtonClick} style={{ backgroundColor: monthlyStatements ? 'rgba(120, 122, 106, 1)' : 'rgb(247, 245, 245)', color: monthlyStatements ? 'rgb(231, 226, 226)' : 'rgba(95, 86, 86, 1)' }}>Monthly Statements<div id="today-button" onClick={handleDropdownClickMonthlyStatements} style={{ marginLeft: "5px", display: "flex", justifyContent: "center", alignItems: "center", width: "20px", height: "25px" }}><IoMdArrowDropdown style={{ width: "20px", height: "20px" }} /></div></button>
+                    <button onClick={HandleBusinessTodayButtonClick} style={{ backgroundColor: businessToday ? '#8a2be2' : 'rgb(247, 245, 245)', color: businessToday ? 'rgb(231, 226, 226)' : 'rgba(95, 86, 86, 1)', display: "flex" }}>Business Today<div id="today-button" onClick={handleDropdownClick} style={{ marginLeft: "5px", display: "flex", justifyContent: "center", alignItems: "center", width: "20px", height: "25px" }}><IoMdArrowDropdown style={{ width: "20px", height: "20px" }} /></div></button>
+                    <button onClick={HandleMonthlyStatementsButtonClick} style={{ backgroundColor: monthlyStatements ? '#8a2be2' : 'rgb(247, 245, 245)', color: monthlyStatements ? 'rgb(231, 226, 226)' : 'rgba(95, 86, 86, 1)' }}>Monthly Statements<div id="today-button" onClick={handleDropdownClickMonthlyStatements} style={{ marginLeft: "5px", display: "flex", justifyContent: "center", alignItems: "center", width: "20px", height: "25px" }}><IoMdArrowDropdown style={{ width: "20px", height: "20px" }} /></div></button>
                 </div>
                 <div className='date-dropdown-div'>
                     <div className='dateopendiv'>
@@ -604,7 +604,7 @@ const AdminPage = () => {
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Food</th>
+                                    <th>Expense</th>
                                     <th>Total</th>
                                 </tr>
                             </thead>

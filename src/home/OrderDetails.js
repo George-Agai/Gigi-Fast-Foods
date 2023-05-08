@@ -5,14 +5,29 @@ const OrderDetails = () => {
   const location = useLocation()
   const { orders, contact, cartTotal, _id } = location.state;
   const [rejectOrConfirmDiv, setRejectOrConfirmDiv] = useState(true)
-  const ws = new WebSocket('wss://gigifoods.herokuapp.com')
-  ws.onopen = function(){
-    console.log("order details ws opennnnnn")
+
+  let ws;
+  const setUpConnection = () => {
+    return new Promise((resolve, reject) => {
+      ws = new WebSocket('wss://gigifoods.herokuapp.com')
+
+      ws.onopen = function () {
+        resolve(ws);
+        console.log('ws connected')
+        ws.send(JSON.stringify(orderUpdate))
+        console.log('order to be updated sent')
+        ws.close()
+      }
+      ws.onclose = function () {
+        console.log('ws closed')
+      }
+      ws.onerror = (error) => {
+        reject(error); // Reject the promise with the error
+      };
+    });
   }
-  ws.onclose = function(){
-    console.log("order details ws closed")
-  }
-  const confirmButtonClicked = (e)=>{
+
+  const confirmButtonClicked = (e) => {
     e.preventDefault()
     setRejectOrConfirmDiv(false)
   }
@@ -20,15 +35,19 @@ const OrderDetails = () => {
     messageName: 'findAndUpdateOrder',
     _id
   }
-  const deliveredButtonClicked =()=>{
-    ws.send(JSON.stringify(orderUpdate))
-    console.log('order to be updated sent')
-    ws.close()
+  const deliveredButtonClicked = () => {
+    try {
+      const connected = setUpConnection()
+      console.log(connected)
+    } catch (error) {
+      console.error('Error connecting to WebSocket:', error);
+    }
+
   }
-return (
+  return (
     <div className='order-details'>
       <p>{contact}</p>
-      <div style={{ border: '1px solid black' }}>
+      <div className='ordersInOrderDetailsDiv'>
         <table>
           <thead>
             <tr>
@@ -48,21 +67,22 @@ return (
             <tr></tr>
             <tr>
               <td></td>
-              <td>Total</td>
-              <td>{cartTotal}</td>
+              <td style={{ fontSize: '12px', color: 'grey' }}>Total</td>
+              <td><b style={{ fontSize: '14px' }}>{cartTotal}</b></td>
             </tr>
           </tbody>
         </table>
       </div>
-      {rejectOrConfirmDiv ? 
-      <div>
-        <button>Reject</button>
-        <button onClick={confirmButtonClicked}>Confirm</button>
-      </div> :
-      <div>
-        <button onClick={deliveredButtonClicked}>Delivered</button>
-      </div> }
+      {rejectOrConfirmDiv ?
+        <div className='rejectOrConfirmDiv'>
+          <button className='rejectButton'>Reject</button>
+          <button onClick={confirmButtonClicked} className='confirmAndDeliveredButton'>Confirm</button>
+        </div> :
+        <div className='deliveredDiv'>
+          <button onClick={deliveredButtonClicked} className='confirmAndDeliveredButton' style={{ width: '90vw', marginTop: '30px' }}>Delivered</button>
+        </div>}
     </div>
-)};
+  )
+};
 
 export default OrderDetails;

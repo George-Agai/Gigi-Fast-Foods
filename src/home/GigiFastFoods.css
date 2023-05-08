@@ -176,8 +176,8 @@
     border-radius: 40px;
 }
 .icons{
-    height: 10px;
-    width: 10px;
+    height: 12px;
+    width: 12px;
 }
 .order-buttons:hover {
     animation: animate 0.3s;
@@ -744,7 +744,7 @@
     width: 110px;
     height: 50px;
     border-radius: 40px;
-    border: 1px solid rgba(95, 86, 86, 1);
+    border: none;
     font-weight: 600;
     font-size: 13px;
     box-shadow: 0 2px 2px 0 rgb(48, 47, 47);
@@ -769,24 +769,26 @@
 
 .orders-container {
     display: flex;
+    flex-direction: column;
     margin-top: 15px;
-    background-color: rgba(246, 246, 246, 1);
-    border: 1px solid rgb(228, 221, 221);
-    width: 80%;
-    height: 50px;
-    border-radius: 10px;
+    background-color: rgb(248, 248, 248);
+    border: 1px solid rgb(224, 221, 221);
+    width: 90%;
+    height: 70px;
+    border-radius: 15px;
     justify-content: space-around;
     align-items: center;
 }
 .details-button{
-    background-color: rgba(213, 237, 68, 1);
-    width: 117px;
-    height: 35px;
-    border-radius: 20px;
-    border: none;
-    color: brown;
+    background-color: rgba(246, 246, 246, 1);
+    width: 30vw;
+    height: 45px;
+    border-radius: 35px;
+    border: 1px solid #8a2be2;
+    color: #8a2be2;
     font-weight: 500;
     letter-spacing: 0.2px;
+    margin-top: -20px;
 }
 
 .orders-container-container{
@@ -794,8 +796,26 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+    padding-bottom: 30px;
 }
-
+.orders-container-bottom{
+    display: flex;
+    width: 95%;
+    justify-content: space-around;
+    align-items: center;
+}
+.orders-container-time{
+    display: flex;
+    width: 90%;
+    justify-content: flex-start;
+    padding-left: 30px;
+    padding-top: 10px;
+    font-size: 10px;
+    color: grey;
+}
+.orders-container-bottom p{
+    font-size: 14px;
+}
 .orders-container-ordernumber-amount {
     display: flex;
     text-align: center;
@@ -1037,7 +1057,7 @@
     height: 170px;
     border-radius: 15px;
     margin-top: 10px;
-    border: 1px solid rgb(233, 230, 230);
+    border: 1px solid rgb(223, 218, 218);
     /* box-shadow: inset 3px 3px 10px rgba(236, 234, 234, 0.5); */
     position: absolute;
     z-index: 1;
@@ -1215,4 +1235,52 @@
     font-size: 14px;
     margin-bottom: -10px;
     padding-top: 10px;
+}
+.ordersInOrderDetailsDiv{
+    border: 1px solid rgb(226, 226, 226);
+    padding: 20px;
+    border-radius: 20px;
+    width: 80vw;
+    margin-top: 50vh;
+}
+.ordersInOrderDetailsDiv table td{
+    text-align: left;
+    padding-left: 15px;
+    width: min-content;
+    font-size: 16px;
+}
+.ordersInOrderDetailsDiv table th{
+    font-size: 12px;
+    color: grey;
+    font-weight: 500;
+}
+.rejectOrConfirmDiv{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    width: 90vw;
+}
+.deliveredDiv{
+    display: flex;
+    align-items: center;
+    width: 90vw;
+}
+.rejectButton{
+    width: 32vw;
+    height: 60px;
+    background-color: white;
+    border: 1px solid #8a2be2;
+    border-radius: 30px;
+    color: #8a2be2;
+    font-size: 15px;
+}
+.confirmAndDeliveredButton{
+    width: 45vw;
+    box-shadow: 0 1px 2px 0 rgb(167, 157, 157);
+    height: 60px;
+    background-color: #8a2be2;
+    border: 1px solid #8a2be2;
+    border-radius: 30px;
+    color: white;
+    font-size: 15px;
 }
