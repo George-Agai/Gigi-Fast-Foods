@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import kitten from './images/kitten.png'
 import {BsArrowRight} from 'react-icons/bs'
 import save from './images/floppy-disk.png'
+import LoadingBlue from './LoadingBlue';
 
 const DropDownInput = React.forwardRef(({
     options,
@@ -25,6 +26,7 @@ const [Income, setIncome] = useState()
 const [Expenses, setExpenses] = useState()
 const [IncomeFlag, setIncomeFlag] = useState()
 const [ExpensesFlag, setExpensesFlag] = useState()
+const [ContinueTextFlag, setContinueTextFlag] = useState(true)
 
 useEffect(() => {
     if (selectedKey) {
@@ -68,7 +70,7 @@ return new Promise((resolve, reject) => {
         console.log('ws closed')
     }
     ws.onerror = (error) => {
-        reject(error); // Reject the promise with the error
+        reject(error); // Reject the promise with the errorF
     };
     ws.onmessage =({data})=>{
         const {messageName, offlineOrders, expenses} = JSON.parse(data)
@@ -94,6 +96,7 @@ return new Promise((resolve, reject) => {
             }
         }
         ws.close()
+        setContinueTextFlag(true)
     }
 });
 }
@@ -132,6 +135,7 @@ const websocketSend=(messageObject)=>{
 }
 const handleExpandButtonClicked =async(e)=>{
     e.preventDefault()
+    setContinueTextFlag(false)
     let date = new Date()
         let dateString = date.toLocaleDateString("en-US", {
             day: "2-digit",
@@ -229,7 +233,7 @@ const handleExpandButtonClicked =async(e)=>{
            
         </div>
         <div className='expand-button-div'>
-            <button onClick={handleExpandButtonClicked}><p>View all</p> <BsArrowRight style={{fontSize: '15px', marginLeft: '3px'}}/></button>
+            <button onClick={handleExpandButtonClicked}> {ContinueTextFlag ? <div style={{display: 'flex', alignItems: 'center'}}><p>View all</p> <BsArrowRight style={{fontSize: '15px', marginLeft: '1px'}}/></div> : <LoadingBlue />}</button>
         </div>
         {Income && IncomeFlag ? <div className='admin-page-online-orders'>
             <table>

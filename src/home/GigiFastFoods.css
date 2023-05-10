@@ -92,9 +92,9 @@
     width: 113px;
     background-color: white;
     border-radius: 45px;
-    font-size: 12px;
-    font-weight: 600;
-    color: rgb(141, 85, 85);
+    font-size: 11px;
+    font-weight: 500;
+    color: grey;
     border: 1px solid rgb(206, 200, 200);
     margin-right: 6px;
     transition: 0.5s;
@@ -445,21 +445,25 @@
 }
 
 .complete-order-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 3vw;
     animation-name: completeOrderAnimate;
     animation-duration: 0.3s;
     animation-delay: 1.2s;
     animation-iteration-count: 2;
     animation-timing-function: ease-in;
     margin-top: -5px;
-    margin-bottom: 10px;
-    width: 85%;
+    margin-bottom: 20px;
+    width: 94%;
     height: 60px;
     background-color: rgba(212, 231, 95, 1);
-    border: 1px solid rgb(200, 216, 91);
+    border: 1px solid rgb(195, 212, 79);
+    /* box-shadow: 0 1px 2px 0 rgb(207, 201, 201); */
     border-radius: 50px;
-    font-size: 15px;
-    color: rgb(85, 177, 93);
-    font-weight: 500;
+    color: rgb(173, 143, 143);
+    font-weight: 600;
     letter-spacing: 0.5px;
 }
 
@@ -486,8 +490,8 @@
 }
 
 #total-and-amount {
-    margin-left: -15%;
-    font-size: 13px;
+    margin-left: -20%;
+    font-size: 12px;
     color: rgb(53, 51, 51);
 }
 
@@ -495,11 +499,12 @@
     width: 110px;
     height: 50px;
     color: rgb(155, 128, 128);
-    font-size: 40px;
+    font-size: 30px;
     background-color: white;
     border: none;
-    margin-left: -9px;
+    margin-left: 9px;
     margin-top: 5px;
+    text-align: left;
 }
 
 .OrderComplete {
@@ -529,25 +534,23 @@
     }
 }
 
-.back-to-main-page {
+/* .back-to-main-page {
     animation-name: backHomeAnimate;
     animation-duration: 0.4s;
-    animation-delay: 2s;
+    animation-delay: 4s;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 200px;
-    height: 50px;
+    width: 86vw;
+    height: 60px;
     border-radius: 40px;
-    background-color: rgba(212, 231, 95, 1);
-    color: rgb(61, 176, 71);
-    font-weight: 500;
-    font-size: 13px;
-    letter-spacing: 0.3px;
-    border: none;
-    box-shadow: 0 1px 6px 0 rgb(161, 159, 159);
-    margin-top: 80px;
-}
+    border: 1px solid #8a2be2;
+    background-color: white;
+    color: #8a2be2;
+    font-weight: 400;
+    font-size: 14px;
+    
+} */
 
 @keyframes backHomeAnimate {
     0% {
@@ -582,7 +585,7 @@
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    margin-top: 10px;
+    margin-left: 8px;
 }
 
 /* AVAILABLE DRINKS SECTION */
@@ -618,7 +621,6 @@
     font-weight: 600;
     font-size: 12px;
     color: rgb(63, 61, 38);
-    
 }
 #available-drinks-button-soda {
     margin-left: 15px;
@@ -920,14 +922,15 @@
 .admin-page-back-button-and-amount-container {
     display: flex;
     justify-content: center;
+    width: 100vw;
 }
 
 #admin-page-back-button {
     background-color: rgba(88, 81, 81, 1);
     color: rgba(212, 212, 212, 1);
     margin-top: 4px;
-    margin-left: -43%;
-    margin-right: 50px;
+    margin-left: -37%;
+    margin-right: 32px;
 }
 
 .today-amount {
@@ -1284,4 +1287,115 @@
     border-radius: 30px;
     color: white;
     font-size: 15px;
+}
+.loading-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 90vh;
+    justify-content: space-between;
+}
+.loading-container p{
+    font-size: 12px;
+    color: #96aa17;
+    margin-top: 70px;
+    text-align: center;
+}
+.loading{
+    width: 200px;
+    height: 200px;
+    margin-bottom: 300px;
+}
+.otp-verification{
+    display: flex;
+    height: 92vh;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+/* .otp-verification p{
+    text-align: left;
+    font-size: 13px;
+    color: rgb(158, 182, 26);
+    padding-right: 30px;
+} */
+#otp-verification-code-div{
+  width: 100vw;
+}
+.otp-top-div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    text-align: left;
+    height: 10vh;
+    margin-left: -25px;
+}
+.otp-bottom-div{
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+}
+.otp-bottom-div h3{
+    color: rgb(90, 87, 87);
+    text-align: left;
+    font-size: 15px;
+    font-weight: 300;
+    margin-bottom: 30px;
+    margin-left: 20px;
+    width: 70vw;
+}
+.form-full{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 72vh;
+    width: 100vw;
+}
+.phone-number-input{
+    display: flex;
+    width: 60vw;
+    padding-left: 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    border: 1.2px solid rgb(194, 192, 86);
+    margin-left: -35px;
+}
+.country-code{
+    width: 12vw;
+    display: flex;
+    padding-left: 6vw;
+    font-size: 14px;
+    border-radius: 20px;
+    border: 1px solid #d5d6d3;
+    color: grey;
+    /* background-color: rgb(235, 233, 233); */
+}
+.input-div{
+    display: flex;
+    justify-content: space-around;
+    width: 100vw;
+    height: 50px;
+    margin-left: -5px;
+}
+.phone-animation-div{
+    width: 19px;
+    height: 19px;
+    margin-right: 10px;
+    margin-top: 2px;
+}
+.loading-animation-div{
+    width: 22px;
+    height: 22px;
+}
+.order-complete-back-arrow-div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100vw;
+}
+.order-complete-back-arrow-div div{
+    margin-right: 20px;
 }

@@ -1,5 +1,5 @@
-import axios from 'axios'
 import React, { useState, useContext, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useCart } from 'react-use-cart'
 import shoppingCart from './images/shopping-cart.png'
 import verified from './images/tick.gif'
@@ -8,6 +8,7 @@ import { BsArrowLeftShort } from 'react-icons/bs'
 
 const OrdersPage = () => {
     const context = useContext(MyContext);
+    const navigate = useNavigate()
     const {
         homeIsActive, setHomeIsActive,
         ordersButtonActive, setOrdersButtonActive,
@@ -28,6 +29,12 @@ const OrdersPage = () => {
         updateItemQuantity
     } = useCart()
 
+
+    console.log("If it is empty", isEmpty)
+    console.log("The items", items)
+    console.log("cartTotal", cartTotal)
+
+
     const orders = [...items];
 
     //Array of reduced order attributes filtered based on specified attributes
@@ -42,9 +49,8 @@ const OrdersPage = () => {
     //Array of complete customer order to be processed for delivery
     const customerCompletedOrder = [...reducedOrder]
 
-    const contact = 89023
-    const order = {
-        contact: contact,
+    
+    const orderWithoutContact = {
         orders: [...customerCompletedOrder],
         cartTotal: cartTotal,
         status: "Pending"
@@ -52,9 +58,8 @@ const OrdersPage = () => {
   
     const HandleCompleteOrder = async (e) => {
         e.preventDefault()
-       
-        await axios.post('https://gigifoods.herokuapp.com/app/Home', order)
-     
+        navigate('/OtpVerification', { state: { orderWithoutContact } })
+        
         setOrderCompletePage(true)
         setCheckoutPage(false)
         setBackArrow(false)
@@ -83,8 +88,8 @@ const OrdersPage = () => {
                     <table id='order-table'>
                         <thead>
                             <tr id='order-table-row'>
-                                <td><b style={{ fontSize: "13px" }}>Order</b></td>
-                                <td><b style={{ fontSize: "13px" }}>Amount</b></td>
+                                <td><b style={{ fontSize: "12px", color: 'grey', fontWeight: '500' }}>Order</b></td>
+                                <td><b style={{ fontSize: "12px", color: 'grey', fontWeight: '500' }}>Amount</b></td>
                             </tr>
                         </thead>
                         {items.map((item, index) => {
@@ -104,7 +109,7 @@ const OrdersPage = () => {
                     </div>
                     <div>
                         <form onSubmit={HandleCompleteOrder}>
-                            <button className='complete-order-button' type='submit' value='submit'>Complete order</button>
+                            <button className='complete-order-button' type='submit' value='submit'><h4>Complete order</h4></button>
                         </form>
                     </div>
                 </div>

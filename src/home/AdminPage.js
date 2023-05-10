@@ -52,9 +52,9 @@ const AdminPage = () => {
         e.preventDefault()
         setbusinessToday(true)
         setmonthlyStatements(false)
-        if(isDropdownOpen){
+        if (isDropdownOpen) {
             setIsDropdownOpen(false)
-        }else if(isDropdownOpenMonthlyStatements){
+        } else if (isDropdownOpenMonthlyStatements) {
             setIsDropdownOpenMonthlyStatements(false)
         }
     }
@@ -327,10 +327,10 @@ const AdminPage = () => {
             todaysTotalIncome += order.cartTotal;
         });
         todaysTotalObject.todaysTotalIncome = todaysTotalIncome;
-        
+
     }
     console.log('Todays online income', todaysTotalIncome)
-    
+
     let todaysOfflineObject = {}
     let todaysOfflineIncome = 0
     if (OfflineOrdersFlag) {
@@ -367,7 +367,7 @@ const AdminPage = () => {
 
     }
     console.log('Todays expenses', todaysTotalExpenses)
-   
+
     useEffect(() => {
         const setConnectionToWebserver = () => {
             const ws = new WebSocket('wss://gigifoods.herokuapp.com');
@@ -482,9 +482,9 @@ const AdminPage = () => {
         setmonthlyStatements(true)
         setbusinessToday(false)
         setUpWsConnectionOnMonthlyClicked(currentDate)
-        if(isDropdownOpen){
+        if (isDropdownOpen) {
             setIsDropdownOpen(false)
-        }else if(isDropdownOpenMonthlyStatements){
+        } else if (isDropdownOpenMonthlyStatements) {
             setIsDropdownOpenMonthlyStatements(false)
         }
     }
@@ -552,7 +552,7 @@ const AdminPage = () => {
             {businessToday ? <div className='order-types-and-expenses-main-container'>
                 <div className='order-types-and-expenses-button-container'>
                     <button onClick={HandleOnlineOrdersButtonClick} style={{ border: onlineOrders ? '1.5px solid #8a2be2' : '1px solid  rgba(197, 191, 191, 1)', color: onlineOrders ? '#8a2be2' : 'rgba(95, 86, 86, 1)', height: onlineOrders ? '56px' : '44px' }}>Online orders</button>
-                    <button onClick={HandleOfflineOrdersButtonClick} style={{ border: offlineOrders ? '1.5px solid #8a2be2' : '1px solid  rgba(197, 191, 191, 1)', color: offlineOrders ? '#8a2be2' : 'rgba(95, 86, 86, 1)', height: offlineOrders ? '56px' : '44px'  }}>In-shop orders</button>
+                    <button onClick={HandleOfflineOrdersButtonClick} style={{ border: offlineOrders ? '1.5px solid #8a2be2' : '1px solid  rgba(197, 191, 191, 1)', color: offlineOrders ? '#8a2be2' : 'rgba(95, 86, 86, 1)', height: offlineOrders ? '56px' : '44px' }}>In-shop orders</button>
                     <button onClick={HandleExpensesButtonClick} style={{ border: expenses ? '1.5px solid #8a2be2' : '1px solid  rgba(197, 191, 191, 1)', color: expenses ? '#8a2be2' : 'rgba(95, 86, 86, 1)', height: expenses ? '56px' : '44px' }}>Expenses</button>
                 </div>
                 {onlineOrders && OnlineOrdersFlag ?
@@ -620,35 +620,36 @@ const AdminPage = () => {
                     </div> : expenses && !ExpensesFlag ? <div><img src={kitten} alt='kitten' className='kitten' /></div> : null}
             </div> : null}
 
-            {monthlyStatements ?
+            {monthlyStatements ? 
                 <div className='order-types-and-expenses-main-container'>
-                    {monthlyOnlineOrdersFlag ?
-                        <div className='monthly-statements-container'>
-                            <p>Online orders</p>
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Order</th>
-                                        <th>Buys</th>
-                                        <th>Amount</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {monthlyOrdersArray.map((innerArray, index) => {
-                                        return innerArray.map((item, index) => {
-                                            return (
-                                                <tr key={index}>
-                                                    <td>{item[0]}</td>
-                                                    <td>{item[1]}</td>
-                                                    <td>{item[2]}</td>
-                                                </tr>
-                                            );
-                                        });
-                                    })}
-                                </tbody>
-                            </table>
 
-                        </div> : <div className='order-types-and-expenses-main-container'><p>No online orders statement</p><img src={diver} alt='diver' className='diver' /></div>
+                    {monthlyOnlineOrdersFlag ?
+                            <div className='monthly-statements-container'>
+                                <p>Online orders</p>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Order</th>
+                                            <th>Buys</th>
+                                            <th>Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {monthlyOrdersArray.map((innerArray, index) => {
+                                            return innerArray.map((item, index) => {
+                                                return (
+                                                    <tr key={index}>
+                                                        <td>{item[0]}</td>
+                                                        <td>{item[1]}</td>
+                                                        <td>{item[2]}</td>
+                                                    </tr>
+                                                );
+                                            });
+                                        })}
+                                    </tbody>
+                                </table>
+
+                            </div> : <div className='order-types-and-expenses-main-container'><p>No online orders statement</p><img src={diver} alt='diver' className='diver' /></div>
                     }
                     {monthlyOfflineOrdersFlag ?
                         <div className='monthly-statements-container'>

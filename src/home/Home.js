@@ -17,7 +17,6 @@ import { GrFacebookOption } from 'react-icons/gr'
 import { BsInstagram } from 'react-icons/bs'
 import cooking from './images/cooking.png'
 import freedelivery from './images/free-delivery.png'
-import meal from './images/meal.png'
 import panda from './images/panda.png'
 import bowl from './images/hot-soup-in-a-bowl.png'
 
