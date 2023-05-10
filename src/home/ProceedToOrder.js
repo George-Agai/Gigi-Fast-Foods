@@ -1,6 +1,5 @@
 import React from 'react'
 import { useCart } from 'react-use-cart'
-import { BsArrowRight } from 'react-icons/bs'
 // import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api'
 import GoogleMapComponent from './GoogleMapComponent'
 const ProceedToOrder = () => {
@@ -15,9 +14,6 @@ const ProceedToOrder = () => {
         <div id='order-quantity-div'>
           <h4>Orders ( {totalItems} )</h4>
         </div>
-        {/* <div id='order-right-arrow-div'>
-          <BsArrowRight id='order-button-arrow' />
-        </div> */}
       </button>
       <GoogleMapComponent/>
     </div>

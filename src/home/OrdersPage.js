@@ -1,39 +1,17 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useCart } from 'react-use-cart'
-import shoppingCart from './images/shopping-cart.png'
-import verified from './images/tick.gif'
-import { MyContext } from './Home';
-import { BsArrowLeftShort } from 'react-icons/bs'
+import { BiArrowBack } from 'react-icons/bi'
+import EmptyCart from './EmptyCart';
 
 const OrdersPage = () => {
-    const context = useContext(MyContext);
     const navigate = useNavigate()
-    const {
-        homeIsActive, setHomeIsActive,
-        ordersButtonActive, setOrdersButtonActive,
-        backArrow, setBackArrow
-    } = context;
-    console.log(homeIsActive)
-    console.log(ordersButtonActive)
-    console.log(backArrow)
-    const [orderCompletePage, setOrderCompletePage] = useState(false)
-    const [checkoutPage, setCheckoutPage] = useState(true)
-    const [backHomeButton, setBackHomeButton] = useState(false)
-    // const [pendingOrderObject, setPendingOrderObject] = useState({})
     const {
         isEmpty,
         items,
         cartTotal,
-        emptyCart,
         updateItemQuantity
     } = useCart()
-
-
-    console.log("If it is empty", isEmpty)
-    console.log("The items", items)
-    console.log("cartTotal", cartTotal)
-
 
     const orders = [...items];
 
@@ -49,41 +27,27 @@ const OrdersPage = () => {
     //Array of complete customer order to be processed for delivery
     const customerCompletedOrder = [...reducedOrder]
 
-    
+
     const orderWithoutContact = {
         orders: [...customerCompletedOrder],
         cartTotal: cartTotal,
         status: "Pending"
     }
-  
+
     const HandleCompleteOrder = async (e) => {
         e.preventDefault()
         navigate('/OtpVerification', { state: { orderWithoutContact } })
-        
-        setOrderCompletePage(true)
-        setCheckoutPage(false)
-        setBackArrow(false)
     }
 
-    const handleBackHomeButtonClick = (e) => {
-        e.preventDefault()
-
-        setOrderCompletePage(false)
-        setCheckoutPage(true)
-        setHomeIsActive(true)
-        emptyCart()
-        setOrdersButtonActive(true)
-        setBackArrow(true)
+    const HandleBackArrowClick = () => {
+        navigate('/Home')
     }
-
-    useEffect(() => {
-        const timer = setTimeout(() => setBackHomeButton(true), 4000);
-        return () => clearTimeout(timer);
-    }, []);
 
     if (isEmpty === false) return (
         <div>
-            {checkoutPage && <div className='CompleteOrder'>
+            <div className='CompleteOrder'>
+                <div className='Complete-order-back-arrow-div'><button onClick={HandleBackArrowClick} className='back-arrow-buttons'><BiArrowBack /></button></div>
+
                 <div className='order-container'>
                     <table id='order-table'>
                         <thead>
@@ -114,26 +78,9 @@ const OrdersPage = () => {
                     </div>
                 </div>
 
-            </div>}
-
-            {orderCompletePage && (
-                <div className='OrderComplete'>
-                    <p>Order complete.</p>
-                    <img
-                        src={verified}
-                        alt='verified'
-                        className='tick'
-                    />
-                    <div>
-                        {backHomeButton && <button className='back-to-main-page' onClick={handleBackHomeButtonClick}><div><BsArrowLeftShort style={{ fontSize: "22px", marginRight: "4px", marginTop: "4px" }} /></div>Back to main page</button>}
-                    </div>
-                </div>
-            )}
+            </div>
         </div>
     )
-    return <div className='empty-cart-container'>
-        <h2 className='empty-cart-anaimation'>Empty cart</h2>
-        <img src={shoppingCart} alt='shoppingCart' style={{ width: '150px', height: '145px' }} />
-    </div>
+    return <EmptyCart/>
 }
 export default OrdersPage;

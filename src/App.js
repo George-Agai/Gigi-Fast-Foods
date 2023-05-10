@@ -11,10 +11,12 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import PendingOrderTemplate from './home/PendingOrderTemplate';
 import OrderComplete from './home/OrderComplete';
 import OrdersPage from './home/OrdersPage';
+import { CartProvider } from 'react-use-cart';
 
 function App() {
   return (
     <div className="App">
+      <CartProvider>
       <BrowserRouter>
         <Routes>
 
@@ -31,8 +33,8 @@ function App() {
           <Route path='/OrdersPage' element={<OrdersPage />} />
 
         </Routes>
-
       </BrowserRouter>
+      </CartProvider>
 
     </div>
   );

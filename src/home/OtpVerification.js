@@ -22,7 +22,7 @@ const OtpVerification = () => {
   const [phoneNumber, setPhoneNumber] = useState()
   const countryCode = 254;
   const HandleBackArrowClick = () => {
-    navigate('/Home')
+    navigate('/OrdersPage')
   }
 
   let fullPhoneNumber;

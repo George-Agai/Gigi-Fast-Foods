@@ -287,30 +287,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    height: 90vh;
 }
-
+.empty-cart{
+    width: 120px;
+    height: 120px;
+}
 .empty-cart-anaimation {
-    animation-name: emptyCartAnimation;
-    animation-duration: 1.3s;
-    animation-timing-function: ease;
     margin-top: 70px;
-    margin-bottom: -2px;
-    /* animation-iteration-count: infinite; */
-    margin-left: 16px;
-    color: rgb(175, 19, 20);
-    font-weight: 600;
-    font-size: 22px;
-}
-
-@keyframes emptyCartAnimation {
-    from {
-        margin-bottom: -72px;
-        font-size: 8px;
-    }
-    to {
-        transform: rotate(360deg) translateX(0px);
-    }
+    margin-bottom: 20px;
+    margin-left: 20px;
+    color: #AD8F8F;
+    font-weight: 500;
+    font-size: 14px;
 }
 
 #inputValue {
@@ -584,7 +573,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    text-align: center;
+    text-align: left;
+    width: 100vw;
     margin-left: 8px;
 }
 
@@ -1296,7 +1286,7 @@
     justify-content: space-between;
 }
 .loading-container p{
-    font-size: 12px;
+    font-size: 14px;
     color: #96aa17;
     margin-top: 70px;
     text-align: center;
@@ -1381,10 +1371,10 @@
     margin-left: -5px;
 }
 .phone-animation-div{
-    width: 19px;
-    height: 19px;
-    margin-right: 10px;
-    margin-top: 2px;
+    width: 25px;
+    height: 25px;
+    margin-right: 13px;
+    margin-top: 7px;
 }
 .loading-animation-div{
     width: 22px;
