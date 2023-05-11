@@ -79,7 +79,7 @@ const OtpVerification = () => {
             />
             <input
               type="text"
-              placeholder="7102345678"
+              placeholder="712345678"
               value={phoneNumber}
               onChange={onInputChange}
               required
