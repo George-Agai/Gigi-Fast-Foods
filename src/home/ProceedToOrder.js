@@ -1,7 +1,7 @@
 import React from 'react'
 import { useCart } from 'react-use-cart'
 // import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api'
-import GoogleMapComponent from './GoogleMapComponent'
+//import GoogleMapComponent from './GoogleMapComponent'
 const ProceedToOrder = () => {
   
     const { isEmpty,
@@ -15,7 +15,7 @@ const ProceedToOrder = () => {
           <h4>Orders ( {totalItems} )</h4>
         </div>
       </button>
-      <GoogleMapComponent/>
+      {/* <GoogleMapComponent/> */}
     </div>
     
   )
