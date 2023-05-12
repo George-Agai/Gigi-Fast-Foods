@@ -25,6 +25,27 @@ const OtpVerification = () => {
     navigate('/OrdersPage')
   }
 
+  let ws;
+  const setUpConnection = () => {
+    return new Promise((resolve, reject) => {
+      ws = new WebSocket('wss://gigifoods.herokuapp.com')
+
+      ws.onopen = function () {
+        resolve(ws);
+        console.log('ws connected')
+        ws.send(JSON.stringify({messageName: 'new_order'}))
+        console.log('order to be updated sent')
+        ws.close()
+      }
+      ws.onclose = function () {
+        console.log('ws closed')
+      }
+      ws.onerror = (error) => {
+        reject(error); // Reject the promise with the error
+      };
+    });
+  }
+
   let fullPhoneNumber;
   const HandleAddPhoneNumberContinueButtonClick = async (e) => {
     e.preventDefault()
@@ -36,6 +57,7 @@ const OtpVerification = () => {
     if (sent) {
       navigate('/OrderComplete')
       setContinueTextFlag(true)
+      setUpConnection()
     }
   }
 

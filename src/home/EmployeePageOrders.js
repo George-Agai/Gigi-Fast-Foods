@@ -111,7 +111,6 @@ const EmployeePageOrders = () => {
                     }else{
                         setOrderFlag(false)
                     } 
-                    ws.close()
                 } else if (messageName === 'error') {
                     console.log('No pending order')
                 }
