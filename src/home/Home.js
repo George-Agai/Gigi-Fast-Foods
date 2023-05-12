@@ -16,6 +16,7 @@ import cooking from './images/cooking.png'
 import freedelivery from './images/free-delivery.png'
 import panda from './images/panda.png'
 import bowl from './images/hot-soup-in-a-bowl.png'
+import { useCart } from 'react-use-cart'
 
 
 const Home = () => {
@@ -29,6 +30,7 @@ const Home = () => {
     const [mainMealsButton, setMainMealsButton] = useState();
     const [drinksButton, setDrinksButton] = useState();
 
+    const { isEmpty } = useCart();
     const HandleSodaClick = (e) => {
         setSodaActive(true);
         setFruitJuicesActive(false);
@@ -258,7 +260,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <div onClick={HandleProceedToOrderButtonClicked}>
+            <div onClick={HandleProceedToOrderButtonClicked} className={`proceed-to-order-div ${isEmpty ? '' : 'show'}`}>
                 <ProceedToOrder />
             </div>
 

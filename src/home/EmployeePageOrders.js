@@ -94,7 +94,6 @@ const EmployeePageOrders = () => {
         setincomeButtonActive(false)
     }
 
-
     useEffect(() => {
         const setConnectionToWebserver = () => {
             const ws = new WebSocket('wss://gigifoods.herokuapp.com');
@@ -137,6 +136,7 @@ const EmployeePageOrders = () => {
             console.log("Web socket didn't connect")
         }
     }, [ws]);
+
     const incomeMessage = "Income"
     const expensesMessage = "Expenses"
     return (
