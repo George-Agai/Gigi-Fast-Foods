@@ -113,6 +113,7 @@ const EmployeePageOrders = () => {
                 } else if (messageName === 'error') {
                     console.log('No pending order')
                 }
+                ws.close()
             };
             ws.onclose = () => {
                 console.log('WebSocket connection closed.');
@@ -143,8 +144,9 @@ const EmployeePageOrders = () => {
         <div>
             {LoginPage &&
                 <div className='manage-main-container'>
-                    <p id='manage-main-container-heading'>GIGI FAST FOODS</p>
+                    <h3 id='manage-main-container-heading'>GIGI FAST FOODS</h3>
                     <div id='employee-login-div'>
+                        <p id='user'>User</p>
                         <form onSubmit={HandleEmployeeLogin}>
                             <label>Name</label>
                             <input type='text' name='name' onChange={(e) => setName(e.target.value)} value={name} />
@@ -157,7 +159,7 @@ const EmployeePageOrders = () => {
                         <p>Admin</p>
                         <form onSubmit={HandleAdminLogin}>
                             <label>Name</label>
-                            <input type='text' name='name' onChange={(e) => setAdminName(e.target.value)} value={adminName} />
+                            <input type='text' name='name' onChange={(e) => setAdminName(e.target.value)} value={adminName}/>
                             <label>Password</label>
                             <input type='password' name='password' onChange={(e) => setAdminPassword(e.target.value)} value={adminPassword} />
                             <button type='submit' value='Submit'>Login</button>

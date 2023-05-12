@@ -1398,3 +1398,58 @@
 .order-complete-back-arrow-div div{
     margin-right: 20px;
 }
+.manage-main-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+}
+#manage-main-container-heading{
+    color: rgb(159, 184, 51);
+    margin-bottom: -20px;
+}
+#admin-login-div p, #user{
+    color: rgb(159, 184, 51);
+    font-size: 12px;
+    text-align: left;
+    background-color: rgb(241, 241, 241);
+    border-radius: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    align-items: flex-start;
+}
+.manage-main-container label{
+    color: grey;
+    font-size: 14px;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+.manage-main-container div{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 90vw;
+    margin-top: 40px;
+}
+.manage-main-container form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: left;
+}
+.manage-main-container form button{
+   background-color: #8a2be2;
+   height: 50px;
+   border-radius: 40px;
+   margin-top: 20px;
+   border: none;
+   color: white;
+   box-shadow: 0 1px 2px 0 rgb(167, 157, 157);
+}
+.manage-main-container form input{
+    height: 40px;
+    border-radius: 20px;
+    border: 0.5px solid grey;
+    padding-left: 20px;
+}

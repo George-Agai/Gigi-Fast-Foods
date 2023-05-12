@@ -2,7 +2,6 @@ import './App.css';
 import React from 'react';
 import Home from './home/Home';
 import OtpVerification from './home/OtpVerification';
-import LogIn from './home/LogIn';
 import Manage from './home/Manage';
 import EmployeePageOrders from './home/EmployeePageOrders'
 import EmployeePageExpenses from './home/EmployeePageExpenses'
@@ -23,7 +22,6 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/Home' element={<Home />} />
           <Route path='/Manage' element={<Manage />} />
-          <Route path='/LogIn' element={<LogIn />} />
           <Route path='/OtpVerification' element={<OtpVerification />} />
           <Route path='/EmployeePageOrders' element={<EmployeePageOrders />} />
           <Route path='/EmployeePageExpenses' element={<EmployeePageExpenses />} />
