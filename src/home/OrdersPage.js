@@ -1,15 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useCart } from 'react-use-cart'
 import { BiArrowBack } from 'react-icons/bi'
 import EmptyCart from './EmptyCart';
+import axios from 'axios'
+import Loading from './Loading';
 
 const OrdersPage = () => {
     const navigate = useNavigate()
+    const [ContinueTextFlag, setContinueTextFlag] = useState(true)
     const {
         isEmpty,
         items,
         cartTotal,
+        emptyCart,
         updateItemQuantity
     } = useCart()
 
@@ -36,7 +40,28 @@ const OrdersPage = () => {
 
     const HandleCompleteOrder = async (e) => {
         e.preventDefault()
-        navigate('/OtpVerification', { state: { orderWithoutContact } })
+        try {
+            setContinueTextFlag(false)
+            const LocalStoragePhoneNumber = localStorage.getItem('phoneNumber');
+            console.log("Local storage", LocalStoragePhoneNumber)
+
+            if (LocalStoragePhoneNumber) {
+                const order = { contact: LocalStoragePhoneNumber, ...orderWithoutContact };
+                console.log(order)
+                const sent = await axios.post('https://gigifoods.herokuapp.com/app/Home', order)
+                if (sent) {
+                    navigate('/OrderComplete')
+                    setContinueTextFlag(true)
+                    emptyCart()
+                }
+            }
+            else {
+                navigate('/OtpVerification', { state: { orderWithoutContact } })
+                setContinueTextFlag(true)
+            }
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const HandleBackArrowClick = () => {
@@ -73,7 +98,7 @@ const OrdersPage = () => {
                     </div>
                     <div>
                         <form onSubmit={HandleCompleteOrder}>
-                            <button className='complete-order-button' type='submit' value='submit'><h4>Complete order</h4></button>
+                            <button className='complete-order-button' type='submit' value='submit'> {ContinueTextFlag ? <h4>Complete order</h4> : <Loading />}</button>
                         </form>
                     </div>
                 </div>
@@ -81,6 +106,6 @@ const OrdersPage = () => {
             </div>
         </div>
     )
-    return <EmptyCart/>
+    return <EmptyCart />
 }
 export default OrdersPage;

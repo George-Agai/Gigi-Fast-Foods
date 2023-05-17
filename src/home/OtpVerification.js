@@ -6,6 +6,7 @@ import './GigiFastFoods.css';
 import lottie from 'lottie-web';
 import phone from './images/phone.json';
 import Loading from './Loading';
+import { useCart } from 'react-use-cart'
 
 
 const OtpVerification = () => {
@@ -14,8 +15,10 @@ const OtpVerification = () => {
   const location = useLocation()
   const { orderWithoutContact } = location.state ?? {};
   const containerRef = useRef(null);
+  const {
+    emptyCart
+  } = useCart()
 
-  console.log(orderWithoutContact)
   if (!orderWithoutContact) {
     console.log("No order founddddd")
   }
@@ -25,31 +28,11 @@ const OtpVerification = () => {
     navigate('/OrdersPage')
   }
 
-  let ws;
-  const setUpConnection = () => {
-    return new Promise((resolve, reject) => {
-      ws = new WebSocket('wss://gigifoods.herokuapp.com')
-
-      ws.onopen = function () {
-        resolve(ws);
-        console.log('ws connected')
-        ws.send(JSON.stringify({messageName: 'new_order'}))
-        console.log('order to be updated sent')
-        ws.close()
-      }
-      ws.onclose = function () {
-        console.log('ws closed')
-      }
-      ws.onerror = (error) => {
-        reject(error); // Reject the promise with the error
-      };
-    });
-  }
-
   let fullPhoneNumber;
   const HandleAddPhoneNumberContinueButtonClick = async (e) => {
     e.preventDefault()
-    fullPhoneNumber = parseInt(`${countryCode}${phoneNumber}`, 10);
+    fullPhoneNumber = `+${countryCode}${phoneNumber}`;
+    localStorage.setItem('phoneNumber', fullPhoneNumber);
     setContinueTextFlag(false)
     const order = { contact: fullPhoneNumber, ...orderWithoutContact };
     console.log("order nigga", order)
@@ -57,12 +40,18 @@ const OtpVerification = () => {
     if (sent) {
       navigate('/OrderComplete')
       setContinueTextFlag(true)
-      setUpConnection()
+      emptyCart()
     }
   }
 
   const onInputChange = (e) => {
-    setPhoneNumber(e.target.value)
+    const inputValue = e.target.value;
+
+    if (inputValue.length === 1 && inputValue.charAt(0) === '0') {
+      setPhoneNumber('');
+    } else {
+      setPhoneNumber(inputValue);
+    }
   }
 
   useEffect(() => {
@@ -78,7 +67,7 @@ const OtpVerification = () => {
       anim.destroy();
     };
   }, []);
-  
+
   return (
     <div className='otp-verification'>
       <div style={{ textAlign: 'left', width: '100vw', height: '30vh' }} className='otp-top-div'>
@@ -88,7 +77,7 @@ const OtpVerification = () => {
         <div ref={containerRef} className='phone-animation-div'></div>
       </div>
       <div className='otp-bottom-div'>
-        <h3>Please enter the phone number  we'll call you on upon delivery {'\u{1F514}'}{'\u{1F919}'}</h3>
+        <h3>Please enter the phone number  we'll call you on upon delivery {'\u{1F514}'}</h3>
 
         <form onSubmit={(e) => HandleAddPhoneNumberContinueButtonClick(e)} className='form-full'>
           <div className='input-div'>
@@ -106,6 +95,8 @@ const OtpVerification = () => {
               onChange={onInputChange}
               required
               className='phone-number-input'
+              pattern="[0-9]{9,}"
+              title="Please enter a valid phone number"
             />
           </div>
           <div id='otp-verification-code-div'>
