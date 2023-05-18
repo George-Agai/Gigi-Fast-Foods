@@ -59,6 +59,9 @@ const Home = () => {
 
     const HandleProceedToOrderButtonClicked = (e) => {
         navigate('/OrdersPage')
+        // localStorage.removeItem('loginFlag')
+        // localStorage.removeItem('Login')
+        // localStorage.removeItem('adminLogin')
     }
     const handleScrollToMainMeals = (e) => {
         setFastFoodButton(false)
@@ -201,10 +204,10 @@ const Home = () => {
                     <div className='section-heading'>Drinks</div>
                     <div className='available-drinks-main-container' id='drinksContainer'>
                         <div className='available-drinks-button-container'>
-                            <button className='available-drinks-button' id='available-drinks-button-soda' onClick={HandleSodaClick} style={{ backgroundColor: SodaActive ? 'rgb(247, 245, 245)' : 'rgb(247, 245, 245)', border: SodaActive ? '1.5px solid #8a2be2' : '1px solid  rgba(197, 191, 191, 1)', color: SodaActive ? '#8a2be2' : 'rgba(95, 86, 86, 1)', height: SodaActive ? '58px' : '50px' }}>Soda</button>
-                            <button className='available-drinks-button' onClick={HandleFruitJuicesClick} style={{ backgroundColor: FruitJuicesActive ? 'rgb(247, 245, 245)' : 'rgb(247, 245, 245)', border: FruitJuicesActive ? '1.5px solid #8a2be2' : '1px solid  rgba(197, 191, 191, 1)', color: FruitJuicesActive ? '#8a2be2' : 'rgba(95, 86, 86, 1)', height: FruitJuicesActive ? '58px' : '50px' }}>Juice</button>
-                            <button className='available-drinks-button' onClick={HandleWaterClick} style={{ backgroundColor: WaterActive ? 'rgb(247, 245, 245)' : 'rgb(247, 245, 245)', border: WaterActive ? '1.5px solid #8a2be2' : '1px solid  rgba(197, 191, 191, 1)', color: WaterActive ? '#8a2be2' : 'rgba(95, 86, 86, 1)', height: WaterActive ? '58px' : '50px' }}>Water</button>
-                            <button className='available-drinks-button' onClick={HandleYoghurtClick} style={{ backgroundColor: YoghurtActive ? 'rgb(247, 245, 245)' : 'rgb(247, 245, 245)', border: YoghurtActive ? '1.5px solid #8a2be2' : '1px solid  rgba(197, 191, 191, 1)', color: YoghurtActive ? '#8a2be2' : 'rgba(95, 86, 86, 1)', height: YoghurtActive ? '58px' : '50px' }}>Yoghurt</button>
+                            <button className='available-drinks-button' id='available-drinks-button-soda' onClick={HandleSodaClick} style={{ backgroundColor: SodaActive ? 'rgb(247, 245, 245)' : 'rgb(247, 245, 245)', border: SodaActive ? '1.5px solid #8a2be2' : '1px solid  rgba(197, 191, 191, 1)', color: SodaActive ? '#8a2be2' : 'grey', height: SodaActive ? '58px' : '50px' }}>Soda</button>
+                            <button className='available-drinks-button' onClick={HandleFruitJuicesClick} style={{ backgroundColor: FruitJuicesActive ? 'rgb(247, 245, 245)' : 'rgb(247, 245, 245)', border: FruitJuicesActive ? '1.5px solid #8a2be2' : '1px solid  rgba(197, 191, 191, 1)', color: FruitJuicesActive ? '#8a2be2' : 'grey', height: FruitJuicesActive ? '58px' : '50px' }}>Juice</button>
+                            <button className='available-drinks-button' onClick={HandleWaterClick} style={{ backgroundColor: WaterActive ? 'rgb(247, 245, 245)' : 'rgb(247, 245, 245)', border: WaterActive ? '1.5px solid #8a2be2' : '1px solid  rgba(197, 191, 191, 1)', color: WaterActive ? '#8a2be2' : 'grey', height: WaterActive ? '58px' : '50px' }}>Water</button>
+                            <button className='available-drinks-button' onClick={HandleYoghurtClick} style={{ backgroundColor: YoghurtActive ? 'rgb(247, 245, 245)' : 'rgb(247, 245, 245)', border: YoghurtActive ? '1.5px solid #8a2be2' : '1px solid  rgba(197, 191, 191, 1)', color: YoghurtActive ? '#8a2be2' : 'grey', height: YoghurtActive ? '58px' : '50px' }}>Yoghurt</button>
                         </div>
                         {SodaActive &&
                             <div>

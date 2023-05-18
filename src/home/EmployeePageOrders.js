@@ -25,9 +25,18 @@ const options = {
 
 const EmployeePageOrders = () => {
     const navigate = useNavigate();
-    const [LoginPage, setLoginPage] = useState('true');
-    const [Login, setLogin] = useState(false);
-    const [adminLogin, setAdminLogin] = useState('');
+    const [loginFlag, setloginFlag] = useState(() => {
+        const LoginPage = localStorage.getItem('loginFlag');
+        return LoginPage ? JSON.parse(LoginPage) : true;
+    });
+    const [Login, setLogin] = useState(() => {
+        const EmployeeLoginPage = localStorage.getItem('Login');
+        return EmployeeLoginPage ? JSON.parse(EmployeeLoginPage) : '';
+    });
+    const [adminLogin, setAdminLogin] = useState(() => {
+        const AdminLoginPage = localStorage.getItem('adminLogin');
+        return AdminLoginPage ? JSON.parse(AdminLoginPage) : '';
+    });
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const [adminName, setAdminName] = useState('');
@@ -40,11 +49,17 @@ const EmployeePageOrders = () => {
     const [ws, setWs] = useState(null)
     const [newOrder, setNewOrder] = useState(null)
     const [OrderFlag, setOrderFlag] = useState()
+    
+    useEffect(() => {
+        localStorage.setItem('loginFlag', JSON.stringify(loginFlag));
+        localStorage.setItem('Login', JSON.stringify(Login));
+        localStorage.setItem('adminLogin', JSON.stringify(adminLogin));
+    }, [loginFlag, Login, adminLogin]);
 
     const onBackButtonClicked = (e) => {
         navigate('/Home')
         if (Login) {
-            setLoginPage(false)
+            setloginFlag(false)
         }
         else {
             setLogin(true)
@@ -53,13 +68,12 @@ const EmployeePageOrders = () => {
     //Employee login form onsubmit 
     const HandleEmployeeLogin = (e) => {
         e.preventDefault();
-        // connectNigga();
         const user = "Jane";
         const passwordd = "Jane2022";
 
         if (user === name && password === passwordd) {
             setLogin(true);
-            setLoginPage(false);
+            setloginFlag(false);
         }
         else alert("Wrong password");
     }
@@ -73,7 +87,7 @@ const EmployeePageOrders = () => {
 
         if (admin === adminName && adminPasswordd === adminPassword) {
             setAdminLogin(true);
-            setLoginPage(false);
+            setloginFlag(false);
             setLogin(false);
         }
         else alert("Wrong password");
@@ -104,12 +118,12 @@ const EmployeePageOrders = () => {
             ws.onmessage = ({ data }) => {
                 const { pendingOrders, messageName } = JSON.parse(data)
                 if (messageName === 'pending_order') {
-                    if(pendingOrders.length >=1){
+                    if (pendingOrders.length >= 1) {
                         setNewOrder(pendingOrders)
                         setOrderFlag(true)
-                    }else{
+                    } else {
                         setOrderFlag(false)
-                    } 
+                    }
                 } else if (messageName === 'error') {
                     console.log('No pending order')
                 }
@@ -142,7 +156,7 @@ const EmployeePageOrders = () => {
     const expensesMessage = "Expenses"
     return (
         <div>
-            {LoginPage &&
+            {loginFlag &&
                 <div className='manage-main-container'>
                     <h3 id='manage-main-container-heading'>GIGI FAST FOODS</h3>
                     <div id='employee-login-div'>
@@ -159,13 +173,14 @@ const EmployeePageOrders = () => {
                         <p>Admin</p>
                         <form onSubmit={HandleAdminLogin}>
                             <label>Name</label>
-                            <input type='text' name='name' onChange={(e) => setAdminName(e.target.value)} value={adminName}/>
+                            <input type='text' name='name' onChange={(e) => setAdminName(e.target.value)} value={adminName} />
                             <label>Password</label>
                             <input type='password' name='password' onChange={(e) => setAdminPassword(e.target.value)} value={adminPassword} />
                             <button type='submit' value='Submit'>Login</button>
                         </form>
                     </div>
-                </div>}
+                </div>
+            }
 
             {Login &&
                 <div className='Employee-Page-Orders'><button className='back-arrow-buttons' id='employee-page-back-button' onClick={onBackButtonClicked}><BiArrowBack /></button>
@@ -176,9 +191,9 @@ const EmployeePageOrders = () => {
                     </div>
 
                     {orderButtonActive && OrderFlag ? <div className='orders-main-container'>
-                                <PendingOrderTemplate newOrder={newOrder} />
-                            </div>
-                         : orderButtonActive && !OrderFlag ? <div className='orders-main-container'><img src={penguin} alt='penguin' className='penguin'/><p style={{fontSize: '18px', fontWeight: '700'}}>No orders</p></div> : null}
+                        <PendingOrderTemplate newOrder={newOrder} />
+                    </div>
+                        : orderButtonActive && !OrderFlag ? <div className='orders-main-container'><img src={penguin} alt='penguin' className='penguin' /><p style={{ fontSize: '18px', fontWeight: '700' }}>No orders</p></div> : null}
 
                     {incomeButtonActive ?
                         <div className='orders-main-container'>
@@ -207,7 +222,8 @@ const EmployeePageOrders = () => {
                                 />
                             </div>
                         </div> : null}
-                </div>}
+                </div>
+            }
 
             {adminLogin &&
                 <div>
