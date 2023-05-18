@@ -789,6 +789,7 @@
     font-weight: 500;
     letter-spacing: 0.2px;
     margin-top: -20px;
+    font-size: 11px;
 }
 
 .orders-container-container{
@@ -951,7 +952,7 @@
     align-items: center;
     background-color: rgba(88, 81, 81, 1);
     height: max-content;
-    font-size: 11px;
+    font-size: 10px;
     margin-top: 10px;
     margin-right: 10px;
     color: rgb(173, 163, 163);
@@ -1138,7 +1139,8 @@
 }
 .expand-button-div{
     display: flex;
-    margin-top: 20px;
+    margin-top: 15px;
+    margin-bottom: -20px;
     align-items: center;
     justify-content: center;
 }
@@ -1148,7 +1150,7 @@
     justify-content: center;
     border: none;
     color: #8a2be2;
-    font-size: 13px;
+    font-size: 12px;
     height: 40px;
     font-weight: 500;
     letter-spacing: 0.6px;
@@ -1471,4 +1473,7 @@
 }
 .logout-icon{
     margin-left: 2px;
+}
+.admin-page-loading-div{
+    margin-top: 60px;
 }

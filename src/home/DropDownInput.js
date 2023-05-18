@@ -232,7 +232,7 @@ const handleExpandButtonClicked =async(e)=>{
            
         </div>
         <div className='expand-button-div'>
-            <button onClick={handleExpandButtonClicked}> {ContinueTextFlag ? <div style={{display: 'flex', alignItems: 'center'}}><p>View all</p> <BsArrowRight style={{fontSize: '15px', marginLeft: '1px'}}/></div> : <LoadingBlue />}</button>
+            <button onClick={handleExpandButtonClicked}> {ContinueTextFlag ? <div style={{display: 'flex', alignItems: 'center'}}><p>View all</p> <BsArrowRight style={{fontSize: '14px', marginLeft: '1px'}}/></div> : <LoadingBlue />}</button>
         </div>
         {Income && IncomeFlag ? <div className='admin-page-online-orders'>
             <table>
