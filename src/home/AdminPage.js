@@ -607,7 +607,9 @@ const AdminPage = () => {
                             </table>
                         </div> : onlineOrders && !OnlineOrdersFlag ? <div><img src={kitten} alt='kitten' className='kitten' /></div> : null}
 
-                {offlineOrders && OfflineOrdersFlag ?
+                {OnlineOrdersLoading ?
+                    null
+                    : offlineOrders && OfflineOrdersFlag ?
                     <div className='admin-page-online-orders'>
                         <table>
                             <thead>
@@ -627,7 +629,9 @@ const AdminPage = () => {
                         </table>
                     </div> : offlineOrders && !OfflineOrdersFlag ? <div><img src={kitten} alt='kitten' className='kitten' /></div> : null}
 
-                {expenses && ExpensesFlag ?
+                {OnlineOrdersLoading ?
+                    null
+                    : expenses && ExpensesFlag ?
                     <div className='admin-page-online-orders'>
                         <table>
                             <thead>
