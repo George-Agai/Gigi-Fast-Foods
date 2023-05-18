@@ -4,6 +4,10 @@ import { BiArrowBack } from 'react-icons/bi'
 import { IoMdArrowDropdown } from 'react-icons/io'
 import kitten from './images/kitten.png'
 import diver from './images/diver.png'
+import LogoutIcon from './LogoutIcon';
+import { BsShop } from 'react-icons/bs';
+import {AiOutlineShoppingCart} from 'react-icons/ai';
+import {BiCoinStack} from 'react-icons/bi';
 
 const AdminPage = () => {
     const navigate = useNavigate();
@@ -518,10 +522,11 @@ const AdminPage = () => {
                         {selectedMonth ? <p style={{ color: 'rgba(179, 188, 76, 1)', fontSize: '12px' }}>{selectedMonth.toLocaleDateString("en-US", { month: 'short' })}</p> : <p style={{ color: 'rgba(179, 188, 76, 1)', fontSize: '12px' }}>{currentDate.toLocaleDateString("en-US", { month: 'short' })}</p>}
                         <p style={{ color: 'rgba(232, 232, 232, 1)', fontSize: '34px' }}>{profit}</p>
                     </div> : null}
+                    <LogoutIcon/>
                 </div>
                 <div className='business-today-and-statements-container'>
-                    <button onClick={HandleBusinessTodayButtonClick} style={{ backgroundColor: businessToday ? '#8a2be2' : 'rgb(247, 245, 245)', color: businessToday ? 'rgb(231, 226, 226)' : 'rgba(95, 86, 86, 1)', display: "flex" }}>Business Today<div id="today-button" onClick={handleDropdownClick} style={{ marginLeft: "5px", display: "flex", justifyContent: "center", alignItems: "center", width: "20px", height: "25px" }}><IoMdArrowDropdown style={{ width: "20px", height: "20px" }} /></div></button>
-                    <button onClick={HandleMonthlyStatementsButtonClick} style={{ backgroundColor: monthlyStatements ? '#8a2be2' : 'rgb(247, 245, 245)', color: monthlyStatements ? 'rgb(231, 226, 226)' : 'rgba(95, 86, 86, 1)' }}>Monthly Statements<div id="today-button" onClick={handleDropdownClickMonthlyStatements} style={{ marginLeft: "5px", display: "flex", justifyContent: "center", alignItems: "center", width: "20px", height: "25px" }}><IoMdArrowDropdown style={{ width: "20px", height: "20px" }} /></div></button>
+                    <button onClick={HandleBusinessTodayButtonClick} style={{ backgroundColor: businessToday ? '#8a2be2' : 'rgb(247, 245, 245)', color: businessToday ? 'rgb(231, 226, 226)' : 'grey', display: "flex" }}>Business Today<div id="today-button" onClick={handleDropdownClick} style={{ marginLeft: "5px", display: "flex", justifyContent: "center", alignItems: "center", width: "20px", height: "25px" }}><IoMdArrowDropdown style={{ width: "20px", height: "20px" }} /></div></button>
+                    <button onClick={HandleMonthlyStatementsButtonClick} style={{ backgroundColor: monthlyStatements ? '#8a2be2' : 'rgb(247, 245, 245)', color: monthlyStatements ? 'rgb(231, 226, 226)' : 'grey' }}>Monthly Statements<div id="today-button" onClick={handleDropdownClickMonthlyStatements} style={{ marginLeft: "5px", display: "flex", justifyContent: "center", alignItems: "center", width: "20px", height: "25px" }}><IoMdArrowDropdown style={{ width: "20px", height: "20px" }} /></div></button>
                 </div>
                 <div className='date-dropdown-div'>
                     <div className='dateopendiv'>
@@ -551,9 +556,9 @@ const AdminPage = () => {
             </div>
             {businessToday ? <div className='order-types-and-expenses-main-container'>
                 <div className='order-types-and-expenses-button-container'>
-                    <button onClick={HandleOnlineOrdersButtonClick} style={{ border: onlineOrders ? '1.5px solid #8a2be2' : '1px solid  rgba(197, 191, 191, 1)', color: onlineOrders ? '#8a2be2' : 'rgba(95, 86, 86, 1)', height: onlineOrders ? '56px' : '44px' }}>Online orders</button>
-                    <button onClick={HandleOfflineOrdersButtonClick} style={{ border: offlineOrders ? '1.5px solid #8a2be2' : '1px solid  rgba(197, 191, 191, 1)', color: offlineOrders ? '#8a2be2' : 'rgba(95, 86, 86, 1)', height: offlineOrders ? '56px' : '44px' }}>In-shop orders</button>
-                    <button onClick={HandleExpensesButtonClick} style={{ border: expenses ? '1.5px solid #8a2be2' : '1px solid  rgba(197, 191, 191, 1)', color: expenses ? '#8a2be2' : 'rgba(95, 86, 86, 1)', height: expenses ? '56px' : '44px' }}>Expenses</button>
+                    <button onClick={HandleOnlineOrdersButtonClick} style={{ border: onlineOrders ? '1.5px solid #8a2be2' : '1px solid  rgba(197, 191, 191, 1)', color: onlineOrders ? '#8a2be2' : 'grey', height: onlineOrders ? '54px' : '44px' }}>Online orders <AiOutlineShoppingCart/></button>
+                    <button onClick={HandleOfflineOrdersButtonClick} style={{ border: offlineOrders ? '1.5px solid #8a2be2' : '1px solid  rgba(197, 191, 191, 1)', color: offlineOrders ? '#8a2be2' : 'grey', height: offlineOrders ? '54px' : '44px' }}>In-shop orders <BsShop/></button>
+                    <button onClick={HandleExpensesButtonClick} style={{ border: expenses ? '1.5px solid #8a2be2' : '1px solid  rgba(197, 191, 191, 1)', color: expenses ? '#8a2be2' : 'grey', height: expenses ? '54px' : '44px' }}>Expenses <BiCoinStack/></button>
                 </div>
                 {onlineOrders && OnlineOrdersFlag ?
                     <div className='admin-page-online-orders'>
@@ -625,7 +630,7 @@ const AdminPage = () => {
 
                     {monthlyOnlineOrdersFlag ?
                             <div className='monthly-statements-container'>
-                                <p>Online orders</p>
+                                <p><AiOutlineShoppingCart/> Online orders</p>
                                 <table>
                                     <thead>
                                         <tr>
@@ -653,7 +658,7 @@ const AdminPage = () => {
                     }
                     {monthlyOfflineOrdersFlag ?
                         <div className='monthly-statements-container'>
-                            <p>In-shop orders</p>
+                            <p><BsShop/> In-shop orders</p>
                             <table>
                                 <thead>
                                     <tr>
@@ -673,8 +678,8 @@ const AdminPage = () => {
                                         );
                                     })}
                                     <tr>
-                                        <td>Total</td>
-                                        <td><b>{totalIncome}</b></td>
+                                        <td style={{fontSize: '12px', color: 'grey'}}>Total</td>
+                                        <td>{totalIncome}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -683,7 +688,7 @@ const AdminPage = () => {
                     }
                     {monthlyExpensesFlag ?
                         <div className='monthly-statements-container'>
-                            <p>Expenses</p>
+                            <p><BiCoinStack/> Expenses</p>
                             <table>
                                 <thead>
                                     <tr>
@@ -703,8 +708,8 @@ const AdminPage = () => {
                                         );
                                     })}
                                     <tr>
-                                        <td>Total</td>
-                                        <td><b>{totalExpenses}</b></td>
+                                        <td style={{fontSize: '12px', color: 'grey'}}>Total</td>
+                                        <td>{totalExpenses}</td>
                                     </tr>
                                 </tbody>
                             </table>

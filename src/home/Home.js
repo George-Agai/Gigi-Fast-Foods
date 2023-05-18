@@ -59,9 +59,6 @@ const Home = () => {
 
     const HandleProceedToOrderButtonClicked = (e) => {
         navigate('/OrdersPage')
-        // localStorage.removeItem('loginFlag')
-        // localStorage.removeItem('Login')
-        // localStorage.removeItem('adminLogin')
     }
     const handleScrollToMainMeals = (e) => {
         setFastFoodButton(false)

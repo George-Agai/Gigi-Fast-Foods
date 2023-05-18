@@ -326,7 +326,6 @@
 
 .input-container {
     display: flex;
-    
     width: 100%;
     margin-right: 20px;
 }
@@ -493,10 +492,10 @@
 }
 
 .back-arrow-buttons {
-    width: 110px;
+    width: 100px;
     height: 50px;
     color: rgb(155, 128, 128);
-    font-size: 30px;
+    font-size: 25px;
     background-color: white;
     border: none;
     margin-left: 9px;
@@ -584,6 +583,7 @@
     text-align: left;
     width: 100vw;
     margin-left: 8px;
+    margin-top: 4px;
 }
 
 /* AVAILABLE DRINKS SECTION */
@@ -764,7 +764,7 @@
 #employee-page-back-button {
     background-color: rgba(88, 81, 81, 1);
     color: rgba(212, 212, 212, 1);
-    margin-top: 10px;
+    margin-top: 4px;
 }
 
 .orders-container {
@@ -884,6 +884,10 @@
     flex-direction: column;
     align-items: center;
     margin-top: 20px;
+    border: 0.5px solid rgb(160, 160, 83);
+    border-radius: 10px;
+    width: 82vw;
+    padding: 20px;
 }
 .admin-page-online-orders table td, th{
     padding-left: 20px;
@@ -891,7 +895,10 @@
     text-align: left;
 }
 .admin-page-online-orders th {
-    font-size: 13px;
+    font-size: 12px;
+    color: grey;
+    font-weight: 500;
+    padding-left: 20px;
 }
 .monthly-statements-container table td,th{
     padding-left: 15px;
@@ -900,9 +907,14 @@
 }
 .monthly-statements-container th{
     font-size: 12px;
-    padding-bottom: 5px;
+    padding-bottom: 2px;
+    color: grey;
+    font-weight: 500;
 }
-.monthly-statements-container p{
+.monthly-statements-container p, .order-types-and-expenses-main-container p{
+    color: #8dab29;
+    font-size: 14px;
+    font-weight: 500;
     margin-top: -1px;
     text-align: right;
     margin-right: 15px;
@@ -919,7 +931,7 @@
 }
 .admin-page-back-button-and-amount-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     width: 100vw;
 }
 
@@ -927,14 +939,28 @@
     background-color: rgba(88, 81, 81, 1);
     color: rgba(212, 212, 212, 1);
     margin-top: 4px;
-    margin-left: -37%;
-    margin-right: 32px;
+    padding-left: 40px;
+    margin-left: -25px;
 }
-
 .today-amount {
-    width: 100px;
     line-height: 0px;
     margin-top: 7px;
+}
+#logout-button{
+    display: flex;
+    align-items: center;
+    background-color: rgba(88, 81, 81, 1);
+    height: max-content;
+    font-size: 11px;
+    margin-top: 10px;
+    margin-right: 10px;
+    color: rgb(173, 163, 163);
+    /* border: 0.2px solid rgb(173, 163, 163); */
+    border: none;
+    border-radius: 5px;
+    padding: 7px;
+    padding-left: 10px;
+    padding-right: 8px;
 }
 
 .business-today-and-statements-container {
@@ -955,7 +981,7 @@
     border-radius: 40px;
     border: 1px solid rgba(95, 86, 86, 1);
     font-weight: 600;
-    font-size: 13px;
+    font-size: 12px;
     box-shadow: 0 2px 2px 0 rgb(48, 47, 47);
 }
 
@@ -968,13 +994,8 @@
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
     padding-bottom: 30px;
+    margin-bottom: -2px;
 }
-.order-types-and-expenses-main-container p{
-    color: #8dab29;
-    font-size: 14px;
-    font-weight: 600;
-}
-
 
 .order-types-and-expenses-button-container button {
     margin-right: 10px;
@@ -988,6 +1009,7 @@
     color: rgb(121, 116, 116);
     font-size: 12px;
     margin-top: 20px;
+    font-size: 11px;
 }
 
 .order-details {
@@ -1110,7 +1132,7 @@
     width: 200px;
     border: 0.5px solid grey;
     overflow-y: scroll;
-    height: 200px;
+    height: max-content;
     border-radius: 10px;
     margin-top: 3px;
 }
@@ -1307,17 +1329,12 @@
 }
 .otp-verification{
     display: flex;
-    height: 92vh;
+    height: 90vh;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
 }
-/* .otp-verification p{
-    text-align: left;
-    font-size: 13px;
-    color: rgb(158, 182, 26);
-    padding-right: 30px;
-} */
+
 #otp-verification-code-div{
   width: 100vw;
 }
@@ -1328,7 +1345,6 @@
     width: 100vw;
     text-align: left;
     height: 10vh;
-    margin-left: -25px;
 }
 .otp-bottom-div{
     width: 100vw;
@@ -1340,10 +1356,11 @@
 .otp-bottom-div h3{
     color: rgb(90, 87, 87);
     text-align: left;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 300;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     margin-left: 20px;
+    line-height: 25px;
     width: 70vw;
 }
 .form-full{
@@ -1360,7 +1377,7 @@
     border-radius: 20px;
     font-size: 14px;
     border: 1.2px solid rgb(194, 192, 86);
-    margin-left: -35px;
+    margin-left: -40px;
 }
 .country-code{
     width: 12vw;
@@ -1370,7 +1387,6 @@
     border-radius: 20px;
     border: 1px solid #d5d6d3;
     color: grey;
-    /* background-color: rgb(235, 233, 233); */
 }
 .input-div{
     display: flex;
@@ -1380,9 +1396,9 @@
     margin-left: -5px;
 }
 .phone-animation-div{
-    width: 22px;
-    height: 22px;
-    margin-right: 13px;
+    width: 20px;
+    height: 20px;
+    margin-right: 18px;
     margin-top: 7px;
 }
 .loading-animation-div{
@@ -1452,4 +1468,7 @@
     border-radius: 20px;
     border: 0.5px solid grey;
     padding-left: 20px;
+}
+.logout-icon{
+    margin-left: 2px;
 }

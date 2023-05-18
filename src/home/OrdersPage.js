@@ -66,6 +66,7 @@ const OrdersPage = () => {
 
     const HandleBackArrowClick = () => {
         navigate('/Home')
+        localStorage.removeItem('phoneNumber')
     }
 
     if (isEmpty === false) return (

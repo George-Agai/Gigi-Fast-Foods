@@ -5,6 +5,7 @@ import { BiArrowBack } from 'react-icons/bi'
 import DropdownInput from './DropDownInput';
 import PendingOrderTemplate from './PendingOrderTemplate'
 import penguin from './images/penguin.png'
+import LogoutIcon from './LogoutIcon';
 
 const options = {
     income: [
@@ -49,7 +50,7 @@ const EmployeePageOrders = () => {
     const [ws, setWs] = useState(null)
     const [newOrder, setNewOrder] = useState(null)
     const [OrderFlag, setOrderFlag] = useState()
-    
+
     useEffect(() => {
         localStorage.setItem('loginFlag', JSON.stringify(loginFlag));
         localStorage.setItem('Login', JSON.stringify(Login));
@@ -183,7 +184,11 @@ const EmployeePageOrders = () => {
             }
 
             {Login &&
-                <div className='Employee-Page-Orders'><button className='back-arrow-buttons' id='employee-page-back-button' onClick={onBackButtonClicked}><BiArrowBack /></button>
+                <div className='Employee-Page-Orders'>
+                    <div className='admin-page-back-button-and-amount-container'>
+                        <button className='back-arrow-buttons' id='employee-page-back-button' onClick={onBackButtonClicked}><BiArrowBack /></button>
+                        <LogoutIcon />
+                        </div>
                     <div className='orders-income-expense-div'>
                         <button onClick={HandleOrdersButtonClick} style={{ backgroundColor: orderButtonActive ? '#8a2be2' : 'rgb(247, 245, 245)', color: orderButtonActive ? 'rgb(231, 226, 226)' : 'rgba(95, 86, 86, 1)' }}>Orders</button>
                         <button onClick={HandleIncomeButtonClick} style={{ backgroundColor: incomeButtonActive ? '#8a2be2' : 'rgb(247, 245, 245)', color: incomeButtonActive ? 'rgb(231, 226, 226)' : 'rgba(95, 86, 86, 1)' }}>Income +</button>

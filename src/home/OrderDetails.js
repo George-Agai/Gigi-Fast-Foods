@@ -1,21 +1,31 @@
 import React, { useState } from 'react'
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const OrderDetails = () => {
   const location = useLocation()
+  const navigate = useNavigate()
   const { orders, contact, cartTotal, _id } = location.state;
   const [rejectOrConfirmDiv, setRejectOrConfirmDiv] = useState(true)
 
+
   let ws;
-  const setUpConnection = () => {
+  const setUpConnection = (messageObject) => {
     return new Promise((resolve, reject) => {
       ws = new WebSocket('wss://gigifoods.herokuapp.com')
 
       ws.onopen = function () {
         resolve(ws);
         console.log('ws connected')
-        ws.send(JSON.stringify(orderUpdate))
-        console.log('order to be updated sent')
+        ws.send(JSON.stringify(messageObject))
+      }
+      ws.onmessage = ({ data }) => {
+        const { messageName } = JSON.parse(data)
+        if (messageName === 'rejectedOrderUpdated') {
+          console.log('Order Rejected')
+        }
+        else if (messageName === 'completedOrderUpdated') {
+          console.log('Order Completed')
+        }
         ws.close()
       }
       ws.onclose = function () {
@@ -31,14 +41,29 @@ const OrderDetails = () => {
     e.preventDefault()
     setRejectOrConfirmDiv(false)
   }
+
+  const RejectButtonClicked = (e) => {
+    e.preventDefault()
+    try {
+      setUpConnection(orderRejected)
+      navigate('/EmployeePageOrders')
+    } catch (error) {
+      console.log(error)
+    }
+  }
   const orderUpdate = {
     messageName: 'findAndUpdateOrder',
     _id
   }
+  const orderRejected = {
+    messageName: 'findAndUpdateRejectedOrder',
+    _id
+  }
+
   const deliveredButtonClicked = () => {
     try {
-      const connected = setUpConnection()
-      console.log(connected)
+      setUpConnection(orderUpdate)
+      navigate('/EmployeePageOrders')
     } catch (error) {
       console.error('Error connecting to WebSocket:', error);
     }
@@ -75,7 +100,7 @@ const OrderDetails = () => {
       </div>
       {rejectOrConfirmDiv ?
         <div className='rejectOrConfirmDiv'>
-          <button className='rejectButton'>Reject</button>
+          <button onClick={RejectButtonClicked} className='rejectButton'>Reject</button>
           <button onClick={confirmButtonClicked} className='confirmAndDeliveredButton'>Confirm</button>
         </div> :
         <div className='deliveredDiv'>

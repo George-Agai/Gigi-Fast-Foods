@@ -58,7 +58,6 @@ const onInputClick = () => {
 
 let ws;
 const setUpWebsocketConnection =()=>{
-
 return new Promise((resolve, reject) => {
     ws = new WebSocket('wss://gigifoods.herokuapp.com')
 
