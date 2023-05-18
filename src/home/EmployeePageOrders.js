@@ -6,6 +6,7 @@ import DropdownInput from './DropDownInput';
 import PendingOrderTemplate from './PendingOrderTemplate'
 import penguin from './images/penguin.png'
 import LogoutIcon from './LogoutIcon';
+import LoadingBlue from './LoadingBlue';
 
 const options = {
     income: [
@@ -50,6 +51,7 @@ const EmployeePageOrders = () => {
     const [ws, setWs] = useState(null)
     const [newOrder, setNewOrder] = useState(null)
     const [OrderFlag, setOrderFlag] = useState()
+    const [OrdersLoading, setOrdersLoading] = useState(true)
 
     useEffect(() => {
         localStorage.setItem('loginFlag', JSON.stringify(loginFlag));
@@ -129,6 +131,7 @@ const EmployeePageOrders = () => {
                     console.log('No pending order')
                 }
                 ws.close()
+                setOrdersLoading(false)
             };
             ws.onclose = () => {
                 console.log('WebSocket connection closed.');
@@ -188,19 +191,23 @@ const EmployeePageOrders = () => {
                     <div className='admin-page-back-button-and-amount-container'>
                         <button className='back-arrow-buttons' id='employee-page-back-button' onClick={onBackButtonClicked}><BiArrowBack /></button>
                         <LogoutIcon />
-                        </div>
+                    </div>
                     <div className='orders-income-expense-div'>
                         <button onClick={HandleOrdersButtonClick} style={{ backgroundColor: orderButtonActive ? '#8a2be2' : 'rgb(247, 245, 245)', color: orderButtonActive ? 'rgb(231, 226, 226)' : 'rgba(95, 86, 86, 1)' }}>Orders</button>
                         <button onClick={HandleIncomeButtonClick} style={{ backgroundColor: incomeButtonActive ? '#8a2be2' : 'rgb(247, 245, 245)', color: incomeButtonActive ? 'rgb(231, 226, 226)' : 'rgba(95, 86, 86, 1)' }}>Income +</button>
                         <button onClick={HandleExpensesButtonClick} style={{ backgroundColor: expensesButtonActive ? '#8a2be2' : 'rgb(247, 245, 245)', color: expensesButtonActive ? 'rgb(231, 226, 226)' : 'rgba(95, 86, 86, 1)' }}>Expenses -</button>
                     </div>
 
-                    {orderButtonActive && OrderFlag ? <div className='orders-main-container'>
-                        <PendingOrderTemplate newOrder={newOrder} />
-                    </div>
+                    {OrdersLoading ? <div className='orders-main-container' style={{paddingTop: '200px'}}> <LoadingBlue/> </div> 
+                        :
+                        orderButtonActive && OrderFlag ? 
+                        <div className='orders-main-container'>
+                            <PendingOrderTemplate newOrder={newOrder} />
+                        </div>
                         : orderButtonActive && !OrderFlag ? <div className='orders-main-container'><img src={penguin} alt='penguin' className='penguin' /><p style={{ fontSize: '18px', fontWeight: '700' }}>No orders</p></div> : null}
 
-                    {incomeButtonActive ?
+                    {OrdersLoading ? null
+                    :incomeButtonActive ?
                         <div className='orders-main-container'>
                             <div className='Employee-Page-Income'>
                                 <DropdownInput
@@ -214,7 +221,8 @@ const EmployeePageOrders = () => {
                             </div>
                         </div> : null}
 
-                    {expensesButtonActive ?
+                    {OrdersLoading ? null
+                    :expensesButtonActive ?
                         <div className='orders-main-container'>
                             <div className='Employee-Page-Income'>
                                 <DropdownInput
