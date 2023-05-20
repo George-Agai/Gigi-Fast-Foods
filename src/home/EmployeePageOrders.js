@@ -164,7 +164,7 @@ const EmployeePageOrders = () => {
                 <div className='manage-main-container'>
                     <h3 id='manage-main-container-heading'>GIGI FAST FOODS</h3>
                     <div id='employee-login-div'>
-                        <p id='user'>User</p>
+                        <p id='user'>User{'\u{1F44B}'}</p>
                         <form onSubmit={HandleEmployeeLogin}>
                             <label>Name</label>
                             <input type='text' name='name' onChange={(e) => setName(e.target.value)} value={name} />
@@ -174,7 +174,7 @@ const EmployeePageOrders = () => {
                         </form>
                     </div>
                     <div id='admin-login-div'>
-                        <p>Admin</p>
+                        <p>Admin{'\u{1F60E}'}</p>
                         <form onSubmit={HandleAdminLogin}>
                             <label>Name</label>
                             <input type='text' name='name' onChange={(e) => setAdminName(e.target.value)} value={adminName} />
