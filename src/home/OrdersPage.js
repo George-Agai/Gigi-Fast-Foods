@@ -5,6 +5,7 @@ import { BiArrowBack } from 'react-icons/bi'
 import EmptyCart from './EmptyCart';
 import axios from 'axios'
 import Loading from './Loading';
+import GoogleMapComponent from './GoogleMapComponent'
 
 const OrdersPage = () => {
     const navigate = useNavigate()
@@ -70,40 +71,39 @@ const OrdersPage = () => {
     }
 
     if (isEmpty === false) return (
-        <div>
-            <div className='CompleteOrder'>
-                <div className='Complete-order-back-arrow-div'><button onClick={HandleBackArrowClick} className='back-arrow-buttons'><BiArrowBack /></button></div>
-
-                <div className='order-container'>
-                    <table id='order-table'>
-                        <thead>
-                            <tr id='order-table-row'>
-                                <td><b style={{ fontSize: "12px", color: 'grey', fontWeight: '500' }}>Order</b></td>
-                                <td><b style={{ fontSize: "12px", color: 'grey', fontWeight: '500' }}>Amount</b></td>
-                            </tr>
-                        </thead>
+        <div className='CompleteOrder'>
+            {/* <div className='Complete-order-back-arrow-div'><button onClick={HandleBackArrowClick} className='back-arrow-buttons'><BiArrowBack /></button></div> */}
+            <div>
+                <GoogleMapComponent />
+            </div>
+            <div className='order-container'>
+                <table id='order-table'>
+                    <thead>
+                        <tr id='order-table-row'>
+                            <td><b style={{ fontSize: "12px", color: 'grey', fontWeight: '500' }}>Order</b></td>
+                            <td><b style={{ fontSize: "12px", color: 'grey', fontWeight: '500' }}>Amount</b></td>
+                        </tr>
+                    </thead>
+                    <tbody>
                         {items.map((item, index) => {
                             return (
-                                <tbody key={index}>
-                                    <tr>
-                                        <td>{item.food}</td>
-                                        <td>{item.price}</td>
-                                        <td><button onClick={() => updateItemQuantity(item.id, item.quantity - 1)} className='update-quantity-buttons'><b>-</b></button> {item.quantity} <button onClick={() => updateItemQuantity(item.id, item.quantity + 1)} className='update-quantity-buttons'><b>+</b></button></td>
-                                    </tr>
-                                </tbody>
+                                <tr key={index}>
+                                    <td>{item.food}</td>
+                                    <td>{item.price}</td>
+                                    <td><button onClick={() => updateItemQuantity(item.id, item.quantity - 1)} className='update-quantity-buttons'><b>-</b></button> {item.quantity} <button onClick={() => updateItemQuantity(item.id, item.quantity + 1)} className='update-quantity-buttons'><b>+</b></button></td>
+                                </tr>
                             )
                         })}
-                    </table>
-                    <div>
-                        <h3 id='total-and-amount'>Total&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<b>{cartTotal}</b></h3>
-                    </div>
-                    <div>
-                        <form onSubmit={HandleCompleteOrder}>
-                            <button className='complete-order-button' type='submit' value='submit'> {ContinueTextFlag ? <h4>Complete order</h4> : <Loading />}</button>
-                        </form>
-                    </div>
-                </div>
-
+                        <tr id='total-and-amount'>
+                            <td>Total</td>
+                            <td>{cartTotal}</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <form onSubmit={HandleCompleteOrder}>
+                    <button className='complete-order-button' type='submit' value='submit'> {ContinueTextFlag ? <h4>Complete order</h4> : <Loading />}</button>
+                </form>
             </div>
         </div>
     )

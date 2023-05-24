@@ -29,6 +29,7 @@ const Home = () => {
     const [fastFoodButton, setFastFoodButton] = useState(true);
     const [mainMealsButton, setMainMealsButton] = useState();
     const [drinksButton, setDrinksButton] = useState();
+    const [userLocation, setUserLocation] = useState(null);
 
     const { isEmpty } = useCart();
     const HandleSodaClick = (e) => {
@@ -57,8 +58,24 @@ const Home = () => {
         setWaterActive(false);
     }
 
-    const HandleProceedToOrderButtonClicked = (e) => {
-        navigate('/OrdersPage')
+    const HandleProceedToOrderButtonClicked = async(e) => {
+        let locationDone;
+        if (navigator.geolocation) {
+             locationDone = await navigator.geolocation.getCurrentPosition(
+              (position) => {
+                const { latitude, longitude } = position.coords;
+                setUserLocation({ lat: latitude, lng: longitude });
+              },
+              (error) => {
+                console.error('Error getting user location:', error);
+              }
+            );
+          } else {
+            console.error('Geolocation is not supported by this browser.');
+          }
+          console.log(userLocation)
+          console.log(locationDone)
+          navigate('/OrdersPage')
     }
     const handleScrollToMainMeals = (e) => {
         setFastFoodButton(false)
@@ -245,7 +262,7 @@ const Home = () => {
                             <button id='manage' onClick={() => navigate('/EmployeePageOrders')}>Gigi Fast Foods</button>
                             <p>0702619486</p>
                             <p>Utawala</p>
-                            <a href="https://twitter.com/george__agai" target="_blank" rel="noreferrer" style={{ color: 'rgb(145, 139, 139)', fontSize: '9px', marginTop: '11px' }}>George Agai</a>
+                            <a href="https://twitter.com/george__agai" target="_blank" rel="noreferrer" style={{ color: 'rgb(145, 139, 139)', fontSize: '8px', marginTop: '15px' }}><p>GAgai{'\u{26A1}'}</p></a>
                         </div>
                         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                             <div className='social-media-icons-container'>

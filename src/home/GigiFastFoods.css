@@ -296,7 +296,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 90vh;
 }
 .empty-cart{
     width: 100px;
@@ -396,17 +395,18 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    text-align: center;
-    width: 100%;
+    align-items: center;
+    width: 100vw;
 }
 
 .order-container {
     display: flex;
     flex-direction: column;
-    width: 90%;
-    margin-left: 5%;
-    margin-top: 20px;
-    border-radius: 20px;
+    width: 90vw;
+    margin-top: 60px;
+    padding-top: 20px;
+    padding-bottom: 5px;
+    border-radius: 15px;
     border: 1px solid rgb(224, 224, 221);
 }
 
@@ -416,8 +416,8 @@
 }
 
 .order-container td {
-    color: rgb(2, 2, 2);
-    font-size: 15px;
+    color: rgb(54, 50, 50);
+    font-size: 14px;
     text-align: left;
 }
 
@@ -426,17 +426,16 @@
 }
 
 #order-table {
-    margin-top: 20px;
     margin-left: 7%;
     width: 90%;
 }
 
 .update-quantity-buttons {
     align-items: center;
-    border-radius: 10px;
-    width: 30px;
+    border-radius: 50%;
+    width: 25px;
     height: 25px;
-    color: rgba(97, 93, 93, 1);
+    color: grey;
     border: 1px solid rgba(193, 180, 180, 1);
     background-color: white;
 }
@@ -451,10 +450,10 @@
     animation-delay: 1.2s;
     animation-iteration-count: 2;
     animation-timing-function: ease-in;
-    margin-top: -5px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     width: 94%;
-    height: 60px;
+    height: 55px;
     background-color: rgba(212, 231, 95, 1);
     border: 1px solid rgb(195, 212, 79);
     border-radius: 50px;
@@ -485,10 +484,11 @@
     }
 }
 
-#total-and-amount {
-    margin-left: -20%;
-    font-size: 12px;
-    color: rgb(53, 51, 51);
+#total-and-amount td{
+    padding-top: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgb(59, 55, 55);
 }
 
 .back-arrow-buttons {
@@ -577,13 +577,9 @@
 }
 
 .Complete-order-back-arrow-div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     text-align: left;
-    width: 100vw;
-    margin-left: 8px;
-    margin-top: 4px;
+    width: 98vw;
+    margin-top: 3px;
 }
 
 /* AVAILABLE DRINKS SECTION */
@@ -718,8 +714,27 @@
 
 /* GOOGLE MAPS */
 .map-container {
-    width: 90%px;
-    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(176, 179, 174);
+    border-bottom-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+}
+.google-map-component{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+.location-and-delivery-time{
+    width: 60vw;
+    margin-top: -50px;
+    z-index: 2;
+    border-radius: 20px;
+    border: 1px solid rgb(211, 201, 201);
+    background-color: rgb(250, 250, 250);
 }
 
 /* EMPLOYEE PAGE INCOME */
@@ -1350,7 +1365,7 @@
 }
 .otp-bottom-div{
     width: 100vw;
-    height: 90vh;
+    height: 85vh;
     display: flex;
     flex-direction: column;
     padding-top: 20px;
@@ -1369,7 +1384,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 72vh;
+    height: 70vh;
     width: 100vw;
 }
 .phone-number-input{
