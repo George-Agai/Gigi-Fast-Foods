@@ -29,8 +29,7 @@ const Home = () => {
     const [fastFoodButton, setFastFoodButton] = useState(true);
     const [mainMealsButton, setMainMealsButton] = useState();
     const [drinksButton, setDrinksButton] = useState();
-    const [userLocation, setUserLocation] = useState(null);
-
+    
     const { isEmpty } = useCart();
     const HandleSodaClick = (e) => {
         setSodaActive(true);
@@ -58,25 +57,10 @@ const Home = () => {
         setWaterActive(false);
     }
 
-    const HandleProceedToOrderButtonClicked = async(e) => {
-        let locationDone;
-        if (navigator.geolocation) {
-             locationDone = await navigator.geolocation.getCurrentPosition(
-              (position) => {
-                const { latitude, longitude } = position.coords;
-                setUserLocation({ lat: latitude, lng: longitude });
-              },
-              (error) => {
-                console.error('Error getting user location:', error);
-              }
-            );
-          } else {
-            console.error('Geolocation is not supported by this browser.');
-          }
-          console.log(userLocation)
-          console.log(locationDone)
-          navigate('/OrdersPage')
+    const HandleProceedToOrderButtonClicked = (e) => {
+        navigate('/OrdersPage')
     }
+
     const handleScrollToMainMeals = (e) => {
         setFastFoodButton(false)
         setMainMealsButton(true)
