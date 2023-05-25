@@ -101,10 +101,11 @@ const OrdersPage = () => {
                         </tr>
                     </tbody>
                 </table>
-                <form onSubmit={HandleCompleteOrder}>
-                    <button className='complete-order-button' type='submit' value='submit'> {ContinueTextFlag ? <h4>Complete order</h4> : <Loading />}</button>
-                </form>
+
             </div>
+            <form onSubmit={HandleCompleteOrder}>
+                <button className='complete-order-button' type='submit' value='submit'> {ContinueTextFlag ? <h4>Complete order</h4> : <Loading />}</button>
+            </form>
         </div>
     )
     return <EmptyCart />

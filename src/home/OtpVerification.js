@@ -70,7 +70,7 @@ const OtpVerification = () => {
 
   return (
     <div className='otp-verification'>
-      <div style={{ textAlign: 'left', width: '100vw', height: '30vh' }} className='otp-top-div'>
+      <div className='otp-top-div'>
         <div className='Complete-order-back-arrow-div'>
           <button onClick={HandleBackArrowClick} className='back-arrow-buttons'><BiArrowBack /></button>
         </div>

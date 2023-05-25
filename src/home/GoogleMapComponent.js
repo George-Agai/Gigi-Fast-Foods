@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { GoogleMap, useJsApiLoader, Marker, DirectionsRenderer } from '@react-google-maps/api';
-
+import LocationGIF from './LocationGIF'
+import DeliveryGIF from './DeliveryGIF'
 
 const containerStyle = {
   width: '100vw',
-  height: '40vh',
+  height: '45vh',
   borderBottomLeftRadius: '40px',
   borderBottomRightRadius: '40px'
 };
@@ -22,7 +23,7 @@ const GoogleMapComponent = () => {
   const [distance, setDistance] = useState()
   const [duration, setDuration] = useState()
   const [userLocation, setUserLocation] = useState(null);
-  
+
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -81,12 +82,13 @@ const GoogleMapComponent = () => {
           options={{ zoomControl: false, streetViewControl: false, mapTypeControl: false }}
         >
           <Marker position={center} />
+          <Marker position={userLocation} />
           {directionsResponse && <DirectionsRenderer directions={directionsResponse}/>}
         </GoogleMap>
       </div>
       <div className='location-and-delivery-time'>
-        <p>Location{distance}</p>
-        <p>Delivery Time{duration}</p>
+        <p>< LocationGIF />&ensp;Gigi foods, Utawala</p>
+        <p>< DeliveryGIF />{duration}&ensp; 5 minutes</p>
       </div>
     </div>
   ) : (
