@@ -88,7 +88,7 @@ const GoogleMapComponent = () => {
       </div>
       <div className='location-and-delivery-time'>
         <p>< LocationGIF />&ensp;Gigi foods, Utawala</p>
-        <p>< DeliveryGIF />{duration}&ensp; 5 minutes</p>
+        <p>< DeliveryGIF />&ensp; {duration}</p>
       </div>
     </div>
   ) : (
