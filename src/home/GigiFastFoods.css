@@ -577,11 +577,16 @@
     height: 280px;
     margin-top: -26px;
 }
-
-.Complete-order-back-arrow-div {
-    text-align: left;
-    width: 98vw;
-    margin-top: 3px;
+#orders-page-back-arrow{
+    z-index: 2;
+    background-color: transparent;
+    margin-bottom: -50px;
+    
+}
+.orders-page-back-arrow-div{
+    display: flex;
+    justify-content: flex-start;
+    width: 100vw;
 }
 
 /* AVAILABLE DRINKS SECTION */

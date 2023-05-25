@@ -72,7 +72,9 @@ const OrdersPage = () => {
 
     if (isEmpty === false) return (
         <div className='CompleteOrder'>
-            {/* <div className='Complete-order-back-arrow-div'><button onClick={HandleBackArrowClick} className='back-arrow-buttons'><BiArrowBack /></button></div> */}
+            <div className='orders-page-back-arrow-div'>
+            <button onClick={HandleBackArrowClick} className='back-arrow-buttons' id = 'orders-page-back-arrow'><BiArrowBack /></button>
+            </div>
             <div>
                 <GoogleMapComponent />
             </div>
