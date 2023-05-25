@@ -260,6 +260,7 @@
     bottom: 1%;
     color: rgb(173, 143, 143);
     transform: translateX(-50%);
+    font-size: 12px;
 }
 #order-quantity-div {
     width: 50%;
@@ -403,10 +404,10 @@
     display: flex;
     flex-direction: column;
     width: 90vw;
-    margin-bottom: 13px;
-    margin-top: 60px;
+    margin-bottom: 15px;
+    margin-top: 45px;
     padding-top: 20px;
-    padding-bottom: 15px;
+    padding-bottom: 20px;
     border-radius: 15px;
     border: 1px solid rgb(224, 224, 221);
 }
@@ -433,8 +434,8 @@
 
 .update-quantity-buttons {
     align-items: center;
-    border-radius: 50%;
-    width: 25px;
+    border-radius: 10px;
+    width: 35px;
     height: 25px;
     color: grey;
     border: 1px solid rgba(193, 180, 180, 1);
@@ -460,6 +461,7 @@
     color: rgb(173, 143, 143);
     font-weight: 600;
     letter-spacing: 0.5px;
+    font-size: 12px;
 }
 
 @keyframes completeOrderAnimate {
@@ -488,7 +490,7 @@
     padding-top: 10px;
     font-size: 14px;
     font-weight: 500;
-    color: rgb(59, 55, 55);
+    color: rgb(105, 104, 104);
 }
 
 .back-arrow-buttons {
