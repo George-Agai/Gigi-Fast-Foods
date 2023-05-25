@@ -6,8 +6,8 @@ import DeliveryGIF from './DeliveryGIF'
 const containerStyle = {
   width: '100vw',
   height: '45vh',
-  borderBottomLeftRadius: '40px',
-  borderBottomRightRadius: '40px'
+  borderBottomLeftRadius: '60px',
+  borderBottomRightRadius: '60px'
 };
 
 const center = {
