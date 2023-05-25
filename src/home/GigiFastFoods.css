@@ -404,10 +404,10 @@
     display: flex;
     flex-direction: column;
     width: 90vw;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     margin-top: 50px;
     padding-top: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 15px;
     border-radius: 15px;
     border: 1px solid rgb(224, 224, 221);
 }
