@@ -487,10 +487,10 @@
 }
 
 #total-and-amount td{
-    padding-top: 10px;
+    padding-top: 5px;
     font-size: 14px;
     font-weight: 500;
-    color: rgb(105, 104, 104);
+    color: rgb(94, 91, 91);
 }
 
 .back-arrow-buttons {
