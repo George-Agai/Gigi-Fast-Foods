@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { useLocation, useNavigate } from "react-router-dom";
+import OrderDetailsGoogleMapComponent from './OrderDetailsGoogleMapComponent';
 
 const OrderDetails = () => {
   const location = useLocation()
   const navigate = useNavigate()
-  const { orders, contact, cartTotal, _id } = location.state;
+  const { confirmed, customerLocation, orders, contact, cartTotal, _id } = location.state;
   const [rejectOrConfirmDiv, setRejectOrConfirmDiv] = useState(true)
 
 
@@ -26,6 +27,9 @@ const OrderDetails = () => {
         else if (messageName === 'completedOrderUpdated') {
           console.log('Order Completed')
         }
+        else if (messageName === 'confirmedOrderUpdated') {
+          console.log('Order confirmed')
+        }
         ws.close()
       }
       ws.onclose = function () {
@@ -39,7 +43,12 @@ const OrderDetails = () => {
 
   const confirmButtonClicked = (e) => {
     e.preventDefault()
-    setRejectOrConfirmDiv(false)
+    try{
+      setUpConnection(orderConfirmed)
+      setRejectOrConfirmDiv(false)
+    }catch(error){
+      console.log(error)
+    }
   }
 
   const RejectButtonClicked = (e) => {
@@ -59,6 +68,10 @@ const OrderDetails = () => {
     messageName: 'findAndUpdateRejectedOrder',
     _id
   }
+  const orderConfirmed = {
+    messageName: 'findAndUpdateConfirmedOrder',
+    _id
+  }
 
   const deliveredButtonClicked = () => {
     try {
@@ -71,7 +84,7 @@ const OrderDetails = () => {
   }
   return (
     <div className='order-details'>
-      <p>{contact}</p>
+      <OrderDetailsGoogleMapComponent userLocation={customerLocation} contact={contact}/>
       <div className='ordersInOrderDetailsDiv'>
         <table>
           <thead>
@@ -83,22 +96,23 @@ const OrderDetails = () => {
           </thead>
           <tbody>
             {orders.map((order) => (
-              <tr key={order._id}>
+              <tr key={order._id} className='order-details-tbody'>
                 <td>{order.food}</td>
                 <td>{order.quantity}</td>
                 <td>{order.itemTotal}</td>
               </tr>
             ))}
             <tr></tr>
+            <tr></tr>
             <tr>
-              <td></td>
               <td style={{ fontSize: '12px', color: 'grey' }}>Total</td>
-              <td><b style={{ fontSize: '14px' }}>{cartTotal}</b></td>
+              <td></td>
+              <td style={{ fontSize: '14px', color: 'grey' }}>{cartTotal}</td>
             </tr>
           </tbody>
         </table>
       </div>
-      {rejectOrConfirmDiv ?
+      {!confirmed && rejectOrConfirmDiv?
         <div className='rejectOrConfirmDiv'>
           <button onClick={RejectButtonClicked} className='rejectButton'>Reject</button>
           <button onClick={confirmButtonClicked} className='confirmAndDeliveredButton'>Confirm</button>

@@ -6,6 +6,7 @@ import EmptyCart from './EmptyCart';
 import axios from 'axios'
 import Loading from './Loading';
 import GoogleMapComponent from './GoogleMapComponent'
+import {userLocationVar} from './GoogleMapComponent'
 
 const OrdersPage = () => {
     const navigate = useNavigate()
@@ -39,26 +40,51 @@ const OrdersPage = () => {
         status: "Pending"
     }
 
+    let userLocation;
     const HandleCompleteOrder = async (e) => {
         e.preventDefault()
         try {
             setContinueTextFlag(false)
             const LocalStoragePhoneNumber = localStorage.getItem('phoneNumber');
             console.log("Local storage", LocalStoragePhoneNumber)
-
+            
             if (LocalStoragePhoneNumber) {
-                const order = { contact: LocalStoragePhoneNumber, ...orderWithoutContact };
-                console.log(order)
-                const sent = await axios.post('https://gigifoods.herokuapp.com/app/Home', order)
-                if (sent) {
-                    navigate('/OrderComplete')
-                    setContinueTextFlag(true)
-                    emptyCart()
+                if(userLocationVar){
+                    const order = { contact: LocalStoragePhoneNumber, customerLocation: userLocationVar, ...orderWithoutContact };
+                    console.log(order)
+                    const sent = await axios.post('https://gigifoods.herokuapp.com/app/Home', order)
+                    if (sent) {
+                        navigate('/OrderComplete')
+                        setContinueTextFlag(true)
+                        emptyCart()
+                    }
+                }
+                else if(!userLocationVar){
+                    userLocation = {lat: 0, lng: 0}
+                    const order = { contact: LocalStoragePhoneNumber, customerLocation: userLocation, ...orderWithoutContact };
+                    console.log(order)
+                    const sent = await axios.post('https://gigifoods.herokuapp.com/app/Home', order)
+                    if (sent) {
+                        navigate('/OrderComplete')
+                        setContinueTextFlag(true)
+                        emptyCart()
+                    }
                 }
             }
             else {
-                navigate('/OtpVerification', { state: { orderWithoutContact } })
-                setContinueTextFlag(true)
+                if(userLocationVar){
+                    const orderWithCustomerLocation = { customerLocation: userLocationVar, ...orderWithoutContact };
+                    console.log(orderWithCustomerLocation)
+                    navigate('/OtpVerification', { state: { orderWithCustomerLocation } })
+                    setContinueTextFlag(true)
+                }
+                else if(!userLocationVar){
+                    userLocation = {lat: 0, lng: 0}
+                    const orderWithCustomerLocation = { customerLocation: userLocation, ...orderWithoutContact };
+                    navigate('/OtpVerification', { state: { orderWithCustomerLocation } })
+                    setContinueTextFlag(true)
+                }
+                
             }
         } catch (error) {
             console.log(error)
@@ -66,8 +92,9 @@ const OrdersPage = () => {
     }
 
     const HandleBackArrowClick = () => {
-        navigate('/Home')
+        // navigate('/Home')
         localStorage.removeItem('phoneNumber')
+        console.log('tHIS IS it', userLocationVar)
     }
 
     if (isEmpty === false) return (

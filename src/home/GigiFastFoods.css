@@ -251,13 +251,14 @@
     width: 360px;
     height: 60px;
     border: 1px solid rgb(195, 212, 79);
+    box-shadow: 0 1px 2px 0 rgb(218, 215, 215);
     border-radius: 50px;
     margin-left: 0.5%;
     margin-right: 0.5%;
     position: fixed;
     left: 50%;
     z-index: 2;
-    bottom: 1%;
+    bottom: 1.2%;
     color: rgb(173, 143, 143);
     transform: translateX(-50%);
     font-size: 12px;
@@ -456,6 +457,7 @@
     width: 92vw;
     height: 55px;
     background-color: rgba(212, 231, 95, 1);
+    box-shadow: 0 1px 2px 0 rgb(218, 215, 215);
     border: 1px solid rgb(195, 212, 79);
     border-radius: 50px;
     color: rgb(173, 143, 143);
@@ -684,9 +686,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* border: 1px solid rgb(176, 179, 174); */
-    border-bottom-right-radius: 60px;
-    border-bottom-left-radius: 60px;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
 }
 .google-map-component{
     display: flex;
@@ -762,21 +763,20 @@
 .orders-container {
     display: flex;
     flex-direction: column;
-    margin-top: 15px;
-    background-color: rgb(248, 248, 248);
-    border: 1px solid rgb(224, 221, 221);
+    margin-top: 20px;
+    border: 1px solid rgb(226, 226, 226);
     width: 90%;
-    height: 70px;
+    height: 90px;
     border-radius: 15px;
     justify-content: space-around;
     align-items: center;
 }
 .details-button{
-    background-color: rgba(246, 246, 246, 1);
+    background-color: white;
     width: 30vw;
     height: 45px;
     border-radius: 35px;
-    border: 1px solid #8a2be2;
+    border: 0.5px solid #8a2be2;
     color: #8a2be2;
     font-weight: 500;
     letter-spacing: 0.2px;
@@ -796,19 +796,50 @@
     width: 95%;
     justify-content: space-around;
     align-items: center;
+    /* border: 1px solid black; */
 }
 .orders-container-time{
     display: flex;
     width: 90%;
-    justify-content: flex-start;
-    padding-left: 30px;
-    padding-top: 10px;
-    margin-bottom: -10px;
-    font-size: 10px;
+    justify-content: space-between;
+    padding-left: 10px;
+    margin-top: 5px;
+    font-size: 11px;
     color: grey;
 }
+.pending{
+    background-color: rgb(247, 215, 215);
+    color: rgb(121, 117, 117);
+    width: max-content;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 20px;
+    font-size: 10px;
+    margin-top: -2px;
+    margin-right: 5px;
+}
+.new{
+    background-color: rgb(232, 240, 163);
+    width: max-content;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 20px;
+    font-size: 10px;
+    margin-top: -2px;
+    margin-right: 5px;
+}
+.Time{
+    background-color: rgb(247, 247, 247);
+    width: max-content;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 20px;
+    font-size: 10px;
+    margin-right: 10px;
+}
 .orders-container-bottom p{
-    font-size: 14px;
+    font-size: 13px;
+    color: rgb(66, 63, 63);
 }
 .orders-container-ordernumber-amount {
     display: flex;
@@ -1259,7 +1290,7 @@
     padding: 20px;
     border-radius: 20px;
     width: 80vw;
-    margin-top: 50vh;
+    margin-top: 50px;
 }
 .ordersInOrderDetailsDiv table td{
     text-align: left;
@@ -1342,6 +1373,7 @@
     width: 100vw;
     text-align: left;
     height: 10vh;
+    
 }
 .otp-bottom-div{
     width: 100vw;
@@ -1393,10 +1425,9 @@
     margin-left: -5px;
 }
 .phone-animation-div{
-    width: 20px;
+    width: 18px;
     height: 20px;
-    margin-right: 18px;
-    margin-top: 7px;
+    margin-left: 9px;
 }
 .loading-animation-div{
     width: 20px;
@@ -1476,4 +1507,18 @@
     width: 33px;
     height: 22px;
     margin-top: -4px;
+}
+.order-details-tbody{
+    color: rgb(73, 69, 69);
+    font-size: 15px;
+}
+#contact-copy-div{
+    background-color: rgb(230, 236, 176);
+    width: max-content;
+    margin-left: 40px;
+    padding: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 20px;
+    font-size: 13px;
 }

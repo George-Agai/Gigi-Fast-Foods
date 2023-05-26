@@ -6,14 +6,16 @@ import DeliveryGIF from './DeliveryGIF'
 const containerStyle = {
   width: '100vw',
   height: '45vh',
-  borderBottomLeftRadius: '60px',
-  borderBottomRightRadius: '60px'
+  borderBottomLeftRadius: '50px',
+  borderBottomRightRadius: '50px'
 };
 
 const center = {
   lat: -1.197728,
   lng: 37.011456
 };
+
+export let userLocationVar;
 
 const API_Key = "AIzaSyD7tlrR0YII9b4QBsc7WvswWTe5Ae1T8ck"
 
@@ -30,7 +32,6 @@ const GoogleMapComponent = () => {
         (position) => {
           const { latitude, longitude } = position.coords;
           setUserLocation({ lat: latitude, lng: longitude });
-          console.log('user location useEffect');
         },
         (error) => {
           console.error('Error getting user location:', error);
@@ -40,7 +41,7 @@ const GoogleMapComponent = () => {
       console.error('Geolocation is not supported by this browser.');
     }
   }, []);
-  
+
   useEffect(() => {
     if (userLocation) {
       const findDirectionToCustomer = async () => {
@@ -56,13 +57,15 @@ const GoogleMapComponent = () => {
         setDistance(results.routes[0].legs[0].distance.text);
         setDuration(results.routes[0].legs[0].duration.text);
       };
-  
+
       findDirectionToCustomer();
     }
   }, [userLocation]);
+
   
-  console.log('user location boy', userLocation);
-  
+  if(userLocation){
+    userLocationVar = userLocation;
+  }
 
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: API_Key
@@ -73,24 +76,24 @@ const GoogleMapComponent = () => {
   }
 
   return isLoaded ? (
-    <div className='google-map-component'>
-      <div className='map-container'>
-        <GoogleMap
-          mapContainerStyle={containerStyle}
-          center={center}
-          zoom={17}
-          options={{ zoomControl: false, streetViewControl: false, mapTypeControl: false }}
-        >
-          <Marker position={center} />
-          <Marker position={userLocation} />
-          {directionsResponse && <DirectionsRenderer directions={directionsResponse}/>}
-        </GoogleMap>
-      </div>
-      <div className='location-and-delivery-time'>
-        <p>< LocationGIF />&ensp;Gigi foods, Utawala</p>
-        <p>< DeliveryGIF />&ensp; {duration}</p>
-      </div>
-    </div>
+        <div className='google-map-component'>
+          <div className='map-container'>
+            <GoogleMap
+              mapContainerStyle={containerStyle}
+              center={center}
+              zoom={17}
+              options={{ zoomControl: false, streetViewControl: false, mapTypeControl: false }}
+            >
+              <Marker position={center} />
+              <Marker position={userLocation} />
+              {directionsResponse && <DirectionsRenderer directions={directionsResponse} />}
+            </GoogleMap>
+          </div>
+          <div className='location-and-delivery-time'>
+            <p>< LocationGIF />&ensp;Gigi foods, Utawala</p>
+            <p>< DeliveryGIF />&ensp; {duration}</p>
+          </div>
+        </div>
   ) : (
     <div>Loading Google Maps...</div>
   );

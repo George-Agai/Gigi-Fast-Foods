@@ -596,7 +596,7 @@ const AdminPage = () => {
                                 <tbody>
                                     {OnlineOrdersArray.map((object) => (
                                         object.orders.map((order) => (
-                                            <tr key={order._id}>
+                                            <tr key={order._id} className='order-details-tbody'>
                                                 <td>{order.food}</td>
                                                 <td>{order.quantity}</td>
                                                 <td>{order.itemTotal}</td>
@@ -620,7 +620,7 @@ const AdminPage = () => {
                             </thead>
                             <tbody>
                                 {OfflineOrdersArray.map((order) => (
-                                    <tr key={order._id}>
+                                    <tr key={order._id} className='order-details-tbody'>
                                         <td>{order.inputValue}</td>
                                         <td>{order.incomeAmount}</td>
                                     </tr>
@@ -642,7 +642,7 @@ const AdminPage = () => {
                             </thead>
                             <tbody>
                                 {ExpensesArray.map((order) => (
-                                    <tr key={order._id}>
+                                    <tr key={order._id} className='order-details-tbody'>
                                         <td>{order.inputValue}</td>
                                         <td>{order.incomeAmount}</td>
                                     </tr>
@@ -671,7 +671,7 @@ const AdminPage = () => {
                                     {monthlyOrdersArray.map((innerArray, index) => {
                                         return innerArray.map((item, index) => {
                                             return (
-                                                <tr key={index}>
+                                                <tr key={index} className='order-details-tbody'>
                                                     <td>{item[0]}</td>
                                                     <td>{item[1]}</td>
                                                     <td>{item[2]}</td>
@@ -699,7 +699,7 @@ const AdminPage = () => {
                                 <tbody>
                                     {Object.keys(incomeDataCount).map((key, index) => {
                                         return (
-                                            <tr key={index}>
+                                            <tr key={index} className='order-details-tbody'>
                                                 <td>{key}</td>
                                                 <td>{incomeDataCount[key].count}</td>
                                                 <td>{incomeDataCount[key].totalIncome}</td>
@@ -730,7 +730,7 @@ const AdminPage = () => {
                                 <tbody>
                                     {Object.keys(expenseDataCount).map((key, index) => {
                                         return (
-                                            <tr key={index}>
+                                            <tr key={index} className='order-details-tbody'>
                                                 <td>{key}</td>
                                                 <td>{expenseDataCount[key].count}</td>
                                                 <td>{expenseDataCount[key].totalExpenses}</td>

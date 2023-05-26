@@ -1,25 +1,23 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useLocation } from "react-router-dom";
 import { BiArrowBack } from 'react-icons/bi'
 import axios from 'axios'
 import './GigiFastFoods.css';
-import lottie from 'lottie-web';
-import phone from './images/phone.json';
 import Loading from './Loading';
 import { useCart } from 'react-use-cart'
-
+import PhoneAnimation from './PhoneAnimation';
 
 const OtpVerification = () => {
   const [ContinueTextFlag, setContinueTextFlag] = useState(true)
   const navigate = useNavigate();
   const location = useLocation()
-  const { orderWithoutContact } = location.state ?? {};
-  const containerRef = useRef(null);
+  const { orderWithCustomerLocation } = location.state ?? {};
   const {
     emptyCart
   } = useCart()
 
-  if (!orderWithoutContact) {
+
+  if (!orderWithCustomerLocation) {
     console.log("No order founddddd")
   }
   const [phoneNumber, setPhoneNumber] = useState()
@@ -34,7 +32,7 @@ const OtpVerification = () => {
     fullPhoneNumber = `+${countryCode}${phoneNumber}`;
     localStorage.setItem('phoneNumber', fullPhoneNumber);
     setContinueTextFlag(false)
-    const order = { contact: fullPhoneNumber, ...orderWithoutContact };
+    const order = { contact: fullPhoneNumber, ...orderWithCustomerLocation };
     console.log("order nigga", order)
     const sent = await axios.post('https://gigifoods.herokuapp.com/app/Home', order)
     if (sent) {
@@ -54,27 +52,15 @@ const OtpVerification = () => {
     }
   }
 
-  useEffect(() => {
-    const anim = lottie.loadAnimation({
-      container: containerRef.current,
-      renderer: 'svg',
-      animationData: phone,
-      loop: true,
-      autoplay: true,
-    });
-
-    return () => {
-      anim.destroy();
-    };
-  }, []);
-
   return (
     <div className='otp-verification'>
       <div className='otp-top-div'>
         <div className='Complete-order-back-arrow-div'>
           <button onClick={HandleBackArrowClick} className='back-arrow-buttons'><BiArrowBack /></button>
         </div>
-        <div ref={containerRef} className='phone-animation-div'></div>
+        <div style={{ paddingRight: '20px' }}>
+          <PhoneAnimation />
+        </div>
       </div>
       <div className='otp-bottom-div'>
         <h3>Please enter the phone number  we'll call you on upon delivery {'\u{1F514}'}</h3>

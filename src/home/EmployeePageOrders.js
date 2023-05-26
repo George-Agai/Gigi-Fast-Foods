@@ -155,7 +155,7 @@ const EmployeePageOrders = () => {
             console.log("Web socket didn't connect")
         }
     }, [ws]);
-
+    console.log('Checking for location', newOrder)
     const incomeMessage = "Income"
     const expensesMessage = "Expenses"
     return (
