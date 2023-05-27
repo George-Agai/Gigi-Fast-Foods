@@ -819,6 +819,8 @@
     margin-right: 5px;
 }
 .new{
+    display: flex;
+    align-items: center;
     background-color: rgb(232, 240, 163);
     width: max-content;
     padding-left: 8px;
