@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import clock from './images/clock.png'
+import {BsDot} from 'react-icons/bs'
 
 const PendingOrderTemplate = ({ newOrder }) => {
   const navigate = useNavigate()
@@ -13,7 +14,7 @@ const PendingOrderTemplate = ({ newOrder }) => {
             <div className='Time' style={{display: 'flex', alignItems: 'center'}}><img src={clock} alt='clock' className='icons'/> <span style={{marginLeft: '3px'}}>{new Date(date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}</span></div>
             {confirmed ? 
               <p className='pending'>Pending</p> :
-              <p className='new'>New </p>
+              <p className='new'>New <BsDot/></p>
             }
           </div>
           <div className='orders-container-bottom'>
