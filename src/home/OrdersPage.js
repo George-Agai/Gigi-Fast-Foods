@@ -92,9 +92,9 @@ const OrdersPage = () => {
     }
 
     const HandleBackArrowClick = () => {
-        // navigate('/Home')
-        localStorage.removeItem('phoneNumber')
-        console.log('tHIS IS it', userLocationVar)
+        navigate('/Home')
+        // localStorage.removeItem('phoneNumber')
+        // console.log('tHIS IS it', userLocationVar)
     }
 
     if (isEmpty === false) return (
