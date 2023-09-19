@@ -121,9 +121,7 @@ const Home = () => {
     let today = new Date().getFullYear()
 
     return (
-        <div>
-
-
+        <div className='HomeMain'>
             <div className='Home'>
                 <div className='home-header'>
                     <h2 id='fast-foods'>Gigi Fast Foods</h2>

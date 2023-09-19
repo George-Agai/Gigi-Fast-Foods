@@ -1,6 +1,23 @@
 .App {
   text-align: center;
 }
+@media screen and (min-width: 768px) {
+  .HomeMain{
+    width: 45vw;
+  }
+  .order-details {
+    display: flex;
+    justify-content: center;
+  }
+  #root{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .section-heading{
+    margin-left: 50px;
+  }
+}
 
 .App-logo {
   height: 40vmin;
